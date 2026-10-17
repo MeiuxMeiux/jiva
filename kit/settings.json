@@ -1,0 +1,25 @@
+{
+  "statusLine": {
+    "type": "command",
+    "command": "\"${CLAUDE_PROJECT_DIR:-.}\"/.fleet/bin/statusline.sh"
+  },
+  "permissions": {
+    "allow": [
+      "Bash(just fleet ls)",
+      "Bash(just fleet peek *)",
+      "Bash(just fleet say *)",
+      "Bash(just fleet claim *)",
+      "Bash(just fleet release *)",
+      "Bash(just fleet claims)",
+      "Bash(just fleet ship *)",
+      "Bash(just fleet gate-add *)",
+      "Bash(just fleet gate-list)",
+      "Bash(just fleet gate-result *)",
+      "Bash(just fleet digest)",
+      "Bash(just fleet usage)",
+      "Bash(git status *)",
+      "Bash(git diff *)",
+      "Bash(git log *)"
+    ]
+  }
+}
