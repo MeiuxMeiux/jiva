@@ -31,9 +31,7 @@ and ≤40-line handoffs, so any session can die and a fresh one picks up where i
 Linux or WSL2. bash ≥4, git, tmux ≥3.2, jq ≥1.6, just, python3, util-linux (flock, setsid), coreutils, Claude Code. Optional: gh, shellcheck, gitleaks.
 macOS: untested (needs Homebrew bash, coreutils, util-linux).
 
-Quickest: `npx jiva-fleet init` checks the dependencies, clones JIVA into `~/.jiva` and prints the PATH
-line to add (`npx jiva-fleet micro` writes [JIVA Micro](docs/MICRO.md) into the current repo instead).
-Or clone by hand and put `bin/` on PATH:
+Clone and put `bin/` on PATH (or paste [JIVA Micro](docs/MICRO.md) into a repo for the no-install version):
 
 ```
 git clone https://github.com/MeiuxMeiux/jiva ~/jiva    # or: gh repo clone MeiuxMeiux/jiva ~/jiva

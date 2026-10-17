@@ -1,4 +1,0 @@
-# copied in by `npm pack` (prepack → scripts/bundle.js); the sources live at the repo root
-MICRO.md
-LICENSE
-*.tgz

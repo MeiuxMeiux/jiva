@@ -8,9 +8,9 @@ init:
     [[ -d .git ]] || git init -q -b main
     git config core.hooksPath .githooks
     chmod +x .githooks/pre-commit scripts/*.sh
-    mkdir -p docs notes core plugin npm scripts packs/local .jiva \
+    mkdir -p docs notes core plugin scripts packs/local .jiva \
       site/src/{css,js,fonts} site/art/{raw,final} site/build site/deploy
-    for d in core plugin npm site/src/css site/src/js site/src/fonts site/art/final site/deploy; do
+    for d in core plugin site/src/css site/src/js site/src/fonts site/art/final site/deploy; do
       [[ -n "$(ls -A "$d")" ]] || touch "$d/.gitkeep"
     done
     command -v gitleaks >/dev/null || echo "WARN: gitleaks not installed — commits will be blocked"

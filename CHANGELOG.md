@@ -18,7 +18,6 @@ First public alpha.
 - **Gate rows** — `just gate-add|gate-run|gate-fix|gate-result`: one runnable line per human step, linted for a
   hard OK/MISSING gate; only the human runs them. `just desk-digest` prints nothing when nothing changed.
 - **Cards and router** — cards need Area, Owned paths and Done-when; `docs/agents/AREAS.md` and `RULES.md`.
-- **npx installer** — `npx jiva-fleet init|micro|doctor`: checks dependencies, clones JIVA, writes `JIVA.md`.
 - **Avatar packs** — 28 packs (anime, comic book, old masters, halloween, robots and more), rotating on the site.
 - **Preflight** — `jiva init`/`up` list exactly which tools are missing; model aliases with a per-user
   `~/.config/jiva/env` override.
