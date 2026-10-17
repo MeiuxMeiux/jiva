@@ -6,6 +6,12 @@ aims to follow [Semantic Versioning](https://semver.org/spec/v2.0.0.html) once i
 
 ## [Unreleased]
 
+### Added
+
+- **JIVA Kit** — `kit/` (tested `.fleet/` scripts, `just fleet` module, roles, templates) and `just kit`, which
+  bundles it into one paste-in `kit.md` (served next to `micro.md`); CI runs `kit/test.sh`.
+- **JIVA Micro** gained a "just = the blessed path" section.
+
 ## [0.1.0] - 2026-10-17
 
 First public alpha.
