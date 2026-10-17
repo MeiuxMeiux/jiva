@@ -1,0 +1,21 @@
+# halloween — classic friendly-spooky monsters (original designs, no film versions)
+title: "Halloween"
+style: >-
+  Spooky-fun Halloween storybook illustration, rich painterly digital art, moody rim lighting,
+  characterful monsters that are spooky but charming, not gory, no blood.
+size: 1536x1024
+quality: medium
+est: 0.30
+slots:
+  - {name: Vlad, look: "elegant vampire with slicked hair, pale skin and a crimson-red cape collar"}
+  - {name: Howl, look: "shaggy werewolf with a coral-orange torn flannel shirt"}
+  - {name: Pumpkin, look: "jack-o'-lantern-headed scarecrow with tangerine-orange glowing eyes"}
+  - {name: Wraps, look: "bandaged mummy with golden-yellow glowing eyes and a gold collar"}
+  - {name: Wick, look: "friendly ghost sheet with lemon-yellow lantern glow"}
+  - {name: Hex, look: "witch with a tall pointed hat and a chartreuse-green hatband"}
+  - {name: Patch, look: "friendly ragdoll golem sewn from mismatched quilt patches with button eyes and lime-green yarn hair"}
+  - {name: Grim, look: "hooded reaper skeleton with spring-green glowing eye sockets"}
+  - {name: Bog, look: "mossy bog troll with a mushroom-covered head, big nose and emerald-green lichen beard"}
+  - {name: Bones, look: "grinning skeleton in a top hat with a mint-green bow tie"}
+  - {name: Banshee, look: "pale wailing spirit with flowing hair and seafoam-green glow"}
+  - {name: Gargoyle, look: "stone gargoyle with small wings and turquoise-aqua gem eyes"}

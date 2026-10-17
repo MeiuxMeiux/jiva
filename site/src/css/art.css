@@ -1,0 +1,56 @@
+/* scene art slots + page motion. Art is optional: build (assets.py) appends --art-* rules only for
+   src/img/*.webp that exist, so every var() below falls back to none and the page degrades cleanly.
+   --art-hero / --art-banner load at first paint; --art-tile and --art-emblem are set on .band.in
+   (js/site.js reveal) so they load lazily. Navy veils keep text contrast on top of any art. */
+body { overflow-x: clip; }
+
+/* header: full-bleed banner behind the sticky bar + a slow pink→cyan→green sweep on its rule */
+.top::before, .top::after { content: ""; position: absolute; left: calc(50% - 50vw); right: calc(50% - 50vw); pointer-events: none; }
+.top::before {
+  top: 0; bottom: 0; z-index: -1;
+  background: linear-gradient(90deg, rgba(6, 1, 40, .94), rgba(6, 1, 40, .78) 50%, rgba(6, 1, 40, .94)),
+    var(--art-banner, none) center / cover, var(--background);
+}
+.top::after {
+  bottom: -1px; height: 2px; opacity: .85;
+  background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent), var(--primary)) 0 0 / 300% 100%;
+  box-shadow: 0 0 14px rgba(239, 79, 188, .55); animation: sweep 9s linear infinite;
+}
+.top .logo .notch { animation: glow 4.5s ease-in-out infinite; }
+@keyframes sweep { to { background-position: 300% 0; } }
+@keyframes glow {
+  0%, 100% { filter: drop-shadow(0 0 0 rgba(239, 79, 188, 0)); }
+  50% { filter: drop-shadow(0 0 7px rgba(239, 79, 188, .9)) drop-shadow(0 0 14px rgba(0, 255, 216, .35)); }
+}
+
+/* hero: full-bleed scene behind the copy; js/site.js sets --py (px) for a slow parallax drift.
+   The layer starts 120px high and drifts ≤120px down, so it never paints past the hero's bottom. */
+.hero { position: relative; isolation: isolate; }
+.hero::before {
+  content: ""; position: absolute; z-index: -1; top: -120px; bottom: 120px; left: calc(50% - 50vw); right: calc(50% - 50vw);
+  background: linear-gradient(180deg, rgba(6, 1, 40, .5), rgba(6, 1, 40, .72) 55%, var(--background) 96%),
+    radial-gradient(60% 50% at 78% 38%, rgba(239, 79, 188, .16), rgba(239, 79, 188, 0) 70%),
+    var(--art-hero, none) center 35% / cover no-repeat;
+  transform: translate3d(0, calc(var(--py, 0) * 1px), 0); will-change: transform; pointer-events: none;
+}
+
+/* bands: faint tiled texture + a per-section emblem above the number (both set on reveal) */
+.band { position: relative; isolation: isolate; }
+.band::before {
+  content: ""; position: absolute; z-index: -1; top: 0; bottom: 0; left: calc(50% - 50vw); right: calc(50% - 50vw);
+  background: var(--art-tile, none) center top / 384px repeat; opacity: .07; pointer-events: none;
+}
+.band h2::before {
+  display: block; width: 72px; height: 72px; margin-bottom: 14px; opacity: 0;
+  background: var(--art-emblem, none) left center / contain no-repeat; transition: opacity .9s ease .2s;
+}
+.band.in h2::before { opacity: 1; }
+
+/* section titles rise in once (only with js: .js is set by site.js, so no-js pages show them) */
+.band h2 { transition: opacity .8s ease, transform .8s cubic-bezier(.2, .7, .2, 1), letter-spacing .8s ease; }
+.band h2 .num { transition: transform .8s cubic-bezier(.2, .7, .2, 1) .15s, opacity .8s ease .15s; }
+.js .band:not(.in) h2 { opacity: 0; transform: translateY(22px); letter-spacing: .01em; }
+.js .band:not(.in) h2 .num { opacity: 0; transform: translateX(-18px); }
+@media (max-width: 520px) {
+  .band h2::before { width: 56px; height: 56px; }
+}

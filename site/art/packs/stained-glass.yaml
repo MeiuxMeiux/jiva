@@ -1,0 +1,22 @@
+# stained-glass — stained-glass window busts
+title: "Stained Glass"
+style: >-
+  Luminous stained-glass window portraits: bold black lead lines, glowing translucent colored glass panes,
+  jewel tones, Art Nouveau flourishes contained inside each figure. Original fictional figures; the glass
+  art ends at the figure, background stays flat.
+size: 1536x1024
+quality: medium
+est: 0.30
+slots:
+  - {name: Rubin, look: "noble with crimson-red glass robe"}
+  - {name: Amber, look: "maiden with coral-orange glass hair"}
+  - {name: Topaz, look: "herald with tangerine-orange glass cloak"}
+  - {name: Citrine, look: "sun queen with golden-yellow glass halo"}
+  - {name: Lumen, look: "lamplighter with lemon-yellow glass lantern"}
+  - {name: Peridot, look: "gardener with chartreuse-green glass leaves"}
+  - {name: Verde, look: "minstrel with lime-green glass cap"}
+  - {name: Olivine, look: "pilgrim with spring-green glass hood"}
+  - {name: Emeric, look: "scholar with emerald-green glass robe"}
+  - {name: Jadis, look: "dancer with mint-green glass veil"}
+  - {name: Marina, look: "mariner with seafoam-green glass waves"}
+  - {name: Cerulea, look: "seer with turquoise-aqua glass eyes"}

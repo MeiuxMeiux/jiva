@@ -1,0 +1,33 @@
+<section class="band split rev" id="ceiling">
+  <div class="side">
+    <h2><span class="num">04</span>Reincarnation at ~200k</h2>
+    <p>The context window may be larger, but JIVA caps each session at 200k tokens on purpose.
+      Past that, quality drops before the window runs out.</p>
+    <ol class="steps">
+      <li><b>150k</b> (75%): the watchdog types a nudge into the pane: write your handoff.</li>
+      <li>The session runs <code>jiva handoff</code>: ≤40 lines of pointers, not a transcript. Then it stops.</li>
+      <li>The watchdog sees it idle and respawns the pane. The SessionStart hook hands the new body its handoff and task card.</li>
+      <li><b>200k</b> without a handoff trips the <code>ceiling</code> breaker: one hard message, then a flag for you.</li>
+    </ol>
+  </div>
+  <div class="side stop">
+    <h3>The kill switch</h3>
+    <pre class="cmd"><span class="p">$</span> touch .jiva/STOP</pre>
+    <p>The watchdog checks for this file every tick and exits when it appears. No respawns, no
+      nudges. The tmux bar reads <code>STOPPED</code>. <code>just down</code> kills the private
+      tmux server and the dashboard; your own tmux is untouched.</p>
+    <h3>Breakers</h3>
+    <p>Seven trip wires write a file to <code>.jiva/flags/</code>: <code>repeat</code> (the same
+      tool call 4 times in a row), <code>storm</code> (past 150k within 3 minutes of boot, so
+      the session is parked), <code>ceiling</code>, <code>burn</code> (60k tokens without a board
+      line), <code>time</code> (a life past 90 minutes), <code>usd</code> (a life past $15) and
+      <code>heal-storm</code> (3 respawns inside 5 minutes: the 4th is refused and the session
+      parked). The burn, time and usd limits are env-tunable.
+      A parked session stays down until you remove <code>.jiva/parked/&lt;name&gt;</code>.
+      <code>jiva doctor breakers</code> trips each one on purpose.</p>
+    <p>Some events also ping the desk: a parked session, a pane stuck on a prompt, a full disk or a
+      near-empty quota. The watchdog sources <code>core/notify.sh</code>, so every toast lands in
+      <code>.jiva/notify.log</code>, then tries a WSL balloon, <code>notify-send</code>,
+      <code>osascript</code> or a terminal bell. Nothing phones home.</p>
+  </div>
+</section>

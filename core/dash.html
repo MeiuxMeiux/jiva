@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; connect-src 'self'; img-src 'self'; style-src 'self'; font-src 'self'; script-src 'self'; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="no-referrer">
+<title>JIVA Fleet</title>
+<link rel="stylesheet" href="dash.css">
+<link rel="stylesheet" href="dash-parts.css">
+</head>
+<body>
+<!-- icon sprite: 16×16 line glyphs, stroke = currentColor (styled by .i in dash-parts.css); always aria-hidden beside a text label -->
+<svg class="sprite" width="0" height="0" aria-hidden="true" focusable="false">
+  <symbol id="i-live" viewBox="0 0 16 16"><path d="M1 8h3l2-5 4 10 2-5h3"/></symbol>
+  <symbol id="i-flag" viewBox="0 0 16 16"><path d="M3 15V2h9l-2 3.5L12 9H3"/></symbol>
+  <symbol id="i-ask" viewBox="0 0 16 16"><path d="M2 2.5h12v8.5H7.5L4 14v-3H2z"/><path d="M6.4 5.4A1.6 1.6 0 1 1 8 7.2v.9M8 9.4v.1"/></symbol>
+  <symbol id="i-tok" viewBox="0 0 16 16"><ellipse cx="8" cy="4" rx="5" ry="2"/><path d="M3 4v4c0 1.1 2.2 2 5 2s5-.9 5-2V4M3 8v4c0 1.1 2.2 2 5 2s5-.9 5-2V8"/></symbol>
+  <symbol id="i-usd" viewBox="0 0 16 16"><path d="M11 4.6C10.4 3.7 9.3 3 8 3 6.3 3 5 3.9 5 5.2 5 8 11 7.2 11 10.5 11 12 9.7 13 8 13c-1.4 0-2.6-.6-3.3-1.6M8 1v2M8 13v2"/></symbol>
+  <symbol id="i-quota" viewBox="0 0 16 16"><path d="M2 12.5a6 6 0 1 1 12 0"/><path d="M8 12.5l3-4.5M4.2 8.6l1 .7M8 6.5v1.2"/></symbol>
+  <symbol id="i-up" viewBox="0 0 16 16"><circle cx="8" cy="8" r="6.2"/><path d="M8 4.5V8l2.5 1.6"/></symbol>
+  <symbol id="i-lease" viewBox="0 0 16 16"><circle cx="5" cy="8" r="3"/><path d="M8 8h7M12.2 8v2.8M14.6 8v2"/></symbol>
+  <symbol id="i-board" viewBox="0 0 16 16"><path d="M6 4h8M6 8h8M6 12h5M2.5 4h.1M2.5 8h.1M2.5 12h.1"/></symbol>
+  <symbol id="i-alert" viewBox="0 0 16 16"><path d="M4 11.5V7a4 4 0 0 1 8 0v4.5l1.5 1.5h-11zM6.5 15h3"/></symbol>
+  <symbol id="i-busy" viewBox="0 0 16 16"><path d="M1 8h3l2-5 4 10 2-5h3"/></symbol>
+  <symbol id="i-idle" viewBox="0 0 16 16"><circle cx="8" cy="8" r="5.5"/><path d="M5.5 8h5"/></symbol>
+  <symbol id="i-commit" viewBox="0 0 16 16"><circle cx="8" cy="8" r="2.6"/><path d="M1 8h4.4M10.6 8H15"/></symbol>
+  <symbol id="i-close" viewBox="0 0 16 16"><path d="M3.5 3.5l9 9M12.5 3.5l-9 9"/></symbol>
+  <symbol id="i-hist" viewBox="0 0 16 16"><path d="M2.5 8a5.5 5.5 0 1 0 1.6-3.9M2 2v3h3M8 5v3l2 1.5"/></symbol>
+  <symbol id="i-wait" viewBox="0 0 16 16"><path d="M4 2h8M4 14h8M5 2.5c0 3.5 6 3 6 5.5s-6 2-6 5.5M11 2.5c0 3.5-6 3-6 5.5s6 2 6 5.5"/></symbol>
+</svg>
+<main>
+  <header><h1><span class="notch" aria-hidden="true"></span>JIVA <em>fleet</em></h1><span id="age">loading…</span>
+    <button type="button" class="btn" id="commits-open" aria-haspopup="dialog" aria-controls="commits"><svg class="i" aria-hidden="true"><use href="#i-commit"/></svg>Commits</button></header>
+  <div id="banner" role="status"></div>
+  <div class="tiles">
+    <div class="tile"><b id="live">–</b><span><svg class="i" aria-hidden="true"><use href="#i-live"/></svg>live sessions</span></div>
+    <div class="tile"><b id="flags">–</b><span><svg class="i" aria-hidden="true"><use href="#i-flag"/></svg>flags</span></div>
+    <div class="tile"><b id="asks">–</b><span><svg class="i" aria-hidden="true"><use href="#i-ask"/></svg>asks</span></div>
+    <div class="tile"><b id="tok">–</b><span><svg class="i" aria-hidden="true"><use href="#i-tok"/></svg>fleet tokens</span></div>
+    <div class="tile"><b id="usd">–</b><span><svg class="i" aria-hidden="true"><use href="#i-usd"/></svg>fleet usd</span></div>
+    <div class="tile"><b id="q5h">–</b><span><svg class="i" aria-hidden="true"><use href="#i-quota"/></svg>quota 5h</span></div>
+    <div class="tile"><b id="q7d">–</b><span><svg class="i" aria-hidden="true"><use href="#i-quota"/></svg>quota 7d</span></div>
+    <div class="tile"><b id="upmax">–</b><span><svg class="i" aria-hidden="true"><use href="#i-up"/></svg>longest uptime</span></div>
+  </div>
+  <ul id="party" class="party" aria-label="party: live bodies"></ul>
+  <div class="wrap glass">
+    <table>
+      <thead><tr><th>name</th><th>status</th><th>waiting</th>
+        <th><svg class="i" aria-hidden="true"><use href="#i-tok"/></svg> tok</th><th>ctx %</th><th>usd</th>
+        <th><svg class="i" aria-hidden="true"><use href="#i-up"/></svg> up</th><th>doing (last board line)</th></tr></thead>
+      <tbody id="rows"></tbody>
+    </table>
+  </div>
+  <div class="panels">
+    <section class="panel glass empty" id="p-flags" aria-labelledby="h-flags"><h2 id="h-flags"><svg class="i" aria-hidden="true"><use href="#i-flag"/></svg>Flags <small>–</small></h2><ul></ul></section>
+    <section class="panel glass empty" id="p-asks" aria-labelledby="h-asks"><h2 id="h-asks"><svg class="i" aria-hidden="true"><use href="#i-ask"/></svg>Asks <small>–</small></h2><ul></ul></section>
+    <section class="panel glass empty" id="p-lease" aria-labelledby="h-lease"><h2 id="h-lease"><svg class="i" aria-hidden="true"><use href="#i-lease"/></svg>Lease <small>–</small></h2><ul></ul></section>
+    <section class="panel glass empty" id="p-board" aria-labelledby="h-board"><h2 id="h-board"><svg class="i" aria-hidden="true"><use href="#i-board"/></svg>Board <small>–</small></h2><ul></ul></section>
+    <section class="panel glass empty" id="p-alerts" aria-labelledby="h-alerts"><h2 id="h-alerts"><svg class="i" aria-hidden="true"><use href="#i-alert"/></svg>Alerts <small>–</small></h2><ul></ul></section>
+  </div>
+  <!-- history: dash-history.js; sparklines + timeline from /history/summary, chips filter the paged /history list -->
+  <section class="panel glass hist" id="p-hist" aria-labelledby="h-hist">
+    <h2 id="h-hist"><svg class="i" aria-hidden="true"><use href="#i-hist"/></svg>History <small id="hist-sum">–</small></h2>
+    <div class="sparks">
+      <figure><figcaption>fleet tokens</figcaption><svg id="hist-tok" role="img" aria-label="fleet tokens"></svg></figure>
+      <figure><figcaption>quota 5h %</figcaption><svg id="hist-q" role="img" aria-label="quota 5h"></svg></figure>
+    </div>
+    <div class="tlwrap"><svg id="hist-tl" class="tl" role="img" aria-label="timeline"></svg></div>
+    <ul class="legend" aria-label="timeline legend">
+      <li><svg viewBox="0 0 12 12" aria-hidden="true"><rect class="m cy" x="4.5" y="0" width="3" height="12"/></svg>life</li>
+      <li><svg viewBox="0 0 12 12" aria-hidden="true"><circle class="m gr" cx="6" cy="6" r="4.5"/></svg>ship</li>
+      <li><svg viewBox="0 0 12 12" aria-hidden="true"><path class="m pk" d="M6 1.5l5.5 9h-11z"/></svg>trip</li>
+      <li><svg viewBox="0 0 12 12" aria-hidden="true"><path class="m tx" d="M6 1l4.5 5-4.5 5-4.5-5z"/></svg>ask</li>
+    </ul>
+    <div class="fchips" id="hist-kinds" role="group" aria-label="filter by kind"></div>
+    <div class="fchips" id="hist-names" role="group" aria-label="filter by session"></div>
+    <ul id="hist-list" class="hlist" aria-label="history events, newest first"></ul>
+  </section>
+</main>
+<!-- commits modal: dash-commits.js; native modal dialog + Tab trap, Esc closes, rows are buttons that expand a diffstat -->
+<dialog id="commits" class="glass" aria-labelledby="h-commits">
+  <div class="mhead"><h2 id="h-commits"><svg class="i" aria-hidden="true"><use href="#i-commit"/></svg>Commits <small id="commits-sum">–</small></h2>
+    <button type="button" class="btn" id="commits-close" aria-label="Close commits"><svg class="i" aria-hidden="true"><use href="#i-close"/></svg></button></div>
+  <ul id="commits-list" aria-describedby="commits-sum"></ul>
+</dialog>
+<script src="dash-panels.js"></script>
+<script src="dash.js"></script>
+<script src="dash-commits.js"></script>
+<script src="dash-history.js"></script>
+</body>
+</html>

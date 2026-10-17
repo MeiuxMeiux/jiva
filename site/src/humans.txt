@@ -1,0 +1,15 @@
+/* TEAM */
+Built by: saintpetejackboy
+With: a fleet of Claude Code agents (desk, boss, workers), one task card and one handoff at a time
+Site: https://jiva.meiuxmeiux.com/
+Source: https://github.com/MeiuxMeiux/jiva
+
+/* THANKS */
+Fonts: Bricolage Grotesque and JetBrains Mono (SIL Open Font License)
+
+/* SITE */
+Last update: 2026-10-13
+Language: English
+Tech: tmux, bash, Claude Code, jq, just; this page is static HTML/CSS/JS built by stdlib Python
+Standards: HTML5, CSS3, strict Content-Security-Policy (no inline script or style), Subresource Integrity, WCAG contrast, prefers-reduced-motion
+Software: self-hosted fonts, no trackers, no cookies, no third-party requests

@@ -1,0 +1,21 @@
+# steampunk — Victorian steampunk inventors and adventurers
+title: "Steampunk"
+style: >-
+  Richly detailed Victorian steampunk illustration, brass goggles, gears, leather, rivets and clockwork,
+  warm gaslight glow, painterly digital art. Original characters.
+size: 1536x1024
+quality: medium
+est: 0.30
+slots:
+  - {name: Copper, look: "aviatrix with crimson-red flight scarf"}
+  - {name: Ratchet, look: "mechanic with coral-orange leather apron"}
+  - {name: Gideon, look: "inventor with tangerine-orange goggle lenses"}
+  - {name: Brassley, look: "gentleman with a golden-yellow monocle"}
+  - {name: Clara, look: "chemist with lemon-yellow tinted spectacles"}
+  - {name: Tobin, look: "airship deckhand with a chartreuse-green neckerchief"}
+  - {name: Maude, look: "clockmaker with lime-green waistcoat"}
+  - {name: Fitz, look: "explorer with spring-green pith helmet band"}
+  - {name: Ada, look: "engineer with an emerald-green corset jacket"}
+  - {name: Barnaby, look: "professor with mint-green bow tie"}
+  - {name: Odette, look: "sky captain with a seafoam-green tricorne"}
+  - {name: Silas, look: "automaton tinkerer with a turquoise-aqua mechanical eye"}

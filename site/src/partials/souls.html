@@ -1,0 +1,42 @@
+<section class="band" id="souls">
+  <h2><span class="num">05</span>The party</h2>
+  <p class="wide">Twelve live slots, twelve portraits. The name is a cosmetic label on slot N, and slot N is
+    worker <code>wN</code>. A respawned body keeps its slot. No personalities, no prompts: every worker runs the same rules.</p>
+  <!-- rotator: js/souls.js fetches data-packs (build.py → hashed manifest); controls stay hidden with 1 pack -->
+  <div class="rotor-wrap" data-packs="avatars/packs.json">
+    <div class="rotor" hidden>
+      <button type="button" class="rotor-btn" data-step="-1" aria-label="Previous avatar pack">&#8592;</button>
+      <p class="rotor-name" aria-live="polite">pack <b>default</b> <span class="rotor-count">1 / 1</span></p>
+      <div class="rotor-dots" role="group" aria-label="Avatar packs"></div>
+      <button type="button" class="rotor-btn" data-step="1" aria-label="Next avatar pack">&#8594;</button>
+      <button type="button" class="rotor-play" aria-pressed="true" aria-label="Rotate packs automatically">auto</button>
+      <span class="rotor-bar" aria-hidden="true"><i></i></span>
+    </div>
+    <div class="souls">
+      <figure class="soul s1"><span class="pic"><img class="on" src="avatars/01-s.webp" alt="Ash" width="128" height="128" loading="lazy" decoding="async"></span>
+        <figcaption><b>Ash</b><code>w1</code></figcaption></figure>
+      <figure class="soul s2"><span class="pic"><img class="on" src="avatars/02-s.webp" alt="Bram" width="128" height="128" loading="lazy" decoding="async"></span>
+        <figcaption><b>Bram</b><code>w2</code></figcaption></figure>
+      <figure class="soul s3"><span class="pic"><img class="on" src="avatars/03-s.webp" alt="Cove" width="128" height="128" loading="lazy" decoding="async"></span>
+        <figcaption><b>Cove</b><code>w3</code></figcaption></figure>
+      <figure class="soul s4"><span class="pic"><img class="on" src="avatars/04-s.webp" alt="Dune" width="128" height="128" loading="lazy" decoding="async"></span>
+        <figcaption><b>Dune</b><code>w4</code></figcaption></figure>
+      <figure class="soul s5"><span class="pic"><img class="on" src="avatars/05-s.webp" alt="Ember" width="128" height="128" loading="lazy" decoding="async"></span>
+        <figcaption><b>Ember</b><code>w5</code></figcaption></figure>
+      <figure class="soul s6"><span class="pic"><img class="on" src="avatars/06-s.webp" alt="Fern" width="128" height="128" loading="lazy" decoding="async"></span>
+        <figcaption><b>Fern</b><code>w6</code></figcaption></figure>
+      <figure class="soul s7"><span class="pic"><img class="on" src="avatars/07-s.webp" alt="Gale" width="128" height="128" loading="lazy" decoding="async"></span>
+        <figcaption><b>Gale</b><code>w7</code></figcaption></figure>
+      <figure class="soul s8"><span class="pic"><img class="on" src="avatars/08-s.webp" alt="Haze" width="128" height="128" loading="lazy" decoding="async"></span>
+        <figcaption><b>Haze</b><code>w8</code></figcaption></figure>
+      <figure class="soul s9"><span class="pic"><img class="on" src="avatars/09-s.webp" alt="Iris" width="128" height="128" loading="lazy" decoding="async"></span>
+        <figcaption><b>Iris</b><code>w9</code></figcaption></figure>
+      <figure class="soul s10"><span class="pic"><img class="on" src="avatars/10-s.webp" alt="Jet" width="128" height="128" loading="lazy" decoding="async"></span>
+        <figcaption><b>Jet</b><code>w10</code></figcaption></figure>
+      <figure class="soul s11"><span class="pic"><img class="on" src="avatars/11-s.webp" alt="Kite" width="128" height="128" loading="lazy" decoding="async"></span>
+        <figcaption><b>Kite</b><code>w11</code></figcaption></figure>
+      <figure class="soul s12"><span class="pic"><img class="on" src="avatars/12-s.webp" alt="Lark" width="128" height="128" loading="lazy" decoding="async"></span>
+        <figcaption><b>Lark</b><code>w12</code></figcaption></figure>
+    </div>
+  </div>
+</section>

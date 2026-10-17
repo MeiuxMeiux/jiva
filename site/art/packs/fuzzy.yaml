@@ -1,0 +1,22 @@
+# fuzzy — fuzzy cute animal busts (original, plush-soft fur, big friendly eyes)
+title: "Fuzzy Friends"
+style: >-
+  Adorable soft 3D-rendered storybook animals with extremely fuzzy, fluffy fur you can almost touch, big
+  glossy friendly eyes, gentle smiles, soft studio lighting with a warm rim light. Each animal wears one
+  small clothing accessory in its accent color.
+size: 1536x1024
+quality: medium
+est: 0.30
+slots:
+  - {name: Pip, look: "red fox kit with a crimson-red knitted scarf"}
+  - {name: Bun, look: "lop-eared brown bunny with a coral-orange bow tie"}
+  - {name: Mochi, look: "round grey hamster with tangerine-orange earmuffs"}
+  - {name: Tuft, look: "fluffy owl chick with golden-yellow round glasses"}
+  - {name: Waddle, look: "baby penguin with a lemon-yellow beanie"}
+  - {name: Clover, look: "white lamb with a chartreuse-green flower crown"}
+  - {name: Nib, look: "hedgehog with a lime-green hoodie"}
+  - {name: Sprout, look: "baby raccoon with a spring-green bandana"}
+  - {name: Bramble, look: "brown bear cub with an emerald-green sweater"}
+  - {name: Puff, look: "white fluffy kitten with mint-green eyes and a mint collar bell"}
+  - {name: Otto, look: "sea otter pup with a seafoam-green knit cap"}
+  - {name: Sky, look: "black-and-white panda cub with a turquoise-aqua scarf"}

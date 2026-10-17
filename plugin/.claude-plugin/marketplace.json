@@ -1,0 +1,17 @@
+{
+  "name": "jiva-local",
+  "owner": {
+    "name": "saintpetejackboy"
+  },
+  "plugins": [
+    {
+      "name": "jiva",
+      "source": "./",
+      "description": "JIVA fleet hooks + role skills",
+      "author": {
+        "name": "saintpetejackboy"
+      }
+    }
+  ],
+  "description": "Local-only JIVA marketplace (never published)"
+}

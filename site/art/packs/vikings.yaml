@@ -1,0 +1,21 @@
+# vikings — Norse seafarer busts (original characters)
+title: "Vikings"
+style: >-
+  Rugged painterly Norse saga illustration, braided hair and beards, furs, leather and iron, weathered
+  faces, cold northern light. Original characters, no runic text.
+size: 1536x1024
+quality: medium
+est: 0.30
+slots:
+  - {name: Bjorn, look: "jarl with a crimson-red cloak and braided beard"}
+  - {name: Freya, look: "shield-maiden with coral-orange braids wrap"}
+  - {name: Ulf, look: "berserker with a tangerine-orange fur mantle"}
+  - {name: Sigrid, look: "seer with golden-yellow amber necklace"}
+  - {name: Eir, look: "healer with a lemon-yellow headscarf"}
+  - {name: Halvar, look: "old skald with a chartreuse-green woolen hood"}
+  - {name: Ragna, look: "archer with lime-green arm wraps"}
+  - {name: Leif, look: "young sailor with spring-green tunic"}
+  - {name: Torvald, look: "smith with an emerald-green leather apron"}
+  - {name: Astrid, look: "chieftain with mint-green brooch cloak"}
+  - {name: Gunnar, look: "helmsman with seafoam-green sea-wool cap"}
+  - {name: Solveig, look: "navigator with turquoise-aqua bead braids"}

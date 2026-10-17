@@ -1,0 +1,23 @@
+# laureates — fictional distinguished novelists, vintage author-photo look (never real authors)
+title: "Laureates"
+style: >-
+  Vintage 1950s-1970s black-and-white author jacket photograph look, silver-gelatin grain, dramatic window
+  light, thoughtful intellectual expressions; invented fictional writers who do not resemble any real
+  person. The only color in each photo is a small hand-tinted accent in the given color (scarf, tie,
+  glasses or eyes).
+size: 1536x1024
+quality: medium
+est: 0.30
+slots:
+  - {name: Marlowe, look: "older man with a pipe and tweed jacket, crimson-red tie"}
+  - {name: Odile, look: "woman with a sharp bob and a cigarette holder, coral-orange scarf"}
+  - {name: Tobias, look: "bearded man with wild grey hair, tangerine-orange pocket square"}
+  - {name: Agatha, look: "elderly woman with pearls and a golden-yellow brooch"}
+  - {name: Lucien, look: "young man with round spectacles, lemon-yellow ascot"}
+  - {name: Nadia, look: "woman with a turtleneck and chartreuse-green earrings"}
+  - {name: Ezra, look: "man with a heavy mustache and lime-green bow tie"}
+  - {name: Wilhelmina, look: "severe woman with a bun and spring-green cameo"}
+  - {name: Rafael, look: "man with slick hair and an emerald-green cravat"}
+  - {name: Sofia, look: "woman with long dark hair and a mint-green shawl"}
+  - {name: Augustin, look: "bald man with horn-rimmed glasses and a seafoam-green tie"}
+  - {name: Ingrid, look: "woman in a beret with a turquoise-aqua scarf"}

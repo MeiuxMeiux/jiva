@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; connect-src 'self'; img-src 'self'; style-src 'self'; font-src 'self'; script-src 'self'; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="no-referrer">
+<meta name="color-scheme" content="dark">
+<title>JIVA Phone</title>
+<link rel="stylesheet" href="phone.css">
+</head>
+<body>
+<!-- tier-2 phone view: read-only, one column, fed only by ./snapshot.json (core/snapshot.sh). No controls. -->
+<main>
+  <header>
+    <h1><span class="notch" aria-hidden="true"></span>JIVA <em>Fleet</em></h1>
+    <p id="age" role="status" aria-live="polite">loading…</p>
+  </header>
+  <p id="empty" class="empty" hidden>no snapshot — run <code>just snapshot</code></p>
+  <section class="tiles" aria-label="fleet at a glance">
+    <div class="tile"><b id="live">–</b><span>live</span></div>
+    <div class="tile"><b id="flags">–</b><span>flags</span></div>
+    <div class="tile"><b id="asks">–</b><span>asks</span></div>
+    <div class="tile"><b id="q5h">–</b><span>quota 5h</span></div>
+    <div class="tile"><b id="q7d">–</b><span>quota 7d</span></div>
+    <div class="tile"><b id="lease">–</b><span>boss lease</span></div>
+  </section>
+  <h2>Party</h2>
+  <ul id="party" class="party" aria-label="party: live bodies"></ul>
+  <h2>Sessions</h2>
+  <ul id="sessions" class="rows" aria-label="sessions"></ul>
+  <h2>Flags &amp; asks</h2>
+  <ul id="alerts" class="rows" aria-label="flags and asks"></ul>
+</main>
+<script src="phone.js"></script>
+</body>
+</html>

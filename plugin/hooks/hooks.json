@@ -1,0 +1,8 @@
+{
+  "hooks": {
+    "SessionStart": [{"hooks": [{"type": "command", "command": "\"${CLAUDE_PLUGIN_ROOT}\"/hooks/session-start.sh"}]}],
+    "PostToolUse": [{"hooks": [{"type": "command", "command": "\"${CLAUDE_PLUGIN_ROOT}\"/hooks/breaker.sh"}]},
+      {"matcher": "Edit|Write|MultiEdit", "hooks": [{"type": "command", "command": "\"${CLAUDE_PLUGIN_ROOT}\"/hooks/affinity.sh"}]}],
+    "PreToolUse": [{"matcher": "*", "hooks": [{"type": "command", "command": "\"${CLAUDE_PLUGIN_ROOT}\"/hooks/guard.sh"}]}]
+  }
+}

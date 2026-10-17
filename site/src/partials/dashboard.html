@@ -1,0 +1,32 @@
+<section class="band" id="dashboard">
+  <h2><span class="num">06</span>The watchdog view</h2>
+  <p class="wide"><code>just dash</code> serves a one-page dashboard on <code>127.0.0.1</code>, on a
+    random port between 20000 and 60000. It reads <code>state.json</code> every 5 seconds, greys
+    out if the data is older than 30 seconds, and goes red when anything is flagged. An Alerts panel lists the newest <code>notify.log</code> lines, and an alert under 10 minutes old
+    raises an amber banner. Prefer the terminal? <code>jiva watch</code> redraws the status
+    line, sessions, flags, open asks, an ALERTS line and the last board lines every 2 seconds; press <code>a</code> to answer an ask.</p>
+  <figure class="dash">
+    <p class="sample">Sample. Static numbers, not live data. Labels are the real <code>state.json</code> field names; table columns are <code>sessions[]</code>.</p>
+    <div class="tiles">
+      <div class="tile"><b>5</b><span>live</span></div>
+      <div class="tile"><b class="ok">0</b><span>flags</span></div>
+      <div class="tile"><b>412k</b><span>tok</span></div>
+      <div class="tile"><b>6.84</b><span>Σ sessions[].usd</span></div>
+      <div class="tile"><b>23%</b><span>q5h</span></div>
+      <div class="tile"><b>9%</b><span>q7d</span></div>
+    </div>
+    <section class="scroll" tabindex="0" aria-label="Sample sessions table">
+      <table>
+        <thead><tr><th scope="col">name</th><th scope="col">status</th><th scope="col">waiting</th><th scope="col">tok</th><th scope="col">pct</th><th scope="col">usd</th><th scope="col">up</th></tr></thead>
+        <tbody>
+          <tr><td>desk</td><td>idle</td><td>–</td><td>38k</td><td>19</td><td>0.61</td><td>2h 10m</td></tr>
+          <tr><td>boss</td><td>busy</td><td>–</td><td>91k</td><td>46</td><td>1.72</td><td>1h 48m</td></tr>
+          <tr><td>w1</td><td>busy</td><td>–</td><td>64k</td><td>32</td><td>1.30</td><td>41m</td></tr>
+          <tr><td>w2</td><td>busy</td><td>–</td><td>152k</td><td>76</td><td>2.09</td><td>58m</td></tr>
+          <tr><td>w3</td><td>busy</td><td>–</td><td>67k</td><td>34</td><td>1.12</td><td>37m</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <figcaption>The page only reads: it polls over GET and never writes back.</figcaption>
+  </figure>
+</section>

@@ -1,0 +1,22 @@
+# royals — storybook royalty (fictional, no real monarchs)
+title: "Royals"
+style: >-
+  Opulent storybook court portraits of an invented fantasy kingdom, crowns, tiaras and jewels, velvet and
+  ermine, glowing candlelight, painterly. Fictional royals who resemble no real person; no real flags or
+  coats of arms.
+size: 1536x1024
+quality: medium
+est: 0.30
+slots:
+  - {name: Regent, look: "king with a crimson-red velvet mantle"}
+  - {name: Rosalind, look: "queen with coral-orange gown"}
+  - {name: Florian, look: "prince with tangerine-orange doublet"}
+  - {name: Aurelia, look: "princess with golden-yellow tiara"}
+  - {name: Cedric, look: "young duke with lemon-yellow sash"}
+  - {name: Marigold, look: "duchess with chartreuse-green gown"}
+  - {name: Percy, look: "jester-prince with lime-green collar"}
+  - {name: Elodie, look: "lady-in-waiting with spring-green veil"}
+  - {name: Leopold, look: "emperor with emerald-green robes"}
+  - {name: Celeste, look: "queen mother with mint-green lace"}
+  - {name: Corwin, look: "knight-prince with seafoam-green cape"}
+  - {name: Ondine, look: "sea princess with turquoise-aqua pearls"}

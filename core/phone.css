@@ -1,0 +1,79 @@
+/* phone — tier-2 read-only view, ≤420px first, one column. Palette = site tokens (same hexes as dash.css), self-hosted
+   fonts via the dash's fonts/ symlinks, chamfer tiles, palette-only scrollbars, reduced motion respected. Dark only. */
+@font-face { font-family: "Bricolage Grotesque"; src: url("fonts/bricolage-grotesque-latin-wght.woff2") format("woff2");
+  font-weight: 200 800; font-display: swap; }
+@font-face { font-family: "JetBrains Mono"; src: url("fonts/jetbrains-mono-latin-wght.woff2") format("woff2");
+  font-weight: 100 800; font-display: swap; }
+:root {
+  --text: #f0e2e2; --background: #060128; --primary: #ef4fbc; --secondary: #00ffd8; --accent: #21ff00;
+  --mute: rgba(240, 226, 226, .68); --line: rgba(240, 226, 226, .16); --glass: rgba(240, 226, 226, .045);
+  --display: "Bricolage Grotesque", ui-sans-serif, sans-serif; --mono: "JetBrains Mono", ui-monospace, monospace;
+  --cut: 8px; --chamfer: polygon(var(--cut) 0, 100% 0, 100% calc(100% - var(--cut)), calc(100% - var(--cut)) 100%, 0 100%, 0 var(--cut));
+  color-scheme: dark;
+}
+*, *::before, *::after { box-sizing: border-box; }
+html { background: #060128; -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0; padding: 16px 16px 40px; color: var(--text); font: 400 15px/1.45 var(--display);
+  background: linear-gradient(180deg, rgba(239, 79, 188, .1), rgba(6, 1, 40, 0) 280px), var(--background);
+  -webkit-font-smoothing: antialiased; transition: opacity .3s;
+}
+main { max-width: 420px; margin: 0 auto; }
+b, code, .meta, #age { font-family: var(--mono); font-variant-numeric: tabular-nums; }
+::selection { background: var(--primary); color: var(--background); }
+
+header { margin-bottom: 14px; }
+h1 { display: flex; align-items: center; gap: 10px; margin: 0 0 4px; font: 800 24px/1 var(--display); letter-spacing: -.02em; }
+h1 em { font-style: normal; color: var(--primary); }
+.notch { width: 16px; height: 16px; background: var(--primary);
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 62% 100%, 62% 58%, 38% 58%, 38% 100%, 0 100%); }
+#age { margin: 0; font-size: 12px; color: var(--mute); }
+#age::before { content: ""; display: inline-block; width: 8px; height: 8px; margin-right: 8px; background: var(--accent); }
+body.stale #age, body.none #age { color: var(--primary); }
+body.stale #age::before, body.none #age::before { background: var(--primary); }
+body.stale main > :not(header) { opacity: .55; }
+h2 { margin: 20px 0 8px; font: 700 13px/1 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--secondary); }
+
+.empty { margin: 0 0 14px; padding: 12px 14px; background: var(--primary); color: var(--background);
+  font: 600 13px/1.4 var(--mono); clip-path: var(--chamfer); }
+.empty code { font-weight: 800; }
+
+/* tiles: 3 across at phone width, chamfered glass; hot = pink edge, warm = cyan edge */
+.tiles { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+.tile { display: flex; flex-direction: column; gap: 4px; padding: 10px 10px 9px; background: var(--glass);
+  border-left: 3px solid var(--line); clip-path: var(--chamfer); }
+.tile b { font-size: 20px; font-weight: 700; line-height: 1.1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.tile span { font-size: 11px; color: var(--mute); }
+.tile.hot { border-left-color: var(--primary); } .tile.hot b { color: var(--primary); }
+.tile.warm { border-left-color: var(--secondary); } .tile.warm b { color: var(--secondary); }
+
+/* rows: one per session — soul-coloured initial, name, mono meta */
+.rows { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+.row { display: grid; grid-template-columns: 30px minmax(0, 1fr) auto; align-items: center; gap: 10px;
+  padding: 8px 10px; background: var(--glass); clip-path: var(--chamfer); }
+.soul { --slot: var(--mute); display: grid; place-items: center; width: 30px; height: 30px; background: var(--slot);
+  color: var(--background); font: 800 14px/1 var(--display); clip-path: var(--chamfer); }
+.label { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-weight: 600; }
+.meta { font-size: 11px; color: var(--mute); white-space: nowrap; }
+.row.idle .label { color: var(--mute); }
+.row.flag .soul { --slot: var(--primary); } .row.ask .soul { --slot: var(--secondary); } .row.calm .soul { --slot: var(--accent); }
+
+/* party: one chip per body — portrait framed in --slot (set from JS), "Ash · w1", status · tok */
+.party { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px; }
+.chip { --slot: var(--mute); display: grid; grid-template-columns: 40px minmax(0, 1fr); grid-template-rows: auto auto; column-gap: 8px;
+  align-items: center; padding: 6px; background: var(--glass); border-left: 3px solid var(--slot); clip-path: var(--chamfer); }
+.chip .av { grid-row: span 2; display: grid; place-items: center; width: 40px; height: 40px; background: #060128;
+  border: 2px solid var(--slot); color: var(--slot); font: 800 16px/1 var(--display); clip-path: var(--chamfer); }
+.chip .av img { width: 36px; height: 36px; display: block; object-fit: cover; }
+.chip b { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font: 600 13px/1.2 var(--display); }
+
+/* scrollbars: never grey (standing rule). Track navy, thumb pink→cyan, green when grabbed. */
+:root { scrollbar-color: #ef4fbc #060128; }
+::-webkit-scrollbar { width: 10px; height: 10px; background: #060128; }
+::-webkit-scrollbar-track { background: #060128; }
+::-webkit-scrollbar-corner { background: #060128; }
+::-webkit-scrollbar-thumb { background: linear-gradient(180deg, #ef4fbc, #00ffd8); border: 2px solid #060128; border-radius: 5px; }
+::-webkit-scrollbar-thumb:hover, ::-webkit-scrollbar-thumb:active { background: #21ff00; }
+
+@media (min-width: 640px) { body { padding-top: 32px; } }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition: none !important; animation: none !important; } }

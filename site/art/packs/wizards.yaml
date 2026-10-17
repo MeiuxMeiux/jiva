@@ -1,0 +1,22 @@
+# wizards — robed spellcasters (original characters)
+title: "Wizards"
+style: >-
+  Whimsical high-fantasy storybook painting of wizards, witches and sorcerers, flowing robes, pointed
+  hats, magical rim lighting; all magic stays
+  attached to the figure (no loose floating sparks, particles or stars around them). Original characters.
+size: 1536x1024
+quality: medium
+est: 0.30
+slots:
+  - {name: Pyra, look: "fire sorceress with crimson-red robes"}
+  - {name: Ashby, look: "alchemist with coral-orange hood"}
+  - {name: Thorne, look: "hedge wizard with tangerine-orange pointed hat"}
+  - {name: Aurum, look: "archmage with golden-yellow embroidered collar"}
+  - {name: Zephyr, look: "storm caller with lemon-yellow lightning glow on the hands"}
+  - {name: Thicket, look: "druid with chartreuse-green mossy hood"}
+  - {name: Scrivo, look: "scribe mage with a lime-green glowing quill in hand"}
+  - {name: Wisp, look: "young apprentice with a spring-green glowing amulet"}
+  - {name: Verdant, look: "enchantress with emerald-green robes"}
+  - {name: Frost, look: "ice mage with mint-green frosted fur collar"}
+  - {name: Marin, look: "tide witch with seafoam-green shell crown"}
+  - {name: Astra, look: "star seer with a turquoise-aqua crystal staff"}

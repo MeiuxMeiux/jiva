@@ -1,0 +1,18 @@
+# generated / runtime
+site/art/raw/
+site/build/
+packs/local/
+.jiva/
+
+# secrets
+*.key
+*.pem
+.env*
+.claude/settings.local.json
+__pycache__/
+
+# local deploy target (host is private)
+deploy.env
+
+# local handoff notes (never commit)
+docs/handoff/

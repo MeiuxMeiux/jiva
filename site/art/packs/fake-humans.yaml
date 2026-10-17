@@ -1,0 +1,22 @@
+# fake-humans — photoreal fictional people, varied ages and ethnicities (no real likenesses)
+title: "Fake Humans"
+style: >-
+  Photorealistic studio headshot photography, 85mm lens, soft key light, natural skin texture, sharp
+  focus; ordinary fictional people of varied ages, genders and ethnicities, each a unique invented face
+  that does not resemble any real person or celebrity.
+size: 1536x1024
+quality: medium
+est: 0.30
+slots:
+  - {name: Amara, look: "West African woman in her 30s with short natural hair and a crimson-red blouse"}
+  - {name: Bao, look: "Vietnamese man in his 20s with an undercut and a coral-orange hoodie"}
+  - {name: Carmen, look: "Mexican grandmother in her 70s with silver hair and a tangerine-orange shawl"}
+  - {name: Dev, look: "South Asian man in his 40s with a trimmed beard and a golden-yellow sweater"}
+  - {name: Elin, look: "Scandinavian teen girl with freckles and a lemon-yellow raincoat"}
+  - {name: Farid, look: "Middle Eastern man in his 60s with a grey mustache and a chartreuse-green cardigan"}
+  - {name: Grace, look: "Korean woman in her 50s with a bob cut and a lime-green scarf"}
+  - {name: Hugo, look: "Brazilian man in his 30s with curly hair and a spring-green t-shirt"}
+  - {name: Ines, look: "Irish woman in her 20s with red hair and an emerald-green jacket"}
+  - {name: Jomo, look: "Kenyan man in his 50s with glasses and a mint-green shirt"}
+  - {name: Keala, look: "Polynesian woman in her 40s with long dark wavy hair and a seafoam-green dress"}
+  - {name: Liang, look: "Chinese elderly man in his 80s with a kind smile and a turquoise-aqua vest"}

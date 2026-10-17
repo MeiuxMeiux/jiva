@@ -1,0 +1,21 @@
+# robots — friendly retro-future robot busts
+title: "Robots"
+style: >-
+  Polished 3D render of friendly retro-futuristic robots, glossy enamel and brushed metal, expressive
+  glowing eyes, rounded industrial design, soft studio lighting.
+size: 1536x1024
+quality: medium
+est: 0.30
+slots:
+  - {name: Rivet, look: "boxy robot with a crimson-red chassis"}
+  - {name: Gear, look: "round robot with coral-orange plating and antenna"}
+  - {name: Servo, look: "slim robot with tangerine-orange visor"}
+  - {name: Diode, look: "dome-headed robot with golden-yellow lamp eyes"}
+  - {name: Volt, look: "robot with lemon-yellow lightning-bolt antenna"}
+  - {name: Chip, look: "small robot with a chartreuse-green screen face"}
+  - {name: Cog, look: "steampunk-ish robot with lime-green gauges"}
+  - {name: Byte, look: "cube-head robot with spring-green pixel eyes"}
+  - {name: Piston, look: "heavy robot with emerald-green armor plates"}
+  - {name: Pixel, look: "cute robot with mint-green LED cheeks"}
+  - {name: Sonar, look: "robot with a seafoam-green radar dish ear"}
+  - {name: Quark, look: "sleek robot with a turquoise-aqua glass dome"}

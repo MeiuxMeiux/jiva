@@ -1,0 +1,41 @@
+/* palette is law (a11y.py checks it). Dark only. Alphas of these tokens are the only derived tones. */
+@font-face {
+  font-family: "Bricolage Grotesque";
+  src: url("../fonts/bricolage-grotesque-latin-wght.woff2") format("woff2");
+  font-weight: 200 800; font-display: swap;
+}
+@font-face {
+  font-family: "JetBrains Mono";
+  src: url("../fonts/jetbrains-mono-latin-wght.woff2") format("woff2");
+  font-weight: 100 800; font-display: swap;
+}
+:root {
+  --text: #f0e2e2; --background: #060128; --primary: #ef4fbc; --secondary: #00ffd8; --accent: #21ff00;
+  --mute: rgba(240, 226, 226, .64);
+  --line: rgba(240, 226, 226, .14);
+  --panel: rgba(240, 226, 226, .035);
+  --shadow: #000;
+  --display: "Bricolage Grotesque", ui-sans-serif, sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, monospace;
+  --gut: 16px;
+  color-scheme: dark;
+}
+*, *::before, *::after { box-sizing: border-box; }
+html { background: var(--background); scroll-padding-top: 72px; }
+body {
+  margin: 0; background: var(--background); color: var(--text);
+  font: 400 17px/1.55 var(--display); font-variation-settings: "opsz" 14;
+  -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility;
+}
+h1, h2, h3 { font-family: var(--display); line-height: 1.02; margin: 0 0 .5em; letter-spacing: -.02em; }
+h1 { font-size: clamp(44px, 8vw, 96px); font-weight: 800; }
+h2 { font-size: clamp(28px, 4vw, 44px); font-weight: 700; }
+h3 { font-size: 20px; font-weight: 600; margin-top: 1.4em; }
+p { margin: 0 0 1em; max-width: 62ch; }
+a { color: var(--text); text-decoration-color: var(--primary); text-underline-offset: 3px; }
+a:hover { color: var(--primary); }
+a:focus-visible { outline: 2px solid var(--secondary); outline-offset: 3px; }
+code, pre, .num, kbd { font-family: var(--mono); }
+code { font-size: .86em; color: var(--secondary); }
+strong, b { font-weight: 700; }
+::selection { background: var(--primary); color: var(--background); }

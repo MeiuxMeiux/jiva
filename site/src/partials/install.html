@@ -1,0 +1,39 @@
+<section class="band split rev" id="install">
+  <div class="side">
+    <h2><span class="num">08</span>Built with itself</h2>
+    <p>The watchdog, the verbs, the dashboard and this page were written by JIVA sessions,
+      each working from a task card and ending in a handoff. The fleet that runs the work
+      is the fleet that wrote the runner.</p>
+    <p class="status-line"><span class="dot" aria-hidden="true"></span>Open source, public alpha:
+      github.com/MeiuxMeiux/jiva.</p>
+  </div>
+  <div class="side">
+    <h3>Install (public alpha)</h3>
+    <p>Linux or WSL2. bash ≥4, git, tmux ≥3.2, jq ≥1.6, just, python3, util-linux (flock, setsid), coreutils, Claude Code. Optional: gh, shellcheck, gitleaks.
+      macOS: untested (needs Homebrew bash, coreutils, util-linux).</p>
+    <p>Clone the repo and put its bin/ on your PATH:</p>
+    <pre class="cmd"><span class="p">$</span> git clone https://github.com/MeiuxMeiux/jiva ~/jiva
+<span class="p">$</span> export PATH="$HOME/jiva/bin:$PATH"</pre>
+    <p>Then, inside any repo:</p>
+    <pre class="cmd"><span class="p">$</span> jiva init     <span class="c"># .jiva/, gitignore, CLAUDE.md pointer</span>
+<span class="p">$</span> jiva up 3     <span class="c"># watchdog + boss + 3 workers</span>
+<span class="p">$</span> jiva doctor   <span class="c"># budgets as tests</span>
+<span class="p">$</span> jiva down     <span class="c"># kill the private tmux server</span></pre>
+    <p>Workers: soft cap 6 (above it, <code>JIVA_CONFIRM=1</code>), hard cap 12. Each one burns
+      quota like a session of its own. Hooks reach each pane through a <code>--settings</code> file,
+      or through the optional plugin (<code>jiva plugin install</code>); <code>jiva up</code> prints
+      which one it used.</p>
+    <p><b>First run in a new repo:</b> <code>jiva up</code> stops at Claude Code's workspace-trust
+      dialog, once per repo. Attach with <code>tmux -L jiva-&lt;repo&gt; a</code> and accept it
+      yourself. JIVA never auto-accepts it.</p>
+    <p><b>Permissions:</b> sessions run in hidden panes, so a permission prompt stalls one until you
+      answer it (<code>jiva pending</code> shows where). Allow the routine commands first (Claude
+      Code's <code>auto</code> mode is recommended); docs/QUICKSTART.md in the repo has a sample allowlist.</p>
+    <h3>JIVA Micro: no install</h3>
+    <p>One markdown file for any repo. Paste it in as <code>JIVA.md</code> and Claude Code walks it in order:
+      check the host and quota, cut startup tokens, add the shared-checkout rules, then launch a small fleet
+      in plain tmux. Pitfalls included.</p>
+    <p class="micro-row"><button type="button" class="micro-copy" data-src="micro.md" hidden>Copy JIVA.md</button>
+      <a href="micro.md">View micro.md</a></p>
+  </div>
+</section>

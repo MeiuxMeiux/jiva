@@ -1,0 +1,21 @@
+# chefs — kitchen-brigade busts (original characters)
+title: "Chefs"
+style: >-
+  Warm cheerful editorial illustration of a restaurant kitchen brigade, tall toques and chef jackets, rosy
+  cheeks, soft gouache texture, warm lighting. Original characters, no text on jackets.
+size: 1536x1024
+quality: medium
+est: 0.30
+slots:
+  - {name: Basil, look: "head chef with a crimson-red neckerchief"}
+  - {name: Paprika, look: "spice cook with a coral-orange bandana"}
+  - {name: Marmalade, look: "pastry chef with tangerine-orange apron"}
+  - {name: Saffron, look: "sauce chef with golden-yellow toque band"}
+  - {name: Lemon, look: "baker with lemon-yellow oven mitt on shoulder"}
+  - {name: Fennel, look: "veg cook with chartreuse-green apron"}
+  - {name: Lime, look: "bartender with lime-green vest"}
+  - {name: Chive, look: "sous chef with spring-green neckerchief"}
+  - {name: Pesto, look: "pasta chef with emerald-green apron"}
+  - {name: Mint, look: "dessert chef with mint-green piping bag"}
+  - {name: Kelp, look: "sushi chef with seafoam-green headband"}
+  - {name: Brine, look: "fish cook with turquoise-aqua rubber apron"}

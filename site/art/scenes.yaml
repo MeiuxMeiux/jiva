@@ -1,0 +1,77 @@
+# site scene art (art-gen.sh scene:NAME → art-scene.sh post). Palette: navy #060128, pink #ef4fbc,
+# cyan #00ffd8, green #21ff00. post: crop (cover-crop to w×h at band = centre y fraction) | tile (seamless
+# blend) | emblems (3×3 sheet on black → one transparent square per id, alpha from glow).
+base:
+  bg: >-
+    Abstract background art for a dark developer-tool website. Deep navy #060128 dominates; restrained
+    neon accents in hot pink #ef4fbc, electric cyan #00ffd8 and acid green #21ff00. Clean, modern,
+    atmospheric, high-end, soft depth of field. No text, no letters, no numbers, no logos, no people, no
+    watermark, no UI screenshots.
+  emblem: >-
+    A sheet of exactly nine separate glowing neon line-art emblems arranged in a 3 by 3 grid on a pure
+    black #000000 background, wide empty black gaps between them, each emblem centered in its cell and
+    similar in size. Each emblem is a single clean bold icon drawn with thick glowing neon tubes in hot
+    pink #ef4fbc, electric cyan #00ffd8 and acid green #21ff00, simple and readable at small size,
+    consistent style. No text, no letters, no numbers, no frames, no grid lines, no logo, no watermark.
+scenes:
+  hero:
+    kind: bg
+    size: 1536x1024
+    quality: high
+    est: 0.40
+    prompt: >-
+      Wide cinematic scene: a vast dark navy night space with a faint perspective grid floor fading into
+      fog, a constellation of small glowing nodes linked by thin light threads (like a fleet of connected
+      terminals), soft pink and cyan glows near the right side, subtle green sparks. The left half stays
+      dark and calm so headline text can sit on it.
+    post: crop
+    out: hero-bg.webp
+    w: 1600
+    h: 900
+    kb: 120
+    band: 0.5
+  banner:
+    kind: bg
+    size: 1536x1024
+    quality: medium
+    est: 0.30
+    prompt: >-
+      A flat horizontal decorative band of thin parallel neon circuit traces and light streaks running left
+      to right across the exact middle of the image, pink, cyan and green traces with small glowing nodes,
+      on deep navy; the top and bottom thirds are plain dark navy.
+    post: crop
+    out: header-banner.webp
+    w: 1600
+    h: 120
+    kb: 40
+    band: 0.5
+  tile:
+    kind: bg
+    size: 1024x1024
+    quality: medium
+    est: 0.30
+    prompt: >-
+      A very subtle, low-contrast, evenly distributed texture of faint tiny dots, hairline circuit traces
+      and soft noise on deep navy #060128, uniform across the whole square with no focal point, no
+      vignette, barely visible accents, suitable as a repeating section background.
+    post: tile
+    out: section-tile.webp
+    w: 384
+    h: 384
+    kb: 30
+  emblems:
+    kind: emblem
+    size: 1024x1024
+    quality: high
+    est: 0.40
+    prompt: >-
+      In reading order: (1) four tangled overlapping terminal windows; (2) a tiny hierarchy of three linked
+      nodes, one on top fanning out to two below; (3) six small arrows circling a central dot; (4) a rising
+      phoenix inside a circular cycle arrow; (5) three simple head-and-shoulders silhouettes side by side;
+      (6) a watchful eye inside a radar gauge; (7) a padlock on a shield; (8) a gear with a hand drawing it;
+      (9) an open book with bookmark ribbons.
+    post: emblems
+    ids: [problem, how, verbs, ceiling, souls, dashboard, security, install, reference]
+    w: 144
+    h: 144
+    kb: 25

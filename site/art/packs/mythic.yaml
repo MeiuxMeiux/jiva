@@ -1,0 +1,21 @@
+# mythic — mythical creature busts (original designs)
+title: "Mythic"
+style: >-
+  Majestic fantasy creature portraits in rich detailed digital painting, noble expressions, dramatic rim
+  lighting. Original designs.
+size: 1536x1024
+quality: medium
+est: 0.30
+slots:
+  - {name: Ignis, look: "fire dragon with crimson-red scales"}
+  - {name: Gryph, look: "griffin with coral-orange feathers"}
+  - {name: Phoenix, look: "firebird with tangerine-orange plumes"}
+  - {name: Sphinx, look: "winged lion-sphinx with golden-yellow mane"}
+  - {name: Kirin, look: "horned qilin with lemon-yellow mane"}
+  - {name: Dryad, look: "tree spirit with chartreuse-green leaves"}
+  - {name: Basilisk, look: "serpent with lime-green scales"}
+  - {name: Faun, look: "satyr with spring-green ivy crown"}
+  - {name: Wyvern, look: "forest wyvern with emerald-green hide"}
+  - {name: Unicorn, look: "unicorn with mint-green mane"}
+  - {name: Kelpie, look: "water horse with seafoam-green mane"}
+  - {name: Leviathan, look: "sea serpent with turquoise-aqua fins"}

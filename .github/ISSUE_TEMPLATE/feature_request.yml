@@ -1,0 +1,28 @@
+name: Feature request
+description: Suggest a verb, recipe, check or behavior change.
+labels: [enhancement]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: What are you trying to do, and what gets in the way today?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposal
+      description: The smallest change that solves it (a verb, a `just` recipe, a doctor assert…).
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+  - type: checkboxes
+    id: fit
+    attributes:
+      label: Fit
+      options:
+        - label: It can live within the house rules (files ≤150 lines, notes ≤30, bash + just).

@@ -1,0 +1,22 @@
+# aliens — friendly extraterrestrial busts
+title: "Aliens"
+style: >-
+  Colorful sci-fi concept-art illustration of friendly, curious alien beings, imaginative anatomy
+  (antennae, extra eyes, frills, tentacle hair), glossy bioluminescent details, cinematic lighting.
+  Original species.
+size: 1536x1024
+quality: medium
+est: 0.30
+slots:
+  - {name: Zorp, look: "three-eyed alien with crimson-red skin"}
+  - {name: Quibb, look: "frilled alien with coral-orange scales"}
+  - {name: Nyx, look: "tall-headed alien with tangerine-orange freckles"}
+  - {name: Blip, look: "round alien with golden-yellow antennae"}
+  - {name: Glim, look: "crystal alien with lemon-yellow glow"}
+  - {name: Xel, look: "lizard-like alien with chartreuse-green skin"}
+  - {name: Mook, look: "blob alien with lime-green jelly body"}
+  - {name: Plix, look: "insectoid alien with spring-green eyes"}
+  - {name: Vorn, look: "noble alien with emerald-green robes"}
+  - {name: Yib, look: "fuzzy alien with mint-green fur"}
+  - {name: Kree, look: "aquatic alien with seafoam-green fins"}
+  - {name: Ozz, look: "tentacle-haired alien with turquoise-aqua glow"}

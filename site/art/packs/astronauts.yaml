@@ -1,0 +1,22 @@
+# astronauts — space-program crew busts (fictional astronauts, no agency patches)
+title: "Astronauts"
+style: >-
+  Clean cinematic sci-fi illustration of astronauts in modern spacesuits with helmets off or visors open,
+  soft cabin lighting, reflective suit fabric. Fictional crew, varied ages and ethnicities, no agency
+  logos, no flags, no patches with letters.
+size: 1536x1024
+quality: medium
+est: 0.30
+slots:
+  - {name: Apollo, look: "commander with crimson-red suit stripes"}
+  - {name: Vega, look: "pilot with a coral-orange flight suit"}
+  - {name: Orion, look: "engineer with tangerine-orange helmet rim"}
+  - {name: Sol, look: "veteran with golden-yellow visor reflection"}
+  - {name: Nova, look: "rookie with a lemon-yellow headset"}
+  - {name: Terra, look: "botanist with chartreuse-green suit trim"}
+  - {name: Luna, look: "medic with lime-green suit panels"}
+  - {name: Atlas, look: "geologist with spring-green helmet lights"}
+  - {name: Juno, look: "scientist with emerald-green collar ring"}
+  - {name: Halley, look: "navigator with mint-green suit stripes"}
+  - {name: Cosmo, look: "mechanic with seafoam-green gloves"}
+  - {name: Kepler, look: "astronomer with a turquoise-aqua visor"}

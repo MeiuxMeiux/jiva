@@ -1,0 +1,25 @@
+<section class="band split" id="security">
+  <div class="side">
+    <h2><span class="num">07</span>Security, plainly</h2>
+    <p>JIVA adds no server and no account. It's bash, tmux and the Claude Code CLI you already
+      run, on your machine.</p>
+  </div>
+  <ul class="facts">
+    <li><b>Local only.</b> Every session runs in tmux on your machine, on a private socket per repo
+      (<code>tmux -L jiva-&lt;repo&gt;</code>).</li>
+    <li><b>Permissions stay yours.</b> Sessions run in Claude Code's auto mode with your own
+      allowlist. Anything outside it prompts natively in that session's pane, and only a human
+      answers. JIVA ships no hook that auto-approves anything (an opt-in relay can forward a prompt to
+      the desk, never decide it), and never clicks
+      through the workspace-trust dialog. <code>jiva pending</code>
+      lists the panes waiting on you.</li>
+    <li><b>No inbound ports.</b> The dashboard binds <code>127.0.0.1</code> only, answers
+      GET and nothing else, serves a web root of symlinks, and rejects <code>..</code> paths.</li>
+    <li><b>State is numbers and enums.</b> <code>state.json</code> holds token counts, percentages,
+      status words and session names. No prompts, no output, no file contents.</li>
+    <li><b>Secrets are never printed.</b> Keys are read inside scripts only. Sessions are told not
+      to cat them, and <code>just sec</code> scans the full git history for leaks.</li>
+    <li><b>This page:</b> static files, a strict Content-Security-Policy, self-hosted fonts, no
+      cookies, no analytics, no third-party requests.</li>
+  </ul>
+</section>

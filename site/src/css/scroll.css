@@ -1,0 +1,15 @@
+/* scrollbars: never grey (standing rule). Track = background, thumb = pink→cyan, green when grabbed.
+   scrollbar-color inherits, so :root covers the page and every inner scroller (.scroll, pre, code).
+   Chromium 121+ and Firefox use scrollbar-color; Safari/older Chromium use the ::-webkit rules. */
+:root { scrollbar-color: var(--primary) var(--background); }
+.scroll, pre, code, textarea { scrollbar-color: var(--secondary) var(--background); scrollbar-width: thin; }
+.scroll:active, pre:active { scrollbar-color: var(--accent) var(--background); }
+::-webkit-scrollbar { width: 12px; height: 12px; background: var(--background); }
+::-webkit-scrollbar-track { background: var(--background); }
+::-webkit-scrollbar-corner { background: var(--background); }
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--primary), var(--secondary));
+  border: 3px solid var(--background); border-radius: 6px;
+}
+::-webkit-scrollbar-thumb:horizontal { background: linear-gradient(90deg, var(--primary), var(--secondary)); }
+::-webkit-scrollbar-thumb:hover, ::-webkit-scrollbar-thumb:active { background: var(--accent); }

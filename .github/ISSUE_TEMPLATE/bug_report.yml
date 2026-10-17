@@ -1,0 +1,70 @@
+name: Bug report
+description: Something in JIVA does not work as documented.
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Security problem? Do not file it here; use
+        [private reporting](https://github.com/MeiuxMeiux/jiva/security/advisories/new).
+        Never paste keys, tokens or private board lines.
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened
+      description: What you ran, what you expected, what you got.
+    validations:
+      required: true
+  - type: textarea
+    id: repro
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. jiva up 2
+        2. jiva assign w1 card.md
+        3. ...
+    validations:
+      required: true
+  - type: textarea
+    id: output
+    attributes:
+      label: Relevant output
+      description: "`jiva status`, `jiva doctor` lines that FAIL, pane excerpt (redact secrets)."
+      render: text
+  - type: input
+    id: commit
+    attributes:
+      label: JIVA commit
+      description: "`git -C ~/jiva rev-parse --short HEAD`"
+    validations:
+      required: true
+  - type: input
+    id: os
+    attributes:
+      label: OS
+      description: "Linux distro + version, or WSL2 + distro (macOS is untested). e.g. `. /etc/os-release; echo $PRETTY_NAME`"
+    validations:
+      required: true
+  - type: input
+    id: bash
+    attributes:
+      label: bash version
+      description: "`bash --version | head -1` (JIVA needs bash ≥4)"
+    validations:
+      required: true
+  - type: textarea
+    id: env
+    attributes:
+      label: Environment
+      description: "`tmux -V`, `jq --version`, `claude --version`, `just --version`, hooks mode (plugin or settings), Claude Code permission mode."
+    validations:
+      required: true
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Checks
+      options:
+        - label: I searched existing issues.
+          required: true
+        - label: The output above contains no secrets.
+          required: true

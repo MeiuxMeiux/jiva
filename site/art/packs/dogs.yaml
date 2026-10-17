@@ -1,0 +1,21 @@
+# dogs — dog busts in little outfits
+title: "Dogs"
+style: >-
+  Warm painterly portraits of dogs of different breeds, glossy realistic fur, happy expressions, each
+  wearing one small garment in its accent color, soft studio lighting.
+size: 1536x1024
+quality: medium
+est: 0.30
+slots:
+  - {name: Rusty, look: "red setter with crimson-red bandana"}
+  - {name: Biscuit, look: "corgi with a coral-orange bow tie"}
+  - {name: Pumpkin, look: "shiba with tangerine-orange scarf"}
+  - {name: Goldie, look: "golden retriever with golden-yellow collar"}
+  - {name: Daisy, look: "yellow labrador with lemon-yellow raincoat"}
+  - {name: Pesto, look: "schnauzer with chartreuse-green sweater"}
+  - {name: Ziggy, look: "dalmatian with lime-green collar"}
+  - {name: Bean, look: "pug with spring-green hoodie"}
+  - {name: Duke, look: "german shepherd with emerald-green harness"}
+  - {name: Noodle, look: "dachshund with mint-green knit vest"}
+  - {name: Bubbles, look: "poodle with seafoam-green bow"}
+  - {name: Blue, look: "husky with turquoise-aqua eyes and scarf"}

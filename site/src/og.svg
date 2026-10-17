@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630"><title>JIVA · one terminal, many souls</title>
+<rect width="1200" height="630" fill="#060128"/>
+<polygon points="96,104 176,104 176,184 145.6,184 145.6,150.4 126.4,150.4 126.4,184 96,184" fill="#ef4fbc"/>
+<text x="204" y="176" fill="#ef4fbc" font-family="Bricolage Grotesque, Arial Black, sans-serif" font-size="96" font-weight="800">JIVA</text>
+<text x="96" y="318" fill="#f0e2e2" font-family="Bricolage Grotesque, Arial, sans-serif" font-size="72" font-weight="700">One terminal.</text>
+<text x="96" y="400" fill="#f0e2e2" font-family="Bricolage Grotesque, Arial, sans-serif" font-size="72" font-weight="700">Many souls.</text>
+<rect x="0" y="540" width="1200" height="90" fill="#ef4fbc"/>
+<text x="96" y="597" fill="#060128" font-family="JetBrains Mono, ui-monospace, monospace" font-size="32" font-weight="700">[jiva]</text>
+<rect x="560" y="574" width="20" height="20" fill="#21ff00" stroke="#060128" stroke-width="2"/>
+<text x="600" y="597" fill="#060128" font-family="JetBrains Mono, ui-monospace, monospace" font-size="32" font-weight="700">4 live · 0 flag · 298k · 5h 8%</text>
+</svg>
