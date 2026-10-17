@@ -1,0 +1,1 @@
+# present so npm ignores .gitignore here (it would drop the bundled MICRO.md); `files` is the allowlist
