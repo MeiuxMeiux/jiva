@@ -22,12 +22,13 @@ Needs: Linux or WSL2, bash ≥4, git, tmux ≥3.2, jq, just, flock (util-linux),
 
 INSTALL = """## Install
 1. Copy each block below to the path in its heading (`.fleet/<path>`; `fleet.just` → `.fleet/fleet.just`).
-2. Add `import? '.fleet/fleet.just'` to the repo's `justfile` (create the justfile if there is none).
+2. Add `mod fleet '.fleet/fleet.just'` to the repo's `justfile` (create one if there is none); every recipe
+   is then `just fleet <recipe>`. No justfile wanted: `just -f .fleet/fleet.just <recipe>`.
 3. `chmod +x .fleet/bin/*.sh`
 4. `echo '.fleet/state/' >> .gitignore` (runtime state: claims, seat json, alerts, gate results).
 5. Merge `.fleet/templates/CLAUDE.md` into the root `CLAUDE.md` (keep it ≤40 lines) and the keys of
    `.fleet/settings.json` (statusLine, permissions.allow) into `.claude/settings.json`.
-6. `just --list` shows the fleet recipes. Recipes are the API: seats call them, not raw tmux or git.
+6. `just fleet` lists the recipes. Recipes are the API: seats call them, not raw tmux or git.
 """
 
 RUN = [  # one line per docs/MICRO.md "## Phase N" heading, in order
@@ -35,8 +36,8 @@ RUN = [  # one line per docs/MICRO.md "## Phase N" heading, in order
     "CLAUDE.md as a ≤40-line router, detail in notes/, `/context` before and after.",
     "`.fleet/templates/rules.md` → `.fleet/rules.md`, linked from CLAUDE.md.",
     "cards from `.fleet/templates/card.md`, handoffs from `.fleet/templates/handoff.md`.",
-    "`just up` (private tmux + watcher), `just add w1 .fleet/cards/w1.md`, `just ls`, `just peek w1`.",
-    "`just digest` on a 10-min tick, `just ls` (tokens, quota) before adding seats, restart at 150k, `just down` to stop.",
+    "the human runs `just fleet up`, then `just fleet add w1 .fleet/cards/w1.md`; `just fleet ls`, `just fleet peek w1`.",
+    "`just fleet digest` on a 10-min tick, `just fleet usage` before adding seats, restart at 150k, `just fleet down`.",
 ]
 
 

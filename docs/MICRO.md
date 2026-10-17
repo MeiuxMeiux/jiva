@@ -85,8 +85,9 @@ ship msg:       # pathspec commit of this seat's claims, never add -A
 say seat text:  # -l types literally; Enter is its own send
     tmux -L fleet send-keys -t fleet:{{seat}} -l {{quote(text)}} && tmux -L fleet send-keys -t fleet:{{seat}} Enter
 ```
-The full set (up, add, ls, peek, say, restart, stop, down, claims, gates, digest) plus the scripts behind
-it ship as one file: **JIVA Kit** (`kit.md`, next to this file on the site; `just kit` in a JIVA checkout).
+The full set (up, add, ls, peek, say, restart, stop, down, claims, gates, digest, usage) plus the scripts behind
+it ship as one file: **JIVA Kit** (`kit.md`, next to this file on the site; `just kit` in a JIVA checkout),
+installed as `mod fleet '.fleet/fleet.just'`, so every call is `just fleet <recipe>`.
 
 ## Pitfalls (each one cost somebody an afternoon)
 - First run in a repo: Claude Code shows a workspace-trust dialog once. Attach to the tmux server and accept it yourself.
