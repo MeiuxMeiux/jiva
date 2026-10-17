@@ -11,7 +11,9 @@
     <h3>Install (public alpha)</h3>
     <p>Linux or WSL2. bash ≥4, git, tmux ≥3.2, jq ≥1.6, just, python3, util-linux (flock, setsid), coreutils, Claude Code. Optional: gh, shellcheck, gitleaks.
       macOS: untested (needs Homebrew bash, coreutils, util-linux).</p>
-    <p>Clone the repo and put its bin/ on your PATH:</p>
+    <p>One line: checks the dependencies, clones JIVA into ~/.jiva and prints the PATH line to add.</p>
+    <pre class="cmd"><span class="p">$</span> npx jiva-fleet init</pre>
+    <p>Or clone the repo and put its bin/ on your PATH:</p>
     <pre class="cmd"><span class="p">$</span> git clone https://github.com/MeiuxMeiux/jiva ~/jiva
 <span class="p">$</span> export PATH="$HOME/jiva/bin:$PATH"</pre>
     <p>Then, inside any repo:</p>
@@ -35,5 +37,6 @@
       in plain tmux. Pitfalls included.</p>
     <p class="micro-row"><button type="button" class="micro-copy" data-src="micro.md" hidden>Copy JIVA.md</button>
       <a href="micro.md">View micro.md</a></p>
+    <p>Or from a terminal: <code>npx jiva-fleet micro</code> writes it as JIVA.md.</p>
   </div>
 </section>
