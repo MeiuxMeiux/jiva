@@ -73,6 +73,21 @@ tmux -L fleet new-window -t fleet -n w1 \
 - A row that was wrong gets a new, corrected row; never edit one in place.
 - The desk checks in on a 10-minute timer that prints nothing when nothing changed, so a quiet check costs zero tokens.
 
+## just = the blessed path
+Wrap every fleet action in a `just` recipe and have seats call recipes, not raw tmux or git. Recipes are the
+API: one place for guards and logs. Writes print what they did and exit non-zero on surprise (a silent no-op
+gets reported as done); anything that sends (mail, chat, push) takes `--dry-run`.
+```just
+claim +globs:   # for $FLEET_NAME; refuses a glob another seat holds
+    .fleet/bin/claim.sh claim {{globs}}
+ship msg:       # pathspec commit of this seat's claims, never add -A
+    .fleet/bin/claim.sh ship {{quote(msg)}}
+say seat text:  # -l types literally; Enter is its own send
+    tmux -L fleet send-keys -t fleet:{{seat}} -l {{quote(text)}} && tmux -L fleet send-keys -t fleet:{{seat}} Enter
+```
+The full set (up, add, ls, peek, say, restart, stop, down, claims, gates, digest) plus the scripts behind
+it ship as one file: **JIVA Kit** (`kit.md`, next to this file on the site; `just kit` in a JIVA checkout).
+
 ## Pitfalls (each one cost somebody an afternoon)
 - First run in a repo: Claude Code shows a workspace-trust dialog once. Attach to the tmux server and accept it yourself.
 - `$VAR` inside a single-quoted `sed`/`awk` program never expands. The command "succeeds" and changes nothing.

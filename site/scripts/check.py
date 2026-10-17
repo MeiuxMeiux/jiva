@@ -6,7 +6,7 @@
 - CSP meta in src/index.html == the CSP in deploy/apache-jiva.conf (canonical vhost)
 - deploy/apache-jiva.conf asserts HSTS/nosniff/referrer/permissions/COOP (robots/sitemap: seo.py)
 - every file under site/ (except fonts, build/) ≤150 lines; initial load < 400 KB (build minus
-  assets.lazy(): other avatar packs, manifest, tile/emblem art); whole build < 3 MB
+  assets.lazy(): other avatar packs, manifest, tile/emblem art, raw .md); whole build < 3 MB
 - then runs links.py (links + SRI), contrast.py, drift.py (page vs CLI), a11y.py, scrollbars.py, seo.py"""
 import html.parser, importlib.util, json, pathlib, re, shutil, subprocess, sys
 

@@ -1,0 +1,16 @@
+# one path per line, relative to kit/; each is emitted as .fleet/<path> (fleet.just installs to .fleet/fleet.just)
+roles/desk.md
+roles/boss.md
+roles/worker.md
+roles/loop.md
+templates/card.md
+templates/handoff.md
+templates/CLAUDE.md
+templates/rules.md
+fleet.just
+settings.json
+bin/fleet.sh
+bin/watch.sh
+bin/claim.sh
+bin/gate.sh
+bin/statusline.sh

@@ -10,16 +10,16 @@ init:
     chmod +x .githooks/pre-commit scripts/*.sh
     mkdir -p docs notes core plugin scripts packs/local .jiva \
       site/src/{css,js,fonts} site/art/{raw,final} site/build site/deploy
-    for d in core plugin site/src/css site/src/js site/src/fonts site/art/final site/deploy; do
-      [[ -n "$(ls -A "$d")" ]] || touch "$d/.gitkeep"
-    done
+    for d in core plugin site/src/css site/src/js site/src/fonts site/art/final site/deploy; do [[ -n "$(ls -A "$d")" ]] || touch "$d/.gitkeep"; done
     command -v gitleaks >/dev/null || echo "WARN: gitleaks not installed — commits will be blocked"
     echo "init ok"
 # security: gitleaks secret scan over full history + trivy fs vuln/secret/misconfig, each when on PATH (else one WARN line)
 sec:
     @if command -v gitleaks >/dev/null; then gitleaks git --redact --no-banner .; else echo "WARN sec: gitleaks not on PATH — secret scan skipped (https://github.com/gitleaks/gitleaks#installing)"; fi
     @if command -v trivy >/dev/null; then trivy fs --quiet --scanners vuln,secret,misconfig .; else echo "WARN sec: trivy not on PATH — vuln/secret/misconfig fs scan skipped"; fi
-
+# JIVA Kit: one markdown with every kit/ORDER file as .fleet/<path> blocks (no out = stdout)
+kit out="":
+    @python3 -I scripts/kit-build.py {{ if out == "" { "" } else { quote(out) } }}
 # budgets as tests: files ≤150 lines, notes ≤30, scripts parse, json valid
 check:
     @core/jiva.sh check

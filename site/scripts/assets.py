@@ -93,6 +93,8 @@ def art(src, out):
 def lazy(rel, first_pack):
     """True for build files that load only after scroll/interaction (separate 3 MB cap)."""
     p = pathlib.PurePosixPath(rel)
+    if p.suffix == ".md":  # micro.md, kit.md: raw paste-in docs, fetched on copy-button hover/click
+        return True
     if p.parts[:1] == ("avatars",):
         return len(p.parts) == 2 or p.parts[1] != first_pack  # manifest + other packs
     return p.parts[:1] == ("img",) and not p.name.startswith(EAGER_ART)

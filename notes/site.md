@@ -6,7 +6,7 @@
   blank/`//` lines (no JS relying on ASI there). CSP twice: src/index.html meta + deploy/apache-jiva.conf, must match.
 - site-check: html-validate if on PATH (else stdlib; `npx -y html-validate@8.18.2 site/build/index.html` clean 10-17).
   Bans third-party urls, style=, on*=, inline script/style, javascript:; files ≤150 lines (build/ exempt); initial load
-  < 400 KB (minus assets.lazy(): other packs, manifest, tile/emblem art) + whole build < 3 MB (286 KB / 1.05 MB @12 packs).
+  < 400 KB (minus assets.lazy(): other packs, manifest, tile/emblem art, raw .md) + whole build < 3 MB (286 KB / 1.05 MB @12 packs).
 - build content-hashes css/js/woff2 + sha384 SRI. check.py then runs links.py (lychee or stdlib; SRI),
   contrast.py (WCAG; FAIL names nearest passing hex), drift.py, a11y.py. Header + robots asserts in check.py.
 - v0.2 hero = real recording: `bash site/scripts/capture.sh [120] [5]` (read-only: .jiva/bar, capture-pane

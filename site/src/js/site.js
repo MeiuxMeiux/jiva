@@ -16,9 +16,9 @@
     }, { rootMargin: "0px 0px -12% 0px" });
     Array.prototype.forEach.call(document.querySelectorAll("main > .band"), function (b) { io.observe(b); });
   }
-  var copy = document.querySelector(".micro-copy");  // JIVA Micro: fetch once on intent, copy on click
-  if (copy && navigator.clipboard && window.fetch) {
-    var text = null, get = function () {
+  // JIVA Micro + Kit: each .micro-copy fetches its data-src once on intent, copies on click
+  if (navigator.clipboard && window.fetch) Array.prototype.forEach.call(document.querySelectorAll(".micro-copy"), function (copy) {
+    var label = copy.textContent, text = null, get = function () {
       return text || (text = fetch(copy.dataset.src).then(function (r) { return r.ok ? r.text() : Promise.reject(r.status); }));
     };
     copy.hidden = false;
@@ -27,9 +27,9 @@
     copy.addEventListener("click", function () {
       get().then(function (t) { return navigator.clipboard.writeText(t); })
         .then(function () { copy.textContent = "Copied"; }, function () { copy.textContent = "Copy failed: use the link"; text = null; })
-        .then(function () { window.setTimeout(function () { copy.textContent = "Copy JIVA.md"; }, 2500); });
+        .then(function () { window.setTimeout(function () { copy.textContent = label; }, 2500); });
     });
-  }
+  });
   var hero = document.querySelector(".hero");
   if (!hero || still) return;
   var queued = false;

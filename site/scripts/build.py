@@ -7,7 +7,7 @@ pack's thumbs (manifest for the §05 rotator) and src/img art (generated --art-*
 css/js/woff2 names
 (name.<sha256[:8]>.ext), rewrites references and adds SRI (sha384) + crossorigin on the stylesheet
 <link> and <script>. Stdlib only. Usage: build.py [src] [out]"""
-import base64, hashlib, importlib.util, pathlib, re, shutil, sys
+import base64, hashlib, importlib.util, pathlib, re, shutil, subprocess, sys
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 SRC = pathlib.Path(sys.argv[1]) if len(sys.argv) > 1 else ROOT / "src"
@@ -112,6 +112,7 @@ def main():
         (OUT / "js" / js.name).write_text(min_js(js.read_text(encoding="utf-8")), encoding="utf-8")
     shutil.copytree(SRC / "fonts", OUT / "fonts", ignore=shutil.ignore_patterns(".gitkeep"))
     shutil.copy(ROOT.parent / "docs/MICRO.md", OUT / "micro.md")  # JIVA Micro: paste-in fleet guide, raw at /micro.md
+    subprocess.run([sys.executable, "-I", str(ROOT.parent / "scripts/kit-build.py"), str(OUT / "kit.md")], check=True)  # JIVA Kit
     for name in STATIC:  # unhashed on purpose: crawlers and scrapers ask for these exact paths
         (OUT / name).parent.mkdir(parents=True, exist_ok=True)
         shutil.copy(SRC / name, OUT / name)
