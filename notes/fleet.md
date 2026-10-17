@@ -4,6 +4,8 @@ Seats: desk (human terminal, core/roles/desk.md) · boss · loop (opt-in, core/r
   duo[:N] = boss + N (default 2; a bare N = duo:N); full[:N] = boss + loop + N. Empty = auto: solo if quota ≥70%
   (JIVA_SOLO_QUOTA) or host fits <3 seats (avail MB − 1024)/JIVA_SEAT_MB 700, else duo:min(JIVA_WORKERS 2, fit−1).
   Full is never auto. Prints the why lines. `.jiva/profile` = the name; solo → lease_tick never spawns a boss and
+- A fresh `up` (no tmux server yet) clears .jiva/launch + claims: heal respawns every launch file, so a stale
+  launch set once resurrected an old boss + w2–w4 with finished cards into a solo fleet.
   session-start tells seats "Boss session: desk".
 - Lean launch (jiva.sh lean()): every seat gets `--strict-mcp-config --disallowedTools Artifact,ArtifactComments,
   ArtifactData,NotebookEdit` (JIVA_LEAN_DENY overrides, JIVA_LEAN=0 opts out). Strict + no --mcp-config = zero MCP

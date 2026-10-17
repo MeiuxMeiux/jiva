@@ -119,6 +119,7 @@ up() { # [profile|N] — core/profile.sh sizes the fleet (solo|duo|full, auto fr
   local plan b l n prof rc=0; preflight >&2 || return 1; plan="$("$JIVA_HOME/core/profile.sh" "${1:-}")" || return 1
   read -r b l n prof <<<"$plan"; sed 1d <<<"$plan"; cap_ok "$n"
   echo "hooks: $(hooks_mode) · models: boss $BOSS_MODEL, worker $WORKER_MODEL"   # plugin installed → settings carry statusLine only (no double-fire)
+  T has-session -t jiva 2>/dev/null || rm -f "$J"/launch/* "$J"/claims/*   # fresh up: heal respawns any launch file, so the last fleet's seats stay down
   server; echo "$prof" > "$J/profile"   # window 0 is the watchdog; solo → lease never spawns a boss
   if (( b )); then spawn boss boss || rc=1; fi
   if (( l )); then spawn loop loop || rc=1; fi
