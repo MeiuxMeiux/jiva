@@ -71,7 +71,8 @@ tmux -L fleet new-window -t fleet -n w1 \
 - Restart instead of `/clear`, at about **150k tokens** (count tokens, not percent: on a 1M window, 85% is 850k).
   The seat writes its handoff, commits by pathspec, sends one message and exits. A fresh seat reads the handoff.
 - Anything that needs the human becomes ONE runnable line that ends in a hard gate, so it fails loudly:
-  `<command> && <check> && echo X-OK || { echo X-MISSING; exit 1; }`. Never "open a page and copy X".
+  `<command> && <check> && echo X-OK || { echo X-MISSING; exit 1; }`, run from a script or a subshell, never
+  pasted into a login shell (`exit 1` closes it). Never "open a page and copy X".
 - A row that was wrong gets a new, corrected row; never edit one in place.
 - The desk checks in on a 10-minute timer that prints nothing when nothing changed, so a quiet check costs zero tokens.
 

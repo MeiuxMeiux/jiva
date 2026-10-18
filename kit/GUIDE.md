@@ -94,6 +94,7 @@ Then print the daily cheat sheet:
 - Seats restart instead of `/clear` at about 150k tokens: handoff (`.fleet/handoff/<seat>.md`, newest on top),
   ship by pathspec, one message, restart. The watcher nudges them; `just fleet restart <seat>` is HUMAN.
 - Anything that needs the human becomes ONE line that ends in a hard gate (`… && echo X-OK || { echo
-  X-MISSING; exit 1; }`), queued with `just fleet gate-add`. Never "open a page and copy X".
+  X-MISSING; exit 1; }`), queued with `just fleet gate-add` and run by `just fleet gate-run go <id>` (a subshell).
+  Never paste a gate line into a login shell: its `exit 1` closes the terminal. Never "open a page and copy X".
 - N workers is about N× your usage. `just fleet usage` before adding a seat; shrink before the limit.
 - Every sequence done twice becomes a recipe. `just fleet mine` again in a week and show the new estimate.
