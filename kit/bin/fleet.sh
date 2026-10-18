@@ -40,13 +40,14 @@ up() {
   T new-session -d -s fleet -n watch -x 200 -y 50 -c "$ROOT" \
     "FLEET_ROOT=$(printf %q "$ROOT") FLEET_SOCK=$(printf %q "$SOCK") bash $(printf %q "$HERE/watch.sh"); exec bash"
   T set -g remain-on-exit on   # a seat that exits leaves a dead pane: watch relaunches it
-  echo "fleet: up (tmux -L $SOCK attach -t fleet). Next: fleet.sh add w1 <card>"
+  echo "fleet: up (tmux -L $SOCK attach -t fleet). Next: just fleet add w1 .fleet/cards/w1.md"
 }
 
 add() {
   local seat=${1:-} card=${2:-} k
   seat_ok "$seat"; [[ -s $card ]] || die "no card at '$card'"
   for k in 'Area:' 'Owned paths:' 'Done-when:'; do grep -q "^$k" "$card" || die "card lacks a '$k' line — goes back unstarted"; done
+  grep -qE '^(Area|Owned paths|Done-when):.*<[^>]*>' "$card" && die "card still has template placeholders (<…>) — fill them in first"
   live || die "not up — run fleet.sh up first"; has_win "$seat" && die "$seat already seated (restart or stop it)"
   [[ $(readlink -f "$card") == "$(readlink -f "$F/cards/$seat.md")" ]] || cp "$card" "$F/cards/$seat.md"
   echo "$seat" > "$S/launch/$seat"

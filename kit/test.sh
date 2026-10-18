@@ -30,6 +30,7 @@ B=.fleet/bin; F=".fleet/bin/fleet.sh"; S=.fleet/state
 echo "-- fleet.sh"
 ok "up starts the private server + watch window" "$F up && tmux -L fleet-kit-test list-windows -t fleet -F '#W' | grep -qx watch"
 ok "card without Done-when is refused" "! $F add w9 <(printf 'Area: x\nOwned paths: y\n')"
+ok "card with template placeholders is refused" "! $F add w9 <(printf 'Area: <one area>\nOwned paths: y\nDone-when: z\n')"
 ok "add seats w1 (launch file + window)" "$F add w1 card.md && test -e $S/launch/w1"
 ok "fake claude booted lean, leak scrubbed" "until_ 'grep -q strict-mcp-config $X/fake.log' && grep -q 'CLAUDECODE=unset' $X/fake.log"
 ok "ls lists w1 live" "until_ \"$F ls | grep -q 'w1 *live'\""

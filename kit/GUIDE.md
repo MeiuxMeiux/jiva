@@ -12,7 +12,8 @@ those lines are handed to you to run. The why behind every step: JIVA Micro (`mi
 It is plain markdown: read it before you hand it to an agent. Source, file by file:
 https://github.com/MeiuxMeiux/jiva/tree/main/kit (the full runner with watchdog, dashboard and verbs lives there too).
 
-Needs: Linux or WSL2, bash 4+, git, tmux 3.2+, jq, just, flock (util-linux), Claude Code.
+Needs: Linux or WSL2, bash 4+, git, tmux 3.2+, jq, just, flock (util-linux), Claude Code. On Debian/Ubuntu:
+`sudo apt install tmux jq` and `just` from https://just.systems/man/en/packages.html (apt's is too old).
 Cost: each seat is a full Claude Code session on your plan (`opus` by default; `FLEET_MODEL=sonnet` to change),
 so N seats draw N times your usual rate. Measured here: a busy Opus worker reports about $1.75 of API-equivalent
 usage per 90k of context, so a body that lives to its 200k rotation is roughly $4 at API prices; on a Max plan
@@ -33,7 +34,9 @@ rules): every edit is shown as a diff first and nothing is deleted, only moved.
 2. Add `mod fleet '.fleet/fleet.just'` to the repo's `justfile` (create one if there is none). Every fleet
    recipe is then `just fleet <recipe>`; `just fleet` lists them.
 3. `echo '.fleet/state/' >> .gitignore` (runtime state: claims, seat json, alerts, gate results).
-4. Merge the keys of `.fleet/settings.json` (statusLine, permissions.allow) into `.claude/settings.json`.
+4. Merge the keys of `.fleet/settings.json` (statusLine, permissions.allow) into `.claude/settings.json`; none yet →
+   copy it. With one, merge into a temp file, show the diff, then move it over:
+   `jq -s '.[0] as $a | .[1] as $b | $a * $b | .permissions.allow = (($a.permissions.allow // []) + $b.permissions.allow | unique)' .claude/settings.json .fleet/settings.json`
 5. `just fleet selftest`: the whole kit against a scratch repo with a fake `claude` (no seats, no tokens). All
    lines must read `ok`; a `FAIL` names the piece that does not work on this machine. Fix or report it, never skip it.
 6. Report: `just fleet` output, `tmux -V`, `jq --version`, `claude --version`, `git status --short`.
@@ -98,7 +101,9 @@ just fleet up                              # private tmux server `tmux -L fleet`
 just fleet add w1 .fleet/cards/w1.md       # seat w1 on its card (reads .fleet/roles/worker.md first)
 ```
 First run in a repo, Claude Code shows a workspace-trust dialog once: `tmux -L fleet attach`, accept it, detach
-(`Ctrl-b d`). Then confirm with `just fleet ls` and `just fleet peek w1`. When w1 shows live, say it plainly:
+(`Ctrl-b d`). Then confirm with `just fleet ls` and `just fleet peek w1`. `ls` states: `live` is good; `dead` means the
+body exited (watch relaunches it within a tick); `parked` is a crash loop (3 deaths in 60 s): `peek` it, fix the cause,
+`rm .fleet/state/parked/w1`. When w1 shows live, say it plainly:
 
 > **Your fleet is ready.** One worker on w1, watch running, claims and gates armed.
 
