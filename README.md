@@ -33,7 +33,8 @@ macOS: untested (needs Homebrew bash, coreutils, util-linux).
 
 Clone and put `bin/` on PATH. No-install options: paste [JIVA Micro](docs/MICRO.md) into a repo (the walkthrough),
 or the **JIVA Kit** (the same fleet as plain `.fleet/` files: roles, templates, `just` recipes, bash scripts;
-`just kit KIT.md` in a checkout, or `kit.md` next to `micro.md` on the site):
+`just kit KIT.md` in a checkout, or `kit.md` next to `micro.md` on the site; `just fleet selftest` proves it on your
+machine with a fake `claude` before a single token is spent):
 
 ```
 git clone https://github.com/MeiuxMeiux/jiva ~/jiva    # or: gh repo clone MeiuxMeiux/jiva ~/jiva
@@ -49,6 +50,10 @@ prompt stalls that session until you answer it (`jiva pending` lists them). Befo
 commands sessions run all day (`jiva`, `just`, `git add`/`commit`/`status`/`diff`/`log`, `jq`, `tmux`, …)
 in the target repo's `.claude/settings.json`. Claude Code's `auto` permission mode is recommended, not
 required. JIVA never edits your permission settings; see [QUICKSTART §0](docs/QUICKSTART.md#0-prerequisites-once-per-machine).
+
+**Cost.** Every seat is a full Claude Code session on your plan. Measured here: a busy Opus worker reports about
+$1.75 of API-equivalent usage per 90k of context, so one body from boot to its 200k rotation is roughly $4 at API
+prices; on a Max plan that is quota (`jiva status` and the statusline show the 5h/7d percentages).
 
 **Models.** The boss runs `JIVA_BOSS_MODEL`, workers `JIVA_WORKER_MODEL` (both default to the `opus`
 alias). Set them per run in the environment, or once per user as `KEY=VALUE` lines in

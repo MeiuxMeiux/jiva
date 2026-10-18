@@ -84,7 +84,7 @@ ok "failing row stops with rc 1" "! $G run go $bad; ! $G result $bad && grep -qx
 echo "-- mine.sh"
 H=$X/home; P="$H/.claude/projects/$(sed 's/[^A-Za-z0-9]/-/g' <<<"$(realpath "$R")")"; mkdir -p "$P"
 for i in 1 2 3; do printf '%s\n' "{\"message\":{\"content\":[{\"type\":\"tool_use\",\"name\":\"Bash\",\"id\":\"a$i\",\"input\":{\"command\":\"npm test -- --watch=false\"}}]}}" \
-  "{\"message\":{\"content\":[{\"type\":\"tool_result\",\"tool_use_id\":\"a$i\",\"content\":\"$(head -c 900 /dev/zero | tr '\\0' x)\",\"is_error\":false}]}}" >> "$P/s.jsonl"; done
+  "{\"message\":{\"content\":[{\"type\":\"tool_result\",\"tool_use_id\":\"a$i\",\"content\":\"$(head -c 900 /dev/zero | tr '\0' x)\",\"is_error\":false}]}}" >> "$P/s.jsonl"; done
 ok "mine ranks the repeated command" "HOME=$H just fleet mine 5 > $X/m.out && grep -q 'npm test -- --watch' $X/m.out && grep -q '^estimate: 3 repeated' $X/m.out"
 ok "mine with no transcripts says so" "HOME=$X/nohome $B/mine.sh | grep -q 'no transcripts'"
 

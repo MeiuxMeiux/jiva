@@ -9,11 +9,14 @@ of this page into `.fleet/`, then works through the steps *with* you: tidies the
 with, sets up `just`, mines your past conversations for recipes (and tells you what they would have saved),
 and ends by telling you the fleet is ready and how to run it. It never deploys, pushes or launches seats:
 those lines are handed to you to run. The why behind every step: JIVA Micro (`micro.md`, next to this file).
-Full runner with watchdog, dashboard and verbs: https://github.com/MeiuxMeiux/jiva
+It is plain markdown: read it before you hand it to an agent. Source, file by file:
+https://github.com/MeiuxMeiux/jiva/tree/main/kit (the full runner with watchdog, dashboard and verbs lives there too).
 
 Needs: Linux or WSL2, bash 4+, git, tmux 3.2+, jq, just, flock (util-linux), Claude Code.
 Cost: each seat is a full Claude Code session on your plan (`opus` by default; `FLEET_MODEL=sonnet` to change),
-so N seats draw N times your usual rate. Steps 2–3 edit the markdown your sessions boot with (CLAUDE.md, memory,
+so N seats draw N times your usual rate. Measured here: a busy Opus worker reports about $1.75 of API-equivalent
+usage per 90k of context, so a body that lives to its 200k rotation is roughly $4 at API prices; on a Max plan
+that is quota, and `just fleet usage` shows the 5h/7d percentages. Steps 2–3 edit the markdown your sessions boot with (CLAUDE.md, memory,
 rules): every edit is shown as a diff first and nothing is deleted, only moved.
 
 ## If you are the agent reading this
@@ -31,7 +34,20 @@ rules): every edit is shown as a diff first and nothing is deleted, only moved.
    recipe is then `just fleet <recipe>`; `just fleet` lists them.
 3. `echo '.fleet/state/' >> .gitignore` (runtime state: claims, seat json, alerts, gate results).
 4. Merge the keys of `.fleet/settings.json` (statusLine, permissions.allow) into `.claude/settings.json`.
-5. Report: `just fleet` output, `tmux -V`, `jq --version`, `claude --version`, `git status --short`.
+5. `just fleet selftest`: the whole kit against a scratch repo with a fake `claude` (no seats, no tokens). All
+   lines must read `ok`; a `FAIL` names the piece that does not work on this machine. Fix or report it, never skip it.
+6. Report: `just fleet` output, `tmux -V`, `jq --version`, `claude --version`, `git status --short`.
+
+No agent at hand? The same install by hand, from the repo root (python3), then steps 2–5 above:
+```bash
+python3 - KIT.md <<'EOF'
+import re, sys, pathlib
+t = open(sys.argv[1], encoding='utf-8').read()
+for p, f, b in re.findall(r'^### (\.fleet/\S+)\n(`{3,})\w*\n(.*?)\n\2\n', t, re.S | re.M):
+    pathlib.Path(p).parent.mkdir(parents=True, exist_ok=True); pathlib.Path(p).write_text(b + '\n', encoding='utf-8'); print(p)
+EOF
+chmod +x .fleet/bin/*.sh
+```
 
 ## Step 1: measure (read-only)
 1. `nproc`, `free -m`: about 1 GB RAM and 1 core per seat. Fewer than 3 seats fit → solo mode (desk + 1 worker).
@@ -76,6 +92,7 @@ chose to print, not a screenful.
    Owned paths, Goal, Done-when, Read first. A card missing any of them is refused by `just fleet add`.
 
 ## Step 5: launch (HUMAN runs the lines; you print them)
+`just fleet selftest` green first (Step 0.5). Then:
 ```bash
 just fleet up                              # private tmux server `tmux -L fleet` + zero-token watch window
 just fleet add w1 .fleet/cards/w1.md       # seat w1 on its card (reads .fleet/roles/worker.md first)

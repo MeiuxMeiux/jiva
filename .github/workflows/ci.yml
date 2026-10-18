@@ -50,6 +50,8 @@ jobs:
         run: just check
       - name: kit test (fake claude, no seats)
         run: bash kit/test.sh
+      - name: kit stranger path (build kit.md, extract, run the extracted self-test)
+        run: just kit-selftest
 
 
   gitleaks:

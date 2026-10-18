@@ -8,6 +8,10 @@ bin := source_directory() / "bin"
 default:
     @just -f {{quote(source_file())}} --list
 
+# the whole kit against a scratch repo with a FAKE claude (no seats, no tokens): run it before the first `up`
+selftest:
+    @bash {{quote(source_directory() / "test.sh")}}
+
 # HUMAN: private tmux server + the zero-token watch window (fresh server clears stale launch files + claims)
 up:
     @{{bin}}/fleet.sh up

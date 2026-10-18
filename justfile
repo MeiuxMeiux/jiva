@@ -20,18 +20,18 @@ sec:
 # JIVA Kit: one markdown with every kit/ORDER file as .fleet/<path> blocks (no out = stdout)
 kit out="":
     @python3 -I scripts/kit-build.py {{ if out == "" { "" } else { quote(out) } }}
+# JIVA Kit: build kit.md, extract it like a stranger (scripts/kit-extract.py = the GUIDE snippet), run the extracted test.sh
+kit-selftest:
+    @bash scripts/kit-selftest.sh
 # budgets as tests: files ≤150 lines, notes ≤30, scripts parse, json valid
 check:
     @core/jiva.sh check
-
 # budgets as tests: boot payload, handoff/card sizes, state freshness, hooks, plugin mode; `live` adds the kill -9 self-heal test
 doctor mode="":
     @core/jiva.sh doctor {{ if mode == "" { "" } else { quote(mode) } }}
-
 # growth: rank repeated Bash commands/bigrams from this repo's transcripts (recipe candidates; `all` shows trivial keys)
 mine n="10" all="":
     @core/jiva.sh mine {{quote(n)}} {{ if all == "" { "" } else { quote(all) } }}
-
 # runtime: watchdog + seats on the private `tmux -L jiva` server — profile solo|duo[:N]|full[:N]|N, empty = auto (prints why)
 up profile="":
     core/jiva.sh up {{quote(profile)}}
