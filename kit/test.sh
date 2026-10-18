@@ -78,6 +78,13 @@ ok "human run go → ok, result 0" "$G run go $id > $X/go.out && grep -q A-OK $X
 bad=$($G add 'test -f nope && echo N-OK || { echo N-MISSING; exit 1; }' 'missing' | grep -oE 'g[0-9a-f]{6}' | head -1)
 ok "failing row stops with rc 1" "! $G run go $bad; ! $G result $bad && grep -qx 1 $S/gate/$bad.rc"
 
+echo "-- mine.sh"
+H=$X/home; P="$H/.claude/projects/$(sed 's/[^A-Za-z0-9]/-/g' <<<"$(realpath "$R")")"; mkdir -p "$P"
+for i in 1 2 3; do printf '%s\n' "{\"message\":{\"content\":[{\"type\":\"tool_use\",\"name\":\"Bash\",\"id\":\"a$i\",\"input\":{\"command\":\"npm test -- --watch=false\"}}]}}" \
+  "{\"message\":{\"content\":[{\"type\":\"tool_result\",\"tool_use_id\":\"a$i\",\"content\":\"$(head -c 900 /dev/zero | tr '\\0' x)\",\"is_error\":false}]}}" >> "$P/s.jsonl"; done
+ok "mine ranks the repeated command" "HOME=$H just fleet mine 5 > $X/m.out && grep -q 'npm test -- --watch' $X/m.out && grep -q '^estimate: 3 repeated' $X/m.out"
+ok "mine with no transcripts says so" "HOME=$X/nohome $B/mine.sh | grep -q 'no transcripts'"
+
 echo "-- statusline.sh"
 out=$(echo '{"session_name":"w5","context_window":{"total_input_tokens":42123},"rate_limits":{"five_hour":{"used_percentage":12.5},"seven_day":{"used_percentage":30}}}' | $B/statusline.sh)
 ok "bar shows name, k tokens, 5h/7d" "[ '$out' = 'w5 · 42k · 5h 12% · 7d 30%' ]"

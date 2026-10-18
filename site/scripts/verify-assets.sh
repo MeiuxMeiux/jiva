@@ -2,7 +2,7 @@
 # verify-assets <url> <index.html> — called by verify.sh. HEADs every same-origin asset the page references
 # (href, src, srcset, og:image content) and FAILs when Content-Type is empty or not the extension's family.
 # Why: Apache without `AddType image/webp` sent .webp with no type, and nosniff then makes browsers drop it.
-# One line per extension (count + type seen), not per file. curl only, read-only; exits 1 on any FAIL.
+# .md must also carry charset=utf-8 (live). One line per extension (count + type seen), not per file. curl only, read-only; exits 1 on any FAIL.
 set -uo pipefail
 url=${1:?usage: verify-assets.sh <url> <index.html>}; url=${url%/}; page=${2:?index.html path}
 ok()   { printf '  ok    %s\n' "$*"; }
@@ -14,7 +14,7 @@ want() {  # extension → regex the Content-Type (sans params) must match; unkno
     woff2) echo '^font/woff2$' ;;        svg) echo '^image/svg\+xml$' ;;
     webp) echo '^image/webp$' ;;         png) echo '^image/png$' ;;
     ico) echo '^image/(x-icon|vnd\.microsoft\.icon)$' ;;  txt) echo '^text/plain$' ;;
-    xml) echo '^(application|text)/xml$' ;;  webmanifest) echo '^application/(manifest\+)?json$' ;;
+    md) echo '^text/markdown$' ;;         xml) echo '^(application|text)/xml$' ;;  webmanifest) echo '^application/(manifest\+)?json$' ;;
     *) echo '.' ;;
   esac
 }
@@ -33,7 +33,9 @@ declare -A n bads types
 for ref in $refs; do
   ext=${ref##*.}; ext=${ext,,}
   ct=$(curl -sS --path-as-is --max-time 15 -I -o /dev/null -w '%{content_type}' "$url/${ref#/}" 2>/dev/null || true)
-  ct=${ct%%;*}; ct=${ct,,}; ct=${ct//[[:space:]]/}
+  full=${ct,,}; ct=${ct%%;*}; ct=${ct,,}; ct=${ct//[[:space:]]/}
+  # text/markdown without charset=utf-8 renders ≥ as â‰¥ in browsers (live kit.md did); dev server is exempt
+  [[ $ct == text/markdown && $full != *charset=utf-8* && ! $url =~ ^https?://(127\.0\.0\.1|localhost) ]] && bads[$ext]="${bads[$ext]:-} $ref(no-charset)"
   n[$ext]=$(( ${n[$ext]:-0} + 1 ))
   [[ " ${types[$ext]:-} " == *" ${ct:-<empty>} "* ]] || types[$ext]="${types[$ext]:-} ${ct:-<empty>}"
   [[ -n $ct && $ct =~ $(want "$ext") ]] || bads[$ext]="${bads[$ext]:-} $ref"

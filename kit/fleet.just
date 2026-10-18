@@ -79,6 +79,10 @@ gate-run *args:
 gate-result id n="15":
     @{{bin}}/gate.sh result {{quote(id)}} {{quote(n)}}
 
+# rank the Bash commands past sessions here repeated (recipe candidates) + a token estimate; `all` shows trivial keys
+mine n="10" all="":
+    @{{bin}}/mine.sh {{quote(n)}} {{ if all == "" { "" } else { quote(all) } }}
+
 # desk timer tick: prints only what changed (alerts, gate rows, parked, seats); silent when quiet
 digest:
     @{{bin}}/watch.sh digest

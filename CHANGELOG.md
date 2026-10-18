@@ -10,7 +10,15 @@ aims to follow [Semantic Versioning](https://semver.org/spec/v2.0.0.html) once i
 
 - **JIVA Kit** — `kit/` (tested `.fleet/` scripts, `just fleet` module, roles, templates) and `just kit`, which
   bundles it into one paste-in `kit.md` (served next to `micro.md`); CI runs `kit/test.sh`.
-- **JIVA Micro** gained a "just = the blessed path" section.
+- **JIVA Micro** gained a "just = the blessed path" section and Phase 6 (graduate to the kit).
+- **JIVA Kit** is now a guided install: `kit/GUIDE.md` turns the reading agent into the desk (steps 0-6:
+  install, measure, tidy startup files together, `just` + `just fleet mine` with a token estimate, rules and
+  first card, launch + "your fleet is ready" cheat sheet, rhythm). New `.fleet/bin/mine.sh` (transcript miner).
+
+### Fixed
+
+- Site: `.md` files are served as `text/markdown; charset=utf-8` (`≥` rendered as `â‰¥`); `site-verify` fails
+  on a charset-less .md.
 
 ## [0.1.0] - 2026-10-17
 

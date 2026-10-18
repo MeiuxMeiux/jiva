@@ -14,3 +14,4 @@ bin/watch.sh
 bin/claim.sh
 bin/gate.sh
 bin/statusline.sh
+bin/mine.sh

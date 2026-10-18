@@ -1,44 +1,14 @@
 #!/usr/bin/env python3
 """kit-build — emit the JIVA Kit: ONE markdown file a stranger pastes into any repo to get a .fleet/.
-Layout: intro, install steps, run order (docs/MICRO.md phases condensed), then every file in kit/ORDER
-as "### .fleet/<path>" + a fenced block (fence longer than any backtick run inside).
-Usage: python3 -I scripts/kit-build.py [out]   (no out = stdout)
-Exit 0 ok, 1 an ORDER entry is missing or MICRO.md phases drifted from RUN below."""
+Layout: kit/GUIDE.md (the desk-agent walkthrough, steps 0-6), then every file in kit/ORDER as
+"### .fleet/<path>" + a fenced block (fence longer than any backtick run inside).
+Usage: python3 -I scripts/kit-build.py [out]   (no out = stdout). Exit 0 ok, 1 an ORDER entry is missing."""
 import pathlib, re, sys
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 KIT = ROOT / "kit"
 
-INTRO = """# JIVA Kit: a Claude Code fleet as plain files
-
-The files below install a small fleet into any git repo as `.fleet/`: role sheets, templates, `just`
-recipes and bash scripts on a PRIVATE tmux server (`tmux -L fleet`). No JIVA checkout needed.
-Paste this file into a repo as `KIT.md`, open Claude Code there, and say:
-**"Read KIT.md. Install the kit, then walk the run order, stopping after each phase."**
-The why behind each step: JIVA Micro (micro.md). Full runner: https://github.com/MeiuxMeiux/jiva
-
-Needs: Linux or WSL2, bash ≥4, git, tmux ≥3.2, jq, just, flock (util-linux), Claude Code.
-"""
-
-INSTALL = """## Install
-1. Copy each block below to the path in its heading (`.fleet/<path>`; `fleet.just` → `.fleet/fleet.just`).
-2. Add `mod fleet '.fleet/fleet.just'` to the repo's `justfile` (create one if there is none); every recipe
-   is then `just fleet <recipe>`. No justfile wanted: `just -f .fleet/fleet.just <recipe>`.
-3. `chmod +x .fleet/bin/*.sh`
-4. `echo '.fleet/state/' >> .gitignore` (runtime state: claims, seat json, alerts, gate results).
-5. Merge `.fleet/templates/CLAUDE.md` into the root `CLAUDE.md` (keep it ≤40 lines) and the keys of
-   `.fleet/settings.json` (statusLine, permissions.allow) into `.claude/settings.json`.
-6. `just fleet` lists the recipes. Recipes are the API: seats call them, not raw tmux or git.
-"""
-
-RUN = [  # one line per docs/MICRO.md "## Phase N" heading, in order
-    "tools, `nproc`/`free -m` (≈1 GB + 1 core per seat), quota; under 3 seats → solo.",
-    "CLAUDE.md as a ≤40-line router, detail in notes/, `/context` before and after.",
-    "`.fleet/templates/rules.md` → `.fleet/rules.md`, linked from CLAUDE.md.",
-    "cards from `.fleet/templates/card.md`, handoffs from `.fleet/templates/handoff.md`.",
-    "the human runs `just fleet up`, then `just fleet add w1 .fleet/cards/w1.md`; `just fleet ls`, `just fleet peek w1`.",
-    "`just fleet digest` on a 10-min tick, `just fleet usage` before adding seats, restart at 150k, `just fleet down`.",
-]
+GUIDE = KIT / "GUIDE.md"  # the walkthrough the desk agent follows (steps 0-6); files come after it
 
 
 def fence(text):
@@ -56,21 +26,12 @@ def order():
     return [ln.strip() for ln in lines if ln.strip() and not ln.lstrip().startswith("#")]
 
 
-def run_order():
-    phases = re.findall(r"^## (Phase \d+: .+)$", (ROOT / "docs/MICRO.md").read_text(encoding="utf-8"), re.M)
-    if len(phases) != len(RUN):
-        sys.exit(f"kit-build: docs/MICRO.md has {len(phases)} phases, RUN has {len(RUN)}: update RUN")
-    titles = [p.split(": ", 1)[1].split(" (")[0].capitalize() for p in phases]
-    rows = [f"{i}. **{t}**: {line}" for i, (t, line) in enumerate(zip(titles, RUN))]
-    return "## Run order (JIVA Micro phases 0-5)\n" + "\n".join(rows) + "\n"
-
-
 def main():
     entries = order()
     missing = [e for e in entries if not (KIT / e).is_file()]
     if missing:
         sys.exit("kit-build: missing from kit/: " + ", ".join(missing))
-    parts = [INTRO, INSTALL, run_order(), "## Files\n"]
+    parts = [GUIDE.read_text(encoding="utf-8"), "## Files\nEach block is one file; its heading is the path (Step 0 copies them).\n"]
     for e in entries:
         body = (KIT / e).read_text(encoding="utf-8")
         if not body.endswith("\n"):

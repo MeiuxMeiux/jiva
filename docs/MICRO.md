@@ -2,6 +2,8 @@
 
 Paste this file into any repo as `JIVA.md`, open Claude Code there, and say:
 **"Read JIVA.md. Do Phase 0 and show me the report. Then do each phase in order, stopping after each one."**
+Rather have it done with you? **JIVA Kit** (`kit.md`, next to this file) is the same fleet as files plus a
+step-by-step the agent you already have follows as your desk: install, tidy startup files, `just`, launch.
 Full runner (watchdog, dashboard, verbs): https://github.com/MeiuxMeiux/jiva
 
 ## The shape
@@ -88,6 +90,12 @@ say seat text:  # -l types literally; Enter is its own send
 The full set (up, add, ls, peek, say, restart, stop, down, claims, gates, digest, usage) plus the scripts behind
 it ship as one file: **JIVA Kit** (`kit.md`, next to this file on the site; `just kit` in a JIVA checkout),
 installed as `mod fleet '.fleet/fleet.just'`, so every call is `just fleet <recipe>`.
+
+## Phase 6: graduate to the kit
+Once the phases above hold, paste `kit.md` in as `KIT.md` and say "Read KIT.md. You are my desk now. Start at
+Step 0." It installs the scripts behind every recipe above (watch, claims, gates, digest, usage, mine), then
+walks the same ground with you: mines past sessions for recipes with a token estimate, launches, and tells you
+when the fleet is ready. The micro file is the why; the kit is the how, done together.
 
 ## Pitfalls (each one cost somebody an afternoon)
 - First run in a repo: Claude Code shows a workspace-trust dialog once. Attach to the tmux server and accept it yourself.
