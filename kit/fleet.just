@@ -12,7 +12,8 @@ default:
 up:
     @{{bin}}/fleet.sh up
 
-# HUMAN: seat a worker on a card (needs Area:/Owned paths:/Done-when:) — `just fleet add w1 cards/w1.md`
+# HUMAN: seat a worker on a card (needs Area:/Owned paths:/Done-when:) — `just fleet add w1 .fleet/cards/w1.md`
+[no-cd]
 add seat card:
     @{{bin}}/fleet.sh add {{quote(seat)}} {{quote(card)}}
 
@@ -40,7 +41,7 @@ stop seat:
 down:
     @{{bin}}/fleet.sh down
 
-# one watch tick now (dead seats, dialogs, context nudges → .fleet/alerts.log)
+# one watch tick now (dead seats, dialogs, context nudges → .fleet/state/alerts.log)
 watch-once:
     @{{bin}}/watch.sh once
 

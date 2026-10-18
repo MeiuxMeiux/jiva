@@ -3,7 +3,7 @@
 #   dead pane / missing window → relaunch; 3 deaths in 60 s = crash loop → parked, alert, no more relaunches
 #   permission/trust dialog on screen → one alert per stall (a seat on a prompt looks busy)
 #   statusline tokens ≥ FLEET_NUDGE (150k) → one say: hand off and exit; ≥ FLEET_ALERT (185k) → one alert
-# Alerts append to .fleet/alerts.log. `watch.sh once` runs a single tick; `.fleet/state/STOP` ends the loop.
+# Alerts append to .fleet/state/alerts.log. `watch.sh once` runs a single tick; `.fleet/state/STOP` ends the loop.
 # `watch.sh digest`: the desk's timer tick — prints only items changed since the last run, NOTHING when quiet.
 # Unpark a seat: rm .fleet/state/parked/<seat> (or fleet.sh stop + add).
 set -uo pipefail
@@ -13,7 +13,7 @@ NUDGE="${FLEET_NUDGE:-150000}"; ALERT="${FLEET_ALERT:-185000}"; DEATHS="${FLEET_
 DIALOG="${FLEET_DIALOG:-Do you want to|trust this folder|and don.t ask again|Esc to cancel}"
 mkdir -p "$S"/launch "$S"/deaths "$S"/parked "$S"/marks
 T() { tmux -L "$SOCK" "$@"; }
-alert() { printf '%s %s %s\n' "$(date '+%F %T')" "$1" "$2" >> "$F/alerts.log"; echo "watch: $1 $2"; }
+alert() { printf '%s %s %s\n' "$(date '+%F %T')" "$1" "$2" >> "$S/alerts.log"; echo "watch: $1 $2"; }
 mark() { [[ ! -e $S/marks/$1.$2 ]] && touch "$S/marks/$1.$2"; }   # seat kind → true only the first time
 unmark() { rm -f "$S/marks/$1.$2"; }
 
@@ -60,7 +60,7 @@ tick() {
 }
 
 snap() { # item<TAB>value lines: newest alert, open gate rows, parked + live seats
-  printf 'alert\t%s\n' "$(tail -n 1 "$F/alerts.log" 2>/dev/null | cut -c1-110)"
+  printf 'alert\t%s\n' "$(tail -n 1 "$S/alerts.log" 2>/dev/null | cut -c1-110)"
   printf 'gate\t%s\n' "$("$HERE/gate.sh" list open 2>/dev/null | grep -oE '^g[0-9a-f]+ \[[a-z]+' | tr -d '[' | xargs)"
   printf 'parked\t%s\n' "$(find "$S/parked" -type f -printf "%f\n" 2>/dev/null | sort | xargs)"
   printf 'seats\t%s\n' "$(T list-windows -t fleet -F '#W' 2>/dev/null | grep -vx watch | xargs)"

@@ -65,7 +65,7 @@ tmux -L fleet new-window -t fleet -n w1 \
 - Talking to a seat: use SendMessage by name if available. Otherwise `tmux -L fleet send-keys -t fleet:w1 -l "text"`,
   then a separate `send-keys ... Enter`. Long text goes in a file; send the path.
 - `.fleet/watch.sh`: every 60 s, `capture-pane -p` each seat. It flags a seat sitting on a permission dialog,
-  relaunches a dead seat (stop after 3 deaths in 60 s: a crash loop), and appends to `.fleet/alerts.log`.
+  relaunches a dead seat (stop after 3 deaths in 60 s: a crash loop), and appends to `.fleet/state/alerts.log`.
 
 ## Phase 5: rhythm
 - Restart instead of `/clear`, at about **150k tokens** (count tokens, not percent: on a 1M window, 85% is 850k).

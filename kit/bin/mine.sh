@@ -79,5 +79,5 @@ def median: sort | .[length / 2 | floor];
 ' "${files[@]}")"
 
 [[ -n ${out//[[:space:]]/} ]] || { echo "mine: no repeated Bash calls yet"; exit 0; }
-{ printf 'score\tfreq\tretry\tmed_bytes\tkey\texample\n'; sed '/^estimate:/,$d;/^$/d' <<<"$out"; } | column -t -s $'\t'
+{ printf 'score\tfreq\tretry\tmed_bytes\tkey\texample\n'; sed '/^estimate:/,$d;/^$/d' <<<"$out"; } | { command -v column >/dev/null && column -t -s $'\t' || cat; }
 sed -n '/^estimate:/,$p' <<<"$out"

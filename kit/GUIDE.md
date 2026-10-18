@@ -12,6 +12,9 @@ those lines are handed to you to run. The why behind every step: JIVA Micro (`mi
 Full runner with watchdog, dashboard and verbs: https://github.com/MeiuxMeiux/jiva
 
 Needs: Linux or WSL2, bash 4+, git, tmux 3.2+, jq, just, flock (util-linux), Claude Code.
+Cost: each seat is a full Claude Code session on your plan (`opus` by default; `FLEET_MODEL=sonnet` to change),
+so N seats draw N times your usual rate. Steps 2–3 edit the markdown your sessions boot with (CLAUDE.md, memory,
+rules): every edit is shown as a diff first and nothing is deleted, only moved.
 
 ## If you are the agent reading this
 - You are the desk for the rest of this session. Work *with* the human: show, ask, then change. After each

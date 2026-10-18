@@ -54,11 +54,15 @@ list() { if [[ -n ${1:-} ]]; then awk -v m="$1" '$1 == m { print $2 }' "$C"; els
 
 ship() {
   [[ -n ${1:-} ]] || die "ship \"<msg>\""
-  local g ps=(); while read -r g; do ps+=(":(glob)$g" ":(glob)$g/**"); done < <(list "$ME")
-  ((${#ps[@]})) || die "$ME has no claims — nothing to ship"
-  git -C "$ROOT" add -A -- "${ps[@]}" 2>/dev/null || true   # -A with a pathspec = only these paths, deletions too
-  git -C "$ROOT" diff --cached --quiet -- "${ps[@]}" && die "nothing changed under $ME's claims"
-  git -C "$ROOT" commit -q -m "$1" -- "${ps[@]}"
+  local g p f gs=() fs=(); mapfile -t gs < <(list "$ME")
+  ((${#gs[@]})) || die "$ME has no claims — nothing to ship"
+  for g in "${gs[@]}"; do for p in ":(glob)$g" ":(glob)$g/**"; do   # one pathspec per add: a claim with no files yet
+    git -C "$ROOT" add -A -- "$p" 2>/dev/null || true                 # must not abort the others (-A = deletions too)
+  done; done
+  while IFS= read -r -d '' f; do for g in "${gs[@]}"; do hit "$g" "$f" && { fs+=("$f"); break; }; done; done \
+    < <(git -C "$ROOT" diff --cached --name-only -z)
+  ((${#fs[@]})) || die "nothing changed under $ME's claims"
+  git -C "$ROOT" commit -q -m "$1" -- "${fs[@]}"
   git -C "$ROOT" log -1 --format='claim: shipped %h %s'
 }
 

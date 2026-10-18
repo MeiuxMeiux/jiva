@@ -22,7 +22,7 @@ chmod +x "$X/bin/claude"; export PATH="$X/bin:$PATH" CLAUDECODE=1   # the leak f
 
 cd "$R" && git init -q && git config user.email t@t && git config user.name t
 mkdir -p .fleet src docs && cp -r "$KIT/bin" "$KIT/fleet.just" "$KIT/settings.json" .fleet/
-printf '.fleet/state/\n.fleet/alerts.log\n' > .gitignore; echo a > src/a.js; echo d > docs/x.md
+printf '.fleet/state/\n' > .gitignore; echo a > src/a.js; echo d > docs/x.md
 printf "mod fleet '.fleet/fleet.just'\n" > justfile; git add -A && git commit -qm init
 printf 'Area: demo\nOwned paths: src/\nGoal: echo\nDone-when: never\n' > card.md
 B=.fleet/bin; F=".fleet/bin/fleet.sh"; S=.fleet/state
@@ -35,18 +35,20 @@ ok "fake claude booted lean, leak scrubbed" "until_ 'grep -q strict-mcp-config $
 ok "ls lists w1 live" "until_ \"$F ls | grep -q 'w1 *live'\""
 ok "say + peek round-trip" "$F say w1 'hello fleet' && until_ \"$F peek w1 | grep -q 'got: hello fleet'\""
 ok "just module wraps it (just fleet ls)" "just fleet ls | grep -q w1"
+cp card.md .fleet/cards/w2.md
+ok "just fleet add takes the documented .fleet/cards path from the repo root" "just fleet add w2 .fleet/cards/w2.md && test -e $S/launch/w2 && $F stop w2"
 
 echo "-- watch.sh (one tick each)"
 echo '{"tok":160000}' > $S/w1.json
 ok "ctx ≥150k nudges once" "$B/watch.sh once && until_ \"$F peek w1 | grep -q 'FLEET watch: context at 160000'\""
 echo '{"tok":190000}' > $S/w1.json
-ok "ctx ≥185k alerts" "$B/watch.sh once && grep -q 'w1 context 190000' .fleet/alerts.log"
+ok "ctx ≥185k alerts" "$B/watch.sh once && grep -q 'w1 context 190000' $S/alerts.log"
 $F say w1 dialog; until_ "$F peek w1 | grep -q 'Do you want'"
-ok "dialog stall alerts" "$B/watch.sh once && grep -q 'w1 stalled on a dialog' .fleet/alerts.log"
+ok "dialog stall alerts" "$B/watch.sh once && grep -q 'w1 stalled on a dialog' $S/alerts.log"
 $F say w1 die; until_ "tmux -L fleet-kit-test list-panes -t fleet:w1 -F '#{pane_dead}' | grep -qx 1"
 ok "dead seat relaunched" "$B/watch.sh once | grep -q 'w1 relaunched' && until_ \"[ \$(wc -l < $X/fake.log) -ge 2 ]\""
 touch "$X/die"; $F say w1 die; for _ in 1 2 3; do sleep 0.4; $B/watch.sh once >/dev/null; done
-ok "3 deaths in 60s = parked crash loop" "test -e $S/parked/w1 && grep -q 'w1 crash loop' .fleet/alerts.log"
+ok "3 deaths in 60s = parked crash loop" "test -e $S/parked/w1 && grep -q 'w1 crash loop' $S/alerts.log"
 rm -f "$X/die"
 ok "digest prints changes, then nothing" "[ -n \"\$($B/watch.sh digest)\" ] && [ -z \"\$($B/watch.sh digest)\" ]"
 ok "stop forgets the seat" "$F stop w1 && ! test -e $S/launch/w1 && ! $F peek w1"
@@ -60,7 +62,8 @@ ok "w2 glob overlap (**/*.js hits src/a.js) refused" "! FLEET_NAME=w2 $C claim '
 ok "w2 disjoint docs/* ok" "FLEET_NAME=w2 $C claim 'docs/*'"
 ok "bad paths refused (.. /abs .)" "! $C claim ../x && ! $C claim /etc && ! $C claim ."
 echo b >> src/a.js; echo y >> docs/x.md
-ok "w1 ship commits only its claims" "FLEET_NAME=w1 $C ship 'w1 work' && git show --stat HEAD | grep -q src/a.js && ! git show --stat HEAD | grep -q docs"
+FLEET_NAME=w1 $C claim newarea/ >/dev/null   # claimed but empty: must not swallow the rest of the ship
+ok "w1 ship commits only its claims (an empty claim does not block it)" "FLEET_NAME=w1 $C ship 'w1 work' && git show --stat HEAD | grep -q src/a.js && ! git show --stat HEAD | grep -q docs"
 ok "release all frees src/ for w2" "FLEET_NAME=w1 $C release all && FLEET_NAME=w2 $C claim src/a.js"
 ok "just fleet claim keeps the glob unexpanded" "FLEET_NAME=w3 just fleet claim 'kit/*' && grep -qxF 'w3 kit/*' $S/claims"
 
