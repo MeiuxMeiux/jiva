@@ -27,7 +27,9 @@
 .split > :last-child { grid-column: 7 / -1; }
 .split.rev > .side:first-child { grid-column: 1 / span 6; }
 .split.rev > :last-child { grid-column: 8 / -1; }
-.souls { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 16px; }  /* 6 / 4 / 3 per row */
+.souls { display: grid; grid-template-columns: repeat(13, minmax(0, 1fr)); gap: 4px 0; }  /* honeycomb: 6 / 4 / 3 per row, odd rows offset half a cell */
+.soul { grid-column: span 2; }
+.soul:nth-child(7) { grid-column: 2 / span 2; }
 .num { display: block; font-size: 13px; font-weight: 500; color: var(--primary); letter-spacing: .08em; margin-bottom: 14px; }
 
 .foot { padding-top: 40px; padding-bottom: 56px; border-top: 1px solid var(--line); color: var(--mute); font-size: 14px; }
@@ -40,11 +42,15 @@
   main > section { display: block; }  /* stack: one column, no grid-column fights */
   main > section > * + * { margin-top: 28px; }
   .band > .cols { grid-template-columns: 1fr; }
-  .souls { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .souls { grid-template-columns: repeat(9, minmax(0, 1fr)); }
+  .soul:nth-child(7) { grid-column: span 2; }
+  .soul:nth-child(5) { grid-column: 2 / span 2; }
   .band { padding-top: 56px; padding-bottom: 56px; }
 }
 @media (max-width: 520px) {
   .top nav a:nth-child(n+4) { display: none; }
   body { font-size: 16px; }
-  .souls { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+  .souls { grid-template-columns: repeat(7, minmax(0, 1fr)); }
+  .soul:nth-child(5) { grid-column: span 2; }
+  .soul:nth-child(4), .soul:nth-child(10) { grid-column: 2 / span 2; }
 }

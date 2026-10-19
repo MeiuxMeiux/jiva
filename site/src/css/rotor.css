@@ -1,19 +1,20 @@
-/* §05 avatar-pack rotator (js/souls.js). Two stacked imgs per slot; .on is the visible one. A swap
-   irises the new portrait in through blur + hue shift while the old one dissolves (.was), slot by slot
-   (--i = slot index, set via CSSOM). Reduced motion: motion.css zeroes every transition = instant. */
+/* §05 avatar-pack rotator (js/souls.js). Two stacked imgs per cell; .on is the visible one. A swap
+   opens the new portrait from the hex centre through blur + hue shift while the old one dissolves (.was),
+   cell by cell (--i = cell index, set via CSSOM). Reduced motion: motion.css zeroes every transition = instant. */
 @property --c { syntax: "<color>"; inherits: true; initial-value: #ef4fbc; }
 .band > .rotor-wrap { grid-column: 2 / -1; min-width: 0; }
 .soul { transition: border-color .8s ease calc(var(--i, 0) * 70ms), --c .8s ease calc(var(--i, 0) * 70ms); }
-.soul .pic { position: relative; display: block; aspect-ratio: 1; overflow: hidden; }
+.soul .pic { position: relative; display: block; aspect-ratio: .866; overflow: hidden; background: var(--c, var(--line));
+  clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%); transition: background-color .8s ease calc(var(--i, 0) * 70ms); }
 .soul .pic img {
-  position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+  position: absolute; inset: 3px; width: calc(100% - 6px); height: calc(100% - 6px); object-fit: cover;
   opacity: 0; filter: blur(10px) hue-rotate(110deg) saturate(1.8); transform: scale(1.18) rotate(-4deg);
-  clip-path: circle(0% at 50% 58%);
+  clip-path: polygon(50% 58%, 50% 58%, 50% 58%, 50% 58%, 50% 58%, 50% 58%);
   transition: opacity .55s ease, filter .9s ease, transform .9s cubic-bezier(.2, .7, .2, 1), clip-path .9s cubic-bezier(.6, 0, .2, 1);
   transition-delay: calc(var(--i, 0) * 70ms);
 }
-.soul .pic img.on { opacity: 1; filter: none; transform: none; clip-path: circle(75% at 50% 58%); z-index: 1; }
-.soul .pic img.was { opacity: 0; filter: blur(6px) hue-rotate(-90deg) saturate(1.6); transform: scale(.94); clip-path: circle(75% at 50% 58%);
+.soul .pic img.on { opacity: 1; filter: none; transform: none; clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%); z-index: 1; }
+.soul .pic img.was { opacity: 0; filter: blur(6px) hue-rotate(-90deg) saturate(1.6); transform: scale(.94); clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%);
   transition-duration: 1.1s; }  /* the outgoing face dissolves under the incoming iris */
 .soul .pic img.snap { transition: none; }
 .soul figcaption b { transition: color .8s ease calc(var(--i, 0) * 70ms); }

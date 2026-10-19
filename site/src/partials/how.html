@@ -1,7 +1,7 @@
 <section class="band split" id="how">
   <div class="side">
     <h2><span class="num">02</span>How it works</h2>
-    <p>Three roles, all ordinary Claude Code sessions in tmux windows on a private server
+    <p>Three roles, each a cell in the hive: ordinary Claude Code sessions in tmux windows on a private server
       (<code>tmux -L jiva-&lt;repo&gt;</code>), so they never touch your own tmux.</p>
     <dl class="roles">
       <dt>desk</dt><dd>The only session you talk to. Relays asks and reports, and brings real decisions to you: server and deploy changes, spend, destructive ops, sudo.</dd>
@@ -18,7 +18,7 @@
   </div>
   <figure class="diagram">
     <svg viewBox="0 0 640 380" role="img" aria-labelledby="dg-t dg-d">
-      <title id="dg-t">desk, queen and workers</title>
+      <title id="dg-t">the hive: desk, queen and workers</title>
       <desc id="dg-d">You talk to the desk. The desk talks to the queen. The queen assigns three workers.
         Asks travel back up the same path. A bash watchdog observes every session.</desc>
       <defs>
@@ -29,12 +29,12 @@
           <path d="M0 0 L10 5 L0 10 z" class="ahp"/>
         </marker>
       </defs>
-      <g class="node you"><rect x="240" y="14" width="140" height="44" rx="4"/><text x="310" y="42">you</text></g>
-      <g class="node"><rect x="240" y="104" width="140" height="44" rx="4"/><text x="310" y="132">desk</text></g>
-      <g class="node"><rect x="240" y="194" width="140" height="44" rx="4"/><text x="310" y="222">queen</text></g>
-      <g class="node w"><rect x="70" y="300" width="130" height="44" rx="4"/><text x="135" y="328">w1</text></g>
-      <g class="node w"><rect x="245" y="300" width="130" height="44" rx="4"/><text x="310" y="328">w2</text></g>
-      <g class="node w"><rect x="420" y="300" width="130" height="44" rx="4"/><text x="485" y="328">w3</text></g>
+      <g class="node you"><polygon points="256,14 364,14 380,36 364,58 256,58 240,36"/><text x="310" y="42">you</text></g>
+      <g class="node"><polygon points="256,104 364,104 380,126 364,148 256,148 240,126"/><text x="310" y="132">desk</text></g>
+      <g class="node"><polygon points="256,194 364,194 380,216 364,238 256,238 240,216"/><text x="310" y="222">queen</text></g>
+      <g class="node w"><polygon points="86,300 184,300 200,322 184,344 86,344 70,322"/><text x="135" y="328">w1</text></g>
+      <g class="node w"><polygon points="261,300 359,300 375,322 359,344 261,344 245,322"/><text x="310" y="328">w2</text></g>
+      <g class="node w"><polygon points="436,300 534,300 550,322 534,344 436,344 420,322"/><text x="485" y="328">w3</text></g>
       <g class="flow">
         <path d="M310 58 V102" marker-end="url(#ah)"/>
         <path d="M310 148 V192" marker-end="url(#ah)"/>

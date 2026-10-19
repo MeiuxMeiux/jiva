@@ -15,8 +15,8 @@
 
 .diagram { margin: 0; }
 .diagram svg { width: 100%; height: auto; display: block; overflow: visible; }
-.node rect { fill: var(--background); stroke: var(--text); stroke-width: 1.5; }
-.node.you rect { fill: var(--primary); stroke: var(--primary); }
+.node polygon { fill: var(--background); stroke: var(--text); stroke-width: 1.5; stroke-linejoin: round; }
+.node.you polygon { fill: var(--primary); stroke: var(--primary); }
 .node.you text { fill: var(--background); }
 .node text, .ask text, .dog text { font: 600 16px var(--mono); fill: var(--text); text-anchor: middle; }
 .flow path { stroke: var(--text); stroke-width: 1.5; fill: none; }
@@ -78,11 +78,10 @@
 .ref .arg { color: var(--mute); }
 .ref .grp th { padding-top: 16px; font-family: var(--mono); color: var(--secondary); }
 
-/* souls: portrait thumbs framed in slot color; per-slot class sets --c (no style=, CSP). */
-.soul { margin: 0; padding: 8px; background: var(--panel); border: 2px solid var(--c, var(--line));
-  clip-path: polygon(12px 0, 100% 0, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%, 0 12px); }
-.soul img { display: block; width: 100%; height: auto; aspect-ratio: 1; }
-.soul figcaption { display: flex; justify-content: space-between; align-items: baseline; gap: 6px; margin-top: 6px; font-size: 14px; }
+/* souls: honeycomb — one hex cell per worker, framed in its cell colour; per-cell class sets --c (no style=, CSP).
+   The hex is .pic (rotor.css); rows interlock via the 13-half-column grid in layout.css. */
+.soul { margin: 0; padding: 0 4px; background: none; border: 0; }
+.soul figcaption { display: flex; justify-content: center; align-items: baseline; gap: 8px; margin-top: 2px; font-size: 14px; }
 .soul b { color: var(--c); }
 .soul code { color: var(--mute); }
 .s1 { --c: #e75555; } .s2 { --c: #e77a55; } .s3 { --c: #e79e55; } .s4 { --c: #e7c255; }
