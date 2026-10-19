@@ -24,3 +24,7 @@ gate-run *args:
 # verb: check a gate row you asked for — status + output tail; exit 0 ok, 1 fail, 2 not run yet
 gate-result id n="15":
     @core/gate.sh result {{quote(id)}} {{quote(n)}}
+
+# desk: send one plain-text mail from jiva@meiuxmeiux.com via Postmark (scripts/mail.sh; body file or - = stdin; `scripts/mail.sh --dry-run|--status`)
+mail to subject body="-":
+    scripts/mail.sh "{{to}}" "{{subject}}" "{{body}}"
