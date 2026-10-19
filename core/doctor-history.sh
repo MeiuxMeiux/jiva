@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # doctor-history — core/history.sh + every emitter against a scratch TARGET (/tmp/jiva-doctor-*, own git repo,
-# stub `claude`, stubbed T/JV/toast — no tmux, no fleet): each kind's shape matches notes/history.md, lines
+# stub `claude`, stubbed T/JV/toast — no tmux, no hive): each kind's shape matches notes/history.md, lines
 # are append-only across runs, a value with newlines can't inject a line, a 200-char label is cut to 80,
 # the tok snapshot is rate-limited, an unwritable J never fails a set -e caller. ok/FAIL; exit 1 on any FAIL.
 set -uo pipefail
@@ -23,7 +23,7 @@ run() { # one pass over every emitter
     "$V" claim a; echo x >> "$S/a"; "$V" report note "x"; "$V" ship "t$RANDOM"; echo hi | "$V" handoff
     "$V" ask "q?" "y|n" y; JIVA_ASK_TTL=-1 "$V" ask "q2?" "y|n" n; "$V" answer "$(jq -r .id "$J/asks/open.jsonl" | head -1)"
   ) >/dev/null 2>&1
-  ( source "$H/core/watchdog.sh"; toast() { :; }; T() { [[ $1 == list-panes ]] && echo "%1 boss 0"; }
+  ( source "$H/core/watchdog.sh"; toast() { :; }; T() { [[ $1 == list-panes ]] && echo "%1 queen 0"; }
     JV=true; CEIL=1000; NUDGE=850; echo w1 > "$J/launch/w1"; touch "$J/rotate/w1"; rm -f "$J/nudged/w1"
     echo '{"tok":900,"q5h":90,"q7d":10}' > "$J/state/w1.json"; rm -f "$J/history.tok"
     tick; echo '{"tok":900,"q5h":10,"q7d":10}' > "$J/state/w1.json"; tick

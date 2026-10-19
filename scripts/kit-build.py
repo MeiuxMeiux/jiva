@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-"""kit-build — emit the JIVA Kit: ONE markdown file a stranger pastes into any repo to get a .fleet/.
+"""kit-build — emit the JIVA Kit: ONE markdown file a stranger pastes into any repo to get a .hive/.
 Layout: kit/GUIDE.md (the desk-agent walkthrough, steps 0-6), then every file in kit/ORDER as
-"### .fleet/<path>" + a fenced block (fence longer than any backtick run inside).
+"### .hive/<path>" + a fenced block (fence longer than any backtick run inside).
 Usage: python3 -I scripts/kit-build.py [out]   (no out = stdout). Exit 0 ok, 1 an ORDER entry is missing."""
 import pathlib, re, sys
 
@@ -37,7 +37,7 @@ def main():
         if not body.endswith("\n"):
             body += "\n"
         f = fence(body)
-        parts.append(f"### .fleet/{e}\n{f}{lang(KIT / e)}\n{body}{f}\n")
+        parts.append(f"### .hive/{e}\n{f}{lang(KIT / e)}\n{body}{f}\n")
     doc = "\n".join(parts)
     if len(sys.argv) > 1:
         out = pathlib.Path(sys.argv[1])

@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 # watchdog — non-LLM loop. Every 5s: merge `claude agents --json` + status-line state into
 # .jiva/state.json (numbers/enums only), write the tmux bar, flag stuck sessions, nudge at 75% (150k;
-# loop seat 100k) of the context ceiling, alert at 92.5% (breakers), respawn a session once it has written its handoff and gone idle, and run
-# the breakers + dead-pane self-heal in core/breakers.sh, the boss lease (core/lease.sh), and the
+# loop cell 100k) of the context ceiling, alert at 92.5% (breakers), respawn a session once it has written its handoff and gone idle, and run
+# the breakers + dead-pane self-heal in core/breakers.sh, the queen lease (core/lease.sh), and the
 # asks expiry + desk digest (core/asks.sh).
 # Faults (notes/breakers.md): a failed state write → flags/disk-full once (no retry storm, cleared on the
 # next good write); q5h/q7d ≥ JIVA_QUOTA_MAX (85) → flags/quota; status-right runs `status.sh bar` so a
@@ -12,7 +12,7 @@ set -uo pipefail
 # shellcheck source=core/lib.sh
 source "$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")/lib.sh"
 JV="$JIVA_HOME/core/jiva.sh"; mkdir -p "$J"/{state,rotate,nudged}
-CEIL="${JIVA_CEIL:-200000}"; NUDGE="${JIVA_NUDGE:-$((CEIL * 75 / 100))}"   # 150k: restart beats /clear (notes/fleet.md)
+CEIL="${JIVA_CEIL:-200000}"; NUDGE="${JIVA_NUDGE:-$((CEIL * 75 / 100))}"   # 150k: restart beats /clear (notes/hive.md)
 declare -A flagged=()
 
 # shellcheck source=core/notify.sh
@@ -23,13 +23,13 @@ source "$JIVA_HOME/core/history.sh"  # hist / hist_tok → history.jsonl (notes/
 source "$JIVA_HOME/core/breakers.sh"
 # shellcheck source=core/lease.sh
 source "$JIVA_HOME/core/lease.sh"
-JIVA_NAME=watchdog   # board-log label for expired asks
+JIVA_NAME=watchdog   # comb-log label for expired asks
 # shellcheck source=core/asks.sh
 source "$JIVA_HOME/core/asks.sh"
 # shellcheck source=core/souls.sh
 source "$JIVA_HOME/core/souls.sh"    # souls_bind / souls_map → sessions[].soul, bar chips, pane titles
 # shellcheck source=core/governor.sh
-source "$JIVA_HOME/core/governor.sh"  # paused, gov_tick (fleet $ cap), gov_handoff
+source "$JIVA_HOME/core/governor.sh"  # paused, gov_tick (hive $ cap), gov_handoff
 
 wd_write() { # file content → atomic write; a failure (disk full) flags once instead of looping on errors
   if { printf '%s\n' "$2" > "$1.tmp" && mv "$1.tmp" "$1"; } 2>/dev/null; then

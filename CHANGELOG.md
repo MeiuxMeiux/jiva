@@ -8,12 +8,19 @@ aims to follow [Semantic Versioning](https://semver.org/spec/v2.0.0.html) once i
 
 ### Added
 
-- **JIVA Kit** — `kit/` (tested `.fleet/` scripts, `just fleet` module, roles, templates) and `just kit`, which
+- **JIVA Kit** — `kit/` (tested `.hive/` scripts, `just hive` module, roles, templates) and `just kit`, which
   bundles it into one paste-in `kit.md` (served next to `micro.md`); CI runs `kit/test.sh`.
 - **JIVA Micro** gained a "just = the blessed path" section and Phase 6 (graduate to the kit).
 - **JIVA Kit** is now a guided install: `kit/GUIDE.md` turns the reading agent into the desk (steps 0-6:
-  install, measure, tidy startup files together, `just` + `just fleet mine` with a token estimate, rules and
-  first card, launch + "your fleet is ready" cheat sheet, rhythm). New `.fleet/bin/mine.sh` (transcript miner).
+  install, measure, tidy startup files together, `just` + `just hive mine` with a token estimate, rules and
+  first card, launch + "your hive is ready" cheat sheet, rhythm). New `.hive/bin/mine.sh` (transcript miner).
+
+### Changed
+
+- **Bee vocabulary.** fleet → **hive**, seat → **cell**, board → **comb**, boss → **queen**, human → **keeper**;
+  desk, worker, watchdog, card, claim, handoff, gate keep their plain names. New `docs/agents/GLOSSARY.md`.
+  Breaking for alpha users: `JIVA_BOSS_MODEL` → `JIVA_QUEEN_MODEL`, `just fleet` → `just hive`, the Kit's
+  `.fleet/` → `.hive/`, the queen's cell is named `queen`, and `.jiva/board.log` → `.jiva/comb.log` (move it once).
 
 ### Fixed
 

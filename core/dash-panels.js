@@ -40,15 +40,15 @@ function renderSide() {
     "badge " + (ls === "fresh" ? "okb" : ls === "stale" ? "bad" : ""));
 }
 
-// "doing" = the session's last board line (/board); "quiet" is a word, not a colour (tok grew >40k since it)
+// "doing" = the session's last comb line (/comb); "quiet" is a word, not a colour (tok grew >40k since it)
 function doing(name) {
-  const b = side.board || {}, l = (Array.isArray(b.last) ? b.last : []).find(y => y && y.name === name);
+  const b = side.comb || {}, l = (Array.isArray(b.last) ? b.last : []).find(y => y && y.name === name);
   const q = Array.isArray(b.quiet) && b.quiet.includes(name) ? "quiet · " : "";
   return q + (l ? ago(l.age) + " ago " + enumv(l.verb) + " " + txt(l.text, 160) : "(no report yet)");
 }
 function renderBoard() {
-  const tl = side.board && Array.isArray(side.board.tail) ? side.board.tail.slice().reverse() : [];
-  panel("p-board", tl.map(x => {
+  const tl = side.comb && Array.isArray(side.comb.tail) ? side.comb.tail.slice().reverse() : [];
+  panel("p-comb", tl.map(x => {
     const li = el("li"); li.append(el("span", txt(x.ts, 5), "a"), el("b", enumv(x.name)), el("span", enumv(x.verb), "badge"),
       el("span", txt(x.text, 200), "t")); return li;
   }), tl.length ? "last " + tl.length + ", newest first" : "none");
@@ -69,14 +69,14 @@ function freshAlert() {  // newest alert text if younger than 10 min, else ""
   const x = alertList()[0];
   return x && alertAge(x) < ALERT_FRESH ? txt(x.text, 80) || "(no text)" : "";
 }
-// party strip: one chip per live body (state.json sessions[]) — portrait, "Ash · w1", status, tok; boss/desk = initial
+// party strip: one chip per live body (state.json sessions[]) — portrait, "Ash · w1", status, tok; queen/desk = initial
 function party(ss) {
   $("party").replaceChildren(...ss.map(x => {
     const name = enumv(x.name), sl = soul(name), li = el("li", null, "pchip"), av = el("span", null, "av");
     const st = enumv(x.status), w = x.waiting != null;
     if (sl) li.style.setProperty("--slot", sl.color);
     face(av, sl, name);
-    li.append(av, el("b", sl && sl.name && name !== "boss" ? sl.name + " · " + name : name),
+    li.append(av, el("b", sl && sl.name && name !== "queen" ? sl.name + " · " + name : name),
       el("span", w ? "waiting" : st || "–", w ? "wait" : st === "busy" ? "busy" : "idle"), el("span", k(x.tok), "tk"));
     return li;
   }));

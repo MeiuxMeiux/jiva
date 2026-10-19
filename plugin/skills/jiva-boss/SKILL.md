@@ -1,1 +1,0 @@
-../../../core/roles/boss.md

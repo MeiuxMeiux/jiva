@@ -71,9 +71,9 @@ if not isinstance(slots, list):
     print("FAIL roster: pack.json has no slots list"); sys.exit(1)
 
 if action == "show":
-    boss = p.get("boss")
-    if boss:
-        print(f"{0:>4}  {boss.get('name', 'Boss'):<8}  {boss.get('color', '')}  (boss, reserved)")
+    queen = p.get("queen")
+    if queen:
+        print(f"{0:>4}  {queen.get('name', 'Queen'):<8}  {queen.get('color', '')}  (queen, reserved)")
     for s in slots:
         live = "live" if s.get("slot", 99) <= 12 else "reserve"
         print(f"{s.get('slot', '?'):>4}  {s.get('name', '?'):<8}  {s.get('color', '?')}  {live}")
@@ -125,13 +125,13 @@ for i, s in enumerate(slots, 1):
         th = pt.with_name(pt.stem + "-s.webp")  # optional 128px site thumb twin (art-post.sh)
         if th.is_file() and (th.read_bytes()[8:12] != b"WEBP" or th.stat().st_size > 8192):
             bad.append(f"slot {i}: thumb {th.name} not webp ≤8 KB")
-boss = p.get("boss")
-if boss is not None:
-    bc = str(boss.get("color", ""))
-    if boss.get("slot") != 0 or not re.fullmatch(r"#[0-9a-f]{6}", bc) or bc in seen["color"]:
-        bad.append("boss must be slot 0 with a unique lowercase #rrggbb color")
+queen = p.get("queen")
+if queen is not None:
+    bc = str(queen.get("color", ""))
+    if queen.get("slot") != 0 or not re.fullmatch(r"#[0-9a-f]{6}", bc) or bc in seen["color"]:
+        bad.append("queen must be slot 0 with a unique lowercase #rrggbb color")
     elif ratio(rgb(bc), BG) < NEED:
-        bad.append(f"boss color {bc} under {NEED}:1")
+        bad.append(f"queen color {bc} under {NEED}:1")
 for b in bad:
     print("FAIL roster:", b)
 print(f"roster: {d.name} {'FAIL' if bad else 'ok'} ({len(slots)} slots, {len(bad)} problems)")

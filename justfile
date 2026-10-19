@@ -17,7 +17,7 @@ init:
 sec:
     @if command -v gitleaks >/dev/null; then gitleaks git --redact --no-banner .; else echo "WARN sec: gitleaks not on PATH — secret scan skipped (https://github.com/gitleaks/gitleaks#installing)"; fi
     @if command -v trivy >/dev/null; then trivy fs --quiet --scanners vuln,secret,misconfig .; else echo "WARN sec: trivy not on PATH — vuln/secret/misconfig fs scan skipped"; fi
-# JIVA Kit: one markdown with every kit/ORDER file as .fleet/<path> blocks (no out = stdout)
+# JIVA Kit: one markdown with every kit/ORDER file as .hive/<path> blocks (no out = stdout)
 kit out="":
     @python3 -I scripts/kit-build.py {{ if out == "" { "" } else { quote(out) } }}
 # JIVA Kit: build kit.md, extract it like a stranger (scripts/kit-extract.py = the GUIDE snippet), run the extracted test.sh
@@ -32,11 +32,11 @@ doctor mode="":
 # growth: rank repeated Bash commands/bigrams from this repo's transcripts (recipe candidates; `all` shows trivial keys)
 mine n="10" all="":
     @core/jiva.sh mine {{quote(n)}} {{ if all == "" { "" } else { quote(all) } }}
-# runtime: watchdog + seats on the private `tmux -L jiva` server — profile solo|duo[:N]|full[:N]|N, empty = auto (prints why)
+# runtime: watchdog + cells on the private `tmux -L jiva` server — profile solo|duo[:N]|full[:N]|N, empty = auto (prints why)
 up profile="":
     core/jiva.sh up {{quote(profile)}}
 
-# plugin: local jiva plugin at user scope — status (exit 0 = installed) | mode (hooks source for `up`) | install | uninstall (ask the human first)
+# plugin: local jiva plugin at user scope — status (exit 0 = installed) | mode (hooks source for `up`) | install | uninstall (ask the keeper first)
 plugin action="status":
     @core/jiva.sh plugin {{quote(action)}}
 
@@ -60,15 +60,15 @@ dash action="start":
 roster action="check" pack="default":
     @core/jiva.sh roster {{quote(action)}} {{quote(pack)}}
 
-# runtime: one-line fleet status from .jiva/state.json
+# runtime: one-line hive status from .jiva/state.json
 status:
     @core/jiva.sh status
 
-# boss: review a worker commit — stat, then check, then doctor (only non-ok lines)
+# queen: review a worker commit — stat, then check, then doctor (only non-ok lines)
 review sha="HEAD":
     @git show --stat --format='%h %an %s' {{quote(sha)}} | head -25; core/jiva.sh check && echo "check ok"; core/jiva.sh doctor 2>&1 | grep -v '^ok' || echo "doctor ok"
 
-# boss: lint a task card (≤20 lines + Area/Owned paths/Done-when, core/card.sh) then assign it — `just card w1 path/card.md`
+# queen: lint a task card (≤20 lines + Area/Owned paths/Done-when, core/card.sh) then assign it — `just card w1 path/card.md`
 card worker file:
     @core/card.sh {{quote(file)}} && core/jiva.sh assign {{quote(worker)}} {{quote(file)}}
 
@@ -76,19 +76,19 @@ card worker file:
 restart-watchdog:
     @core/jiva.sh restart-watchdog
 
-# boss/desk: fleet at a glance — status, last 8 board lines + open asks
-fleet:
+# queen/desk: hive at a glance — status, last 8 comb lines + open asks
+hive:
     @core/jiva.sh status || true; core/jiva.sh inbox 8
 
-# boss/desk: bar line, then the last n non-blank lines of a session's pane — `just peek w1 40`
+# queen/desk: bar line, then the last n non-blank lines of a session's pane — `just peek w1 40`
 peek name n="30":
     @. core/lib.sh; cat "$J/bar" 2>/dev/null; echo; T capture-pane -p -t "jiva:"{{quote(name)}} | grep -v '^[[:space:]]*$' | tail -n {{quote(n)}}
 
-# boss/desk: say a line into a session, wait, then peek at it — `just tell w1 "status?" 8`
+# queen/desk: say a line into a session, wait, then peek at it — `just tell w1 "status?" 8`
 tell name text wait="8":
     @core/jiva.sh say {{quote(name)}} {{quote(text)}}; sleep {{quote(wait)}}; just peek {{quote(name)}} 20
 
-# boss/desk: tmux windows, claude agents (name/status/waitingFor) and parked/flagged sessions
+# queen/desk: tmux windows, claude agents (name/status/waitingFor) and parked/flagged sessions
 windows:
     @. core/lib.sh; T list-windows -t jiva -F '#I #W' 2>/dev/null; claude agents --json 2>/dev/null | jq -r '.[] | "\(.name // "-") \(.status) \(.waitingFor // "")"'; echo "parked: $(ls "$J/parked" 2>/dev/null | xargs) · flags: $(ls "$J/flags" 2>/dev/null | xargs)"
 
@@ -121,11 +121,11 @@ j-ship msg:
 j-handoff file="":
     core/jiva.sh handoff {{ if file == "" { "" } else { quote(file) } }}
 
-# verb: recent board + open desk asks
+# verb: recent comb + open desk asks
 j-inbox n="15":
     core/jiva.sh inbox {{quote(n)}}
 
-# boss: give worker a ≤20-line task card (fresh body boots with it)
+# queen: give worker a ≤20-line task card (fresh body boots with it)
 j-assign worker card:
     core/jiva.sh assign {{quote(worker)}} {{quote(card)}}
 
@@ -133,10 +133,10 @@ j-assign worker card:
 j-pending:
     core/jiva.sh pending
 
-# desk/human: answer an open ask (no text = its default); the asker gets "JIVA answer <id>: <text>"
+# desk/keeper: answer an open ask (no text = its default); the asker gets "JIVA answer <id>: <text>"
 j-answer id text="":
     core/jiva.sh answer {{quote(id)}} {{quote(text)}}
-# human: answer a relayed permission ask (only if perm-relay.sh is wired in)
+# keeper: answer a relayed permission ask (only if perm-relay.sh is wired in)
 j-perm-answer id decision:
     @echo {{quote(decision)}} > .jiva/asks/{{quote(id)}}.answer && echo "answered "{{quote(id)}}": "{{quote(decision)}}
 
@@ -144,7 +144,7 @@ j-perm-answer id decision:
 keepalive action="start":
     @[[ -n ${WSL_DISTRO_NAME:-} ]] || { echo "keepalive: WSL only, skipped"; exit 0; }; core/keepalive.sh {{quote(action)}}
 import? 'site/site.just'   # site module (w2 owns site/)
-import? 'core/fleet.just'  # fleet module: desk-digest, profile, gate-*
-# HUMAN-ONLY: deploy site to jiva.meiuxmeiux.com (atomic release, keeps 5) | rollback | verify
+import? 'core/hive.just'  # hive module: desk-digest, profile, gate-*
+# KEEPER-ONLY: deploy site to jiva.meiuxmeiux.com (atomic release, keeps 5) | rollback | verify
 deploy action="deploy":
     scripts/deploy.sh {{quote(action)}}

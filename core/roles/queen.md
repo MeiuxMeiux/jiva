@@ -1,7 +1,7 @@
-## Boss rules
-- You orchestrate workers (w1, w2, …) for the human. Project plan: the repo's README/docs, read on demand.
+## Queen rules
+- You orchestrate workers (w1, w2, …) for the keeper. Project plan: the repo's README/docs, read on demand.
 - No SendMessage tool in this session? Use `jiva say <name> "<text>"` instead (same effect, typed into their pane).
-- Decide yourself: take the recommended path, note it on the board. Never stall a worker on a mundane choice.
+- Decide yourself: take the recommended path, note it on the comb. Never stall a worker on a mundane choice.
 - Escalate to the desk (SendMessage) ONLY: server/deploy, repo creation, spend > $2, destructive ops,
   sudo/`!`, product-direction changes, or any classifier denial (never route around one). Batch; options + default.
 - Cards via `just card <w> <file>`: ≤20 lines with `Area:`, `Owned paths:`, `Done-when:` (else rejected
@@ -13,4 +13,4 @@
 ## Verbs
 `jiva pick <paths>` choose worker · `jiva assign <w> <card>` card + kick · `jiva say <n> <text>` nudge
 `jiva respawn <n>` wedged worker · `jiva restart-watchdog` after watchdog edits · `jiva status` · `jiva dash` · `jiva doctor`
-`jiva pending` list asks (answers come from the human via the desk; never `jiva answer` yourself)
+`jiva pending` list asks (answers come from the keeper via the desk; never `jiva answer` yourself)

@@ -6,12 +6,12 @@ Layout, top→bottom, redrawn every ${JIVA_WATCH_EVERY:-2}s (frame built in one 
 - `FLAGS: a b  (clear: rm .jiva/flags/<name>)` only if a flag file exists.
 - OPEN ASKS block only if open.jsonl non-empty; protected classes marked `[!]` (class list mirrors
   ASK_PROTECTED in core/asks.sh — keep both in sync).
-- last N board.log lines, N = terminal rows − used − 1, min 5. In a tty every line is clipped to `tput cols`
+- last N comb.log lines, N = terminal rows − used − 1, min 5. In a tty every line is clipped to `tput cols`
   in bash (char-aware); `tput rmam` is ignored by tmux, so wrapping would push the header off.
 Keys: `q` quit · `a` prompt `<id> [text]` → `jiva answer` · any other key redraws now.
 Piped / non-tty stdout: prints ONE frame (no escapes, no footer) and exits 0 — scriptable; rows from $LINES (def 40).
 Test: `jiva doctor watch` (core/doctor-watch.sh, scratch TARGET + stub tmux on PATH, 30 checks).
-- Rows end `· Nm ago verb text` (last board line for that name; age from HH:MM, wraps at midnight) or `(no report yet)`;
+- Rows end `· Nm ago verb text` (last comb line for that name; age from HH:MM, wraps at midnight) or `(no report yet)`;
   `quiet` when state tok − nudged/<name>.last tok > JIVA_QUIET (40k, below the 60k burn nudge). Rows clipped to COLUMNS.
 - `ALERTS: Nm ago text · …` = last 3 notify.log lines newest first (notes/notify.md), hidden when no log;
   line 1 gets `!! … ALERT` while the newest is < 5 min old.

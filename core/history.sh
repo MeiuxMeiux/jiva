@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # shellcheck shell=bash
-# history — cumulative, append-only fleet history (notes/history.md has every kind + field). Sourced:
+# history — cumulative, append-only hive history (notes/history.md has every kind + field). Sourced:
 #   hist <kind> [k=v …]  one JSON line {ts, kind, who, k: v…} → $J/history.jsonl. who = $JIVA_NAME (desk).
 #                        Values: an integer/decimal stays a number (except label keys id sha name by class
 #                        st why trip, always strings: a hex id can be all digits), else a string with control

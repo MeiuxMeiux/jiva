@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # spike — re-test the version-sensitive assumptions in notes/core.md, non-interactively. Two cheap sessions
-# (sp1, sp2) on the scratch socket `jiva-spike` (never the live fleet's), torn down by trap. One line per check:
+# (sp1, sp2) on the scratch socket `jiva-spike` (never the live hive's), torn down by trap. One line per check:
 #   agents   `claude agents --json` lists both with pid/name/status
 #   wake     an idle peer goes busy ≤10s after `say` (SendMessage-free)
 #   context  SessionStart additionalContext arrives (a nonce rides in as the desk name; the reply shows it)
@@ -31,7 +31,7 @@ for n in sp1 sp2; do
     "$JIVA_HOME/bin" "$JIVA_HOME" "$TARGET" "$n" "$NONCE" "$MODEL" "$n" "$J/settings.json")"
 done
 
-for n in sp1 sp2; do # wait for the input prompt; a trust dialog is the human's click
+for n in sp1 sp2; do # wait for the input prompt; a trust dialog is the keeper's click
   for _ in $(seq 60); do
     s="$(screen "$n")"
     if grep -q 'trust this folder' <<<"$s"; then

@@ -1,14 +1,14 @@
-# fleet recipes (lane A; imported by the root justfile). Facts: notes/fleet.md; rules: docs/agents/RULES.md.
+# hive recipes (lane A; imported by the root justfile). Facts: notes/hive.md; rules: docs/agents/RULES.md.
 
 # desk: zero-token Monitor tick — prints nothing unless pushes/asks/gate rows/alerts/parked/flags changed since last run
 desk-digest:
     @core/digest.sh
 
-# fleet: what `just up [profile]` would start and why (solo|duo[:N]|full[:N]|N; empty = auto from host + quota)
+# hive: what `just up [profile]` would start and why (solo|duo[:N]|full[:N]|N; empty = auto from host + quota)
 profile p="":
     @core/profile.sh {{quote(p)}}
 
-# verb: propose ONE gated shell line for the human to run — `just gate-add "<line>" "why" [deps]` (linted)
+# verb: propose ONE gated shell line for the keeper to run — `just gate-add "<line>" "why" [deps]` (linted)
 gate-add line why="" deps="":
     @core/gate.sh add {{quote(line)}} {{quote(why)}} {{quote(deps)}}
 
@@ -16,7 +16,7 @@ gate-add line why="" deps="":
 gate-fix id line why="" deps="":
     @core/gate.sh fix {{quote(id)}} {{quote(line)}} {{quote(why)}} {{quote(deps)}}
 
-# HUMAN-ONLY: no args = plan (what would run); `just gate-run go <ids…>` runs exactly those rows in order, deps enforced
+# KEEPER-ONLY: no args = plan (what would run); `just gate-run go <ids…>` runs exactly those rows in order, deps enforced
 [positional-arguments]
 gate-run *args:
     @core/gate.sh {{ if args == "" { "plan" } else { "" } }} "$@"

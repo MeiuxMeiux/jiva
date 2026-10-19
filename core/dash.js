@@ -1,6 +1,6 @@
 "use strict";
 const STALE = 30, $ = id => document.getElementById(id);
-let last = null, failed = false, pack = null, side = { flags: [], asks: [], lease: null, board: null, alerts: [] }, sideFailed = false;
+let last = null, failed = false, pack = null, side = { flags: [], asks: [], lease: null, comb: null, alerts: [] }, sideFailed = false;
 const num = v => (typeof v === "number" && isFinite(v)) ? v : null;
 const k = v => num(v) === null ? "–" : v >= 1e6 ? (v / 1e6).toFixed(2) + "M" : v >= 1e3 ? Math.floor(v / 1e3) + "k" : String(v);
 const usd = v => num(v) === null ? "–" : "$" + v.toFixed(2);
@@ -15,14 +15,14 @@ function cell(tr, text, cls) {
   tr.appendChild(td);
 }
 
-// soul: state.json sessions[].soul {name,slot,color} (souls.json binding) first, else wN → pack slot N, boss → slot 0.
-// portrait = pack slot `portrait` (avatars/NN.webp); avatar = NN.svg fallback. Boss/desk get no portrait (initial only).
+// soul: state.json sessions[].soul {name,slot,color} (souls.json binding) first, else wN → pack slot N, queen → slot 0.
+// portrait = pack slot `portrait` (avatars/NN.webp); avatar = NN.svg fallback. Queen/desk get no portrait (initial only).
 const packslot = n => pack && Array.isArray(pack.slots) ? pack.slots.find(y => y && y.slot === n) : null;
 function soul(name) {
   if (!pack) return null;
   const x = last && Array.isArray(last.sessions) ? last.sessions.find(y => y && y.name === name) : null, b = x && x.soul;
-  const m = /^w(\d+)$/.exec(name), n = b && num(b.slot) !== null ? b.slot : name === "boss" ? 0 : m ? +m[1] : -1;
-  const p = n === 0 ? pack.boss : packslot(n), color = b && /^#[0-9a-f]{6}$/i.test(b.color || "") ? b.color : p && p.color;
+  const m = /^w(\d+)$/.exec(name), n = b && num(b.slot) !== null ? b.slot : name === "queen" ? 0 : m ? +m[1] : -1;
+  const p = n === 0 ? pack.queen : packslot(n), color = b && /^#[0-9a-f]{6}$/i.test(b.color || "") ? b.color : p && p.color;
   if (!p || !/^#[0-9a-f]{6}$/i.test(color || "")) return null;
   const nm = b && typeof b.name === "string" ? b.name.replace(/[^\w .'-]/g, "").slice(0, 24) : txt(p.name, 24);
   return { color, name: nm, avatar: /^avatars\/\d\d\.svg$/.test(p.avatar || "") ? p.avatar : null,
@@ -88,10 +88,10 @@ function paint() {
   const msgs = [];
   if (failed) msgs.push("state.json fetch failed");
   if (last && num(last.flags) > 0) msgs.push(last.flags + " flag" + (last.flags > 1 ? "s" : "") + " raised");
-  if (sideFailed) msgs.push("flags/asks/lease/board/alerts fetch failed");
-  if (side.lease && side.lease.state === "stale") msgs.push("lease stale — boss hung?");
+  if (sideFailed) msgs.push("flags/asks/lease/comb/alerts fetch failed");
+  if (side.lease && side.lease.state === "stale") msgs.push("lease stale — queen hung?");
   const prot = (Array.isArray(side.asks) ? side.asks : []).filter(x => x.protected).length;
-  if (prot) msgs.push(prot + " protected ask" + (prot > 1 ? "s" : "") + " — a human must answer");
+  if (prot) msgs.push(prot + " protected ask" + (prot > 1 ? "s" : "") + " — a keeper must answer");
   const red = msgs.length > 0; $("banner").classList.toggle("amber", !red);   // open asks alone → amber
   const al = freshAlert(); if (al) msgs.push("ALERT " + al);                    // notify.log <10 min → amber
   if (last && num(last.asks) > 0) msgs.push(last.asks + " open ask" + (last.asks > 1 ? "s" : "") + " — jiva inbox");
@@ -112,8 +112,8 @@ async function poll() {
 async function pollSide() {
   try {
     const get = async u => { const r = await fetch(u, { cache: "no-store" }); if (!r.ok) throw new Error(r.status); return r.json(); };
-    const [f, a, l, b, n] = await Promise.all([get("flags"), get("asks"), get("lease"), get("board"), get("alerts")]);
-    side = { flags: f, asks: a, lease: l, board: b, alerts: n }; sideFailed = false;
+    const [f, a, l, b, n] = await Promise.all([get("flags"), get("asks"), get("lease"), get("comb"), get("alerts")]);
+    side = { flags: f, asks: a, lease: l, comb: b, alerts: n }; sideFailed = false;
   } catch (e) { sideFailed = true; }
   renderSide(); renderBoard(); renderAlerts(); if (last) render(last); paint();
 }

@@ -2,7 +2,7 @@
 # plugin drift — skills/commands may only name commands that exist (pattern: site/scripts/drift.py).
 # FAIL: a `jiva <sub>` in plugin/**/*.md that `bin/jiva help` doesn't list, or a `just <recipe>` that
 # `just --list` doesn't list. WARN: CLI subcommands no skill/command mentions (role "Verbs you use" tables,
-# commands/jiva-desk.md for human verbs) unless in ALLOW. Exit 1 on any FAIL; WARN never fails.
+# commands/jiva-desk.md for keeper verbs) unless in ALLOW. Exit 1 on any FAIL; WARN never fails.
 set -uo pipefail
 P="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"; HOME_="${JIVA_HOME:-$(dirname "$P")}"
 help=$("$HOME_/bin/jiva" help 2>/dev/null)
@@ -24,7 +24,7 @@ while read -r r; do
   hit=0; for x in $recs; do [[ $x == $r ]] && hit=1; done   # globs like j-* allowed
   (( hit )) || { echo "FAIL plugin drift: names \`just $r\`, not in \`just --list\`"; bad=1; }
 done <<<"$(named just)"
-ALLOW=""   # human-only verbs exempt from WARN; keep empty — list them in commands/jiva-desk.md instead
+ALLOW=""   # keeper-only verbs exempt from WARN; keep empty — list them in commands/jiva-desk.md instead
 need=$(comm -23 <(echo "$subs") <(printf '%s\n' help $ALLOW | sort -u))
 unnamed=$(comm -23 <(echo "$need") <(named jiva) | tr '\n' ' ')
 [[ -n $unnamed ]] && echo "WARN plugin drift: CLI verbs no skill/command mentions: $unnamed"

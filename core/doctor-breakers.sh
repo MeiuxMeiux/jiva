@@ -5,7 +5,7 @@
 set -uo pipefail
 H="$(cd "$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")/.." && pwd)"
 S="$(mktemp -d /tmp/jiva-doctor-XXXXXX)"; trap 'rm -rf "$S"' EXIT
-J="$S/.jiva"; mkdir -p "$J"; : > "$J/board.log"
+J="$S/.jiva"; mkdir -p "$J"; : > "$J/comb.log"
 CEIL=200000; NUDGE=150000; JV=say_stub; bad=0
 toast() { echo "toast $*" >> "$S/says"; }
 say_stub() { echo "$*" >> "$S/says"; }
@@ -37,13 +37,13 @@ ceiling() { breakers ce 200000 600 0; breakers ce 201000 610 0; is "ceiling (≥
   (( $(says ce) == 1 )) || no "ceiling: $(says ce) says want 1"; }
 
 burnt() {
-  echo "10:00 bu     claim core" >> "$J/board.log"
+  echo "10:00 bu     claim core" >> "$J/comb.log"
   breakers bu 1000 600 0; is "burn baseline (no flag)" bu ""
   breakers bu 50000 610 0; [[ ! -e $J/flags/bu ]] || no "burn: flagged under threshold"
   breakers bu 62000 620 0; breakers bu 90000 630 0; is "burn (>60k since report)" bu burn
   (( $(says bu) == 1 )) || no "burn: $(says bu) says want 1"
-  echo "10:05 bu     note: still on it" >> "$J/board.log"
-  breakers bu 91000 640 0; is "burn clears on new board line" bu ""
+  echo "10:05 bu     note: still on it" >> "$J/comb.log"
+  breakers bu 91000 640 0; is "burn clears on new comb line" bu ""
 }
 
 life_time() { breakers ti 1000 $((90 * 60)) 0; is "time at cap (no flag)" ti ""
@@ -94,7 +94,7 @@ scratch() { # jiva scratch: literal root, prints path, rm only under the root, r
   "$sc" "$n" rm >/dev/null && [[ ! -e $d ]] && ok "scratch: rm cleans the subpath" || no "scratch: rm left $d"
 }
 
-guardrules() { # git stash list|show pass, bare stash denied; packs/local/ (the human's roster) denied for Write/Bash
+guardrules() { # git stash list|show pass, bare stash denied; packs/local/ (the keeper's roster) denied for Write/Bash
   local g="$H/core/hooks/guard.sh" c
   gd() { CLAUDE_PROJECT_DIR="$S" "$g" <<<"$(jq -nc --arg t "$1" --arg k "$2" --arg v "$3" '{tool_name: $t, tool_input: {($k): $v}}')" 2>/dev/null; }
   for c in "git stash list" "git -C x stash show -p"; do gd Bash command "$c" && ok "guard: '$c' passes" || no "guard: '$c' denied"; done
@@ -102,13 +102,13 @@ guardrules() { # git stash list|show pass, bare stash denied; packs/local/ (the 
   gd Write file_path "$S/packs/local/a.yaml" && no "guard: Write packs/local passed" || ok "guard: Write under packs/local denied"
   gd Bash command "rm -f packs/local/x.webp" && no "guard: Bash packs/local passed" || ok "guard: Bash touching packs/local denied"
   gd Bash command "echo hi > packs/local/a" && no "guard: > into packs/local passed" || ok "guard: redirect into packs/local denied"
-  gd Bash command "echo 'RULE: packs/local/ is human' >> .jiva/tasks/w2.md" && ok "guard: rule quoted into a card passes" || no "guard: mention denied (false positive)"
+  gd Bash command "echo 'RULE: packs/local/ is keeper' >> .jiva/tasks/w2.md" && ok "guard: rule quoted into a card passes" || no "guard: mention denied (false positive)"
   gd Bash command $'cat > c.md <<\'EOF\'\nnever write under packs/local/\nEOF' && ok "guard: heredoc mention passes" || no "guard: heredoc mention denied"
   gd Bash command "cat packs/local/r.yaml" && ok "guard: read of packs/local passes" || no "guard: read denied"
   gd Edit file_path "$S/packs/default/a.yaml" && ok "guard: packs/default still editable" || no "guard: packs/default denied"
 }
 
-governor() { # jiva pause/resume against the scratch TARGET only (never the live fleet)
+governor() { # jiva pause/resume against the scratch TARGET only (never the live hive)
   local jv=(env -u JIVA_PANE_TARGET JIVA_TARGET="$S" "$H/bin/jiva")
   (cd "$S" && "${jv[@]}" pause x >/dev/null); [[ $(cut -d' ' -f2- "$J/paused" 2>/dev/null) == x ]] &&
     ok "governor: jiva pause x writes .jiva/paused" || no "governor: no scratch .jiva/paused after pause"

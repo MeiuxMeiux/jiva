@@ -28,7 +28,7 @@ jobs:
 
   check:
     # headless budgets: sizes, parse, json, shellcheck, README drift. `just doctor` needs a live
-    # tmux/claude fleet, so it stays a local gate (see the PR template).
+    # tmux/claude hive, so it stays a local gate (see the PR template).
     runs-on: ubuntu-latest
     timeout-minutes: 10
     env:  # apt's just is too old for [positional-arguments]; pin a release, checksum-verified
@@ -48,7 +48,7 @@ jobs:
           echo "$RUNNER_TEMP" >> "$GITHUB_PATH"
       - name: just check
         run: just check
-      - name: kit test (fake claude, no seats)
+      - name: kit test (fake claude, no cells)
         run: bash kit/test.sh
       - name: kit stranger path (build kit.md, extract, run the extracted self-test)
         run: just kit-selftest

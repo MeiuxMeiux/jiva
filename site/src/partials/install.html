@@ -2,8 +2,8 @@
   <div class="side">
     <h2><span class="num">08</span>Built with itself</h2>
     <p>The watchdog, the verbs, the dashboard and this page were written by JIVA sessions,
-      each working from a task card and ending in a handoff. The fleet that runs the work
-      is the fleet that wrote the runner.</p>
+      each working from a task card and ending in a handoff. The hive that runs the work
+      is the hive that wrote the runner.</p>
     <p class="status-line"><span class="dot" aria-hidden="true"></span>Open source, public alpha:
       github.com/MeiuxMeiux/jiva.</p>
   </div>
@@ -16,7 +16,7 @@
 <span class="p">$</span> export PATH="$HOME/jiva/bin:$PATH"</pre>
     <p>Then, inside any repo:</p>
     <pre class="cmd"><span class="p">$</span> jiva init     <span class="c"># .jiva/, gitignore, CLAUDE.md pointer</span>
-<span class="p">$</span> jiva up 3     <span class="c"># watchdog + boss + 3 workers</span>
+<span class="p">$</span> jiva up 3     <span class="c"># watchdog + queen + 3 workers</span>
 <span class="p">$</span> jiva doctor   <span class="c"># budgets as tests</span>
 <span class="p">$</span> jiva down     <span class="c"># kill the private tmux server</span></pre>
     <p>Workers: soft cap 6 (above it, <code>JIVA_CONFIRM=1</code>), hard cap 12. Each one burns
@@ -31,16 +31,16 @@
       Code's <code>auto</code> mode is recommended); docs/QUICKSTART.md in the repo has a sample allowlist.</p>
     <h3>JIVA Micro: no install</h3>
     <p>One markdown file for any repo. Paste it in as <code>JIVA.md</code> and Claude Code walks it in order:
-      check the host and quota, cut startup tokens, add the shared-checkout rules, then launch a small fleet
+      check the host and quota, cut startup tokens, add the shared-checkout rules, then launch a small hive
       in plain tmux. Pitfalls included.</p>
     <p class="micro-row"><button type="button" class="micro-copy" data-src="micro.md" hidden>Copy JIVA.md</button>
       <a href="micro.md">View micro.md</a></p>
-    <h3>JIVA Kit: your agent sets up the fleet with you</h3>
+    <h3>JIVA Kit: your agent sets up the hive with you</h3>
     <p>One markdown, pasted in as <code>KIT.md</code>. The Claude Code session you already have becomes the
       desk: it installs the role sheets, templates, <code>just</code> recipes and bash scripts (watcher, claims,
-      gates, statusline) into <code>.fleet/</code>, then works through the steps with you: tidies the files your
+      gates, statusline) into <code>.hive/</code>, then works through the steps with you: tidies the files your
       sessions boot with, mines past conversations for recipes with a token estimate, launches, and tells you
-      when the fleet is ready and how to run it.</p>
+      when the hive is ready and how to run it.</p>
     <p class="micro-row"><button type="button" class="micro-copy" data-src="kit.md" hidden>Copy KIT.md</button>
       <a href="kit.md">View kit.md</a></p>
   </div>

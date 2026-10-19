@@ -1,5 +1,5 @@
 ---
-description: Show the JIVA board and open desk asks (runs `jiva inbox`)
+description: Show the JIVA comb and open desk asks (runs `jiva inbox`)
 allowed-tools: Bash(jiva inbox:*)
 ---
 !`jiva inbox`

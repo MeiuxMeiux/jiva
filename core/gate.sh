@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
-# gate — one-liner rows a seat proposes and ONLY the human runs (notes/fleet.md). Rows are never edited:
+# gate — one-liner rows a cell proposes and ONLY the keeper runs (notes/hive.md). Rows are never edited:
 # a wrong row gets a corrected NEW row (`fix`), the old one is marked superseded. Decision/send/spend
 # choices are asks (`jiva ask … <class>`), never rows: gate runs kind `oneliner` only.
 #   gate.sh add "<one shell line>" [why] [deps,…]   linted at creation: hard gate at the end, no $VAR in '…' sed/awk
 #   gate.sh fix <old-id> "<line>" [why] [deps,…]    corrected new row; <old-id> → superseded
 #   gate.sh plan [all]                               what would run (open + failed rows; `all` = every row)
-#   gate.sh go <id…>                                 human only: run exactly these, in order; deps must be ok;
+#   gate.sh go <id…>                                 keeper only: run exactly these, in order; deps must be ok;
 #                                                    stops at the first failure; output → .jiva/gate/<id>.out, rc → <id>.rc
 #   gate.sh result <id> [n]                          asker's check: status + last n output lines; exit 0 ok, 1 fail, 2 open
 # .jiva/gate/rows.jsonl {id,ts,from,kind,cmd,why,deps[],sup}  ·  <id>.sup = the id that replaced it.
@@ -43,7 +43,7 @@ add() { # cmd [why] [deps] [supersedes]
     --arg d "$deps" --arg s "${4:-}" '{id: $id, ts: $ts, from: $from, kind: "oneliner", cmd: $c, why: $w,
       deps: ($d | split("[, ]+"; null) | map(select(. != ""))), sup: $s}' | { flock 8; cat >> "$R"; } 8> "$JK/lock"
   board_log "${JIVA_NAME:-desk}" "gate $NEW: ${why:-row}${4:+ (replaces $4)}"
-  echo "gate $NEW queued — the human runs \`just gate-run go $NEW\`; check it with \`just gate-result $NEW\`"
+  echo "gate $NEW queued — the keeper runs \`just gate-run go $NEW\`; check it with \`just gate-result $NEW\`"
 }
 fix() { # old cmd [why] [deps]
   local old=${1:-}; [[ -n $(row "$old") ]] || die "no row '$old'"
@@ -55,14 +55,14 @@ plan() { # [all]
   local id s n=0
   for id in $(jq -r '.id' "$R" 2>/dev/null); do
     s=$(st "$id"); [[ ${1:-} == all || $s == pending || $s == fail* ]] || continue
-    ((n++)) || echo "-- gate rows: the human runs \`just gate-run go <id…>\` (exactly those, in order)"
+    ((n++)) || echo "-- gate rows: the keeper runs \`just gate-run go <id…>\` (exactly those, in order)"
     jq -r --arg s "$s" '"\(.id) [\($s)] \(.from)\(if (.deps | length) > 0 then " after " + (.deps | join(",")) else "" end): \(.why)\n    $ \(.cmd)"' <<<"$(row "$id")"
   done
   ((n)) || echo "(no open gate rows)"
 }
 
 go() { # ids…
-  [[ -z ${JIVA_ROLE:-} ]] || die "go is human-only (this is fleet seat ${JIVA_NAME:-?}) — ask the human"
+  [[ -z ${JIVA_ROLE:-} ]] || die "go is keeper-only (this is hive cell ${JIVA_NAME:-?}) — ask the keeper"
   (($#)) || die "go <id…> — \`just gate-run\` shows the plan first"
   local id r d s rc from
   for id; do   # validate the whole batch before running anything
@@ -76,7 +76,7 @@ go() { # ids…
     echo "== $id \$ $(jq -r .cmd <<<"$r")"
     (cd "$TARGET" && bash -c "$(jq -r .cmd <<<"$r")") 2>&1 | tee "$JK/$id.out"; rc=${PIPESTATUS[0]}
     echo "$rc" > "$JK/$id.rc"; echo "== $id rc=$rc (.jiva/gate/$id.out)"
-    board_log human "gate $id rc=$rc"; from=$(jq -r .from <<<"$r")
+    board_log keeper "gate $id rc=$rc"; from=$(jq -r .from <<<"$r")
     [[ $from == desk ]] || "$JIVA_HOME/core/jiva.sh" say "$from" "JIVA gate $id: rc=$rc — \`just gate-result $id\`" >/dev/null 2>&1 || true
     (( rc == 0 )) || die "$id failed rc=$rc — stopped, later rows not run"
   done

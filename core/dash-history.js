@@ -1,6 +1,6 @@
 "use strict";
 // dash-history — the History panel (loaded after dash.js; uses $, num, k, soul, last, pack from dash.js and el, icon, txt,
-// SVG from dash-panels.js). /history/summary → two sparklines (fleet tok, quota 5h: two charts, never a dual axis) + a
+// SVG from dash-panels.js). /history/summary → two sparklines (hive tok, quota 5h: two charts, never a dual axis) + a
 // timeline strip (one lane per session; life/ship/trip/ask = cyan bar/green dot/pink triangle/white diamond, <title>
 // tooltips); /history pages of 100 via ?before=<last ts> as the list bottom scrolls into view, filtered by kind +
 // session chips (aria-pressed toggles; none pressed = all). Text only (textContent), never markup.
@@ -23,8 +23,8 @@
 
   // soul label: soul() from dash.js (state.json sessions[].soul binding, else wN → slot) → "Ash · w1" + portrait (svg fallback)
   function label(name) {
-    const sl = /^(w\d+|boss)$/.test(name) || (last && Array.isArray(last.sessions) && last.sessions.some(y => y && y.name === name)) ? soul(name) : null;
-    return { sl, text: sl && sl.name && name !== "boss" ? sl.name + " · " + name : name };
+    const sl = /^(w\d+|queen)$/.test(name) || (last && Array.isArray(last.sessions) && last.sessions.some(y => y && y.name === name)) ? soul(name) : null;
+    return { sl, text: sl && sl.name && name !== "queen" ? sl.name + " · " + name : name };
   }
   function chip(name) {
     const l = label(name), span = el("span", null, "soul"), av = el("span", null, "av");
@@ -43,7 +43,7 @@
       case "life": case "park": return s(r.name) + " · " + s(r.why) + (num(r.tok) === null ? "" : " · " + k(r.tok) + " tok");
       case "trip": return s(r.name) + " · " + s(r.trip);           case "lease": return s(r.st) + (num(r.age) === null ? "" : " · " + r.age + "s");
       case "quota": return s(r.st) + " · 5h " + n(r.q5h) + "% · 7d " + n(r.q7d) + "%";
-      case "tok": return "fleet " + k(r.tok) + (num(r.q5h) === null ? "" : " · 5h " + r.q5h + "%");
+      case "tok": return "hive " + k(r.tok) + (num(r.q5h) === null ? "" : " · 5h " + r.q5h + "%");
     }
     return "";
   }
@@ -94,7 +94,7 @@
     svg.setAttribute("aria-label", what + ": " + (ok.length ? "latest " + fmt(ok[ok.length - 1][1]) + ", " + ok.length + " points" : "no data"));
   }
   function timeline(s) {
-    const svg = $("hist-tl"), names = Object.keys(s.sessions).sort((a, b) => (a === "boss" ? -1 : b === "boss" ? 1 : a.localeCompare(b, "en", { numeric: true })));
+    const svg = $("hist-tl"), names = Object.keys(s.sessions).sort((a, b) => (a === "queen" ? -1 : b === "queen" ? 1 : a.localeCompare(b, "en", { numeric: true })));
     const H = names.length * RH + 22, bw = (W - LW) / Math.max(1, s.buckets), kids = [];
     svg.setAttribute("viewBox", "0 0 " + W + " " + H);
     names.forEach((n, i) => {
@@ -121,7 +121,7 @@
       const tot = Object.values(s.counts || {}).reduce((a, v) => a + (num(v) ?? 0), 0), first = !st.sum;
       const grew = st.sum && tot !== st.sumTot; st.sum = s; st.sumTot = tot;
       $("hist-sum").textContent = tot + " events · " + Object.keys(s.sessions).length + " sessions";
-      spark($("hist-tok"), s.tok.map(p => [p[0], p[1]]), Math.max(...s.tok.map(p => num(p[1]) ?? 0)), k, "fleet tokens");
+      spark($("hist-tok"), s.tok.map(p => [p[0], p[1]]), Math.max(...s.tok.map(p => num(p[1]) ?? 0)), k, "hive tokens");
       spark($("hist-q"), s.tok.map(p => [p[0], p[2]]), 100, v => v + "%", "quota 5h");
       timeline(s);
       if (first) chips($("hist-kinds"), KINDS, st.kinds, v => v);

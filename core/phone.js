@@ -18,7 +18,7 @@ function li(cls, initial, color, label, meta) {
   r.append(dot, l, m); return r;
 }
 
-// party chip: pack slot portrait (avatars/NN.webp) → NN.svg on error → initial; boss (slot 0)/desk = initial only
+// party chip: pack slot portrait (avatars/NN.webp) → NN.svg on error → initial; queen (slot 0)/desk = initial only
 function chip(x) {
   const n = clean(x.name), k = num(x.slot), p = pack && k > 0 && Array.isArray(pack.slots) ? pack.slots.find(y => y && y.slot === k) : null;
   const r = document.createElement("li"), av = document.createElement("span"), l = document.createElement("b"), m = document.createElement("span");

@@ -2,10 +2,10 @@
 # dash — tier-1 dashboard: stdlib python3 http.server on 127.0.0.1. start|stop|url. Port: JIVA_DASH_PORT pins it; else the
 # last one (.jiva/dash/port, kept across stop) if still free, else a random high port (bookmarks survive restarts).
 # Web root .jiva/dash/www holds symlinks only (index.html, dash{,-panels}.js, dash{,-parts}.css, phone.{html,css,js}, fonts/*.woff2,
-# state.json, snapshot.json, pack.json, avatars/); board.log, handoff/,
+# state.json, snapshot.json, pack.json, avatars/); comb.log, handoff/,
 # tasks/, claims/ stay unreachable; pid/port live one level up. API in core/dash-api.py, computed per GET: /flags (name, age,
 # first/last line), /asks (open.jsonl: id, class, text, age, protected), /lease (fresh|stale|none + age, as core/lease.sh),
-# /board ({last: per-session last board line {name,ts,age,verb,text}, tail: last 20, quiet: [names]}),
+# /comb ({last: per-session last comb line {name,ts,age,verb,text}, tail: last 20, quiet: [names]}),
 # /alerts (last 20 notify.log lines `<epoch> <text>` as {ts, age, text}, newest first), /commits, /commit/<sha>, /history[/summary].
 # Host header allowlisted in dash-api.py (DNS rebinding); JIVA_DASH_HOSTS="name[:port] …" adds e.g. a tailscale serve name.
 set -euo pipefail

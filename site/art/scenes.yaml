@@ -21,7 +21,7 @@ scenes:
     est: 0.40
     prompt: >-
       Wide cinematic scene: a vast dark navy night space with a faint perspective grid floor fading into
-      fog, a constellation of small glowing nodes linked by thin light threads (like a fleet of connected
+      fog, a constellation of small glowing nodes linked by thin light threads (like a hive of connected
       terminals), soft pink and cyan glows near the right side, subtle green sparks. The left half stays
       dark and calm so headline text can sit on it.
     post: crop

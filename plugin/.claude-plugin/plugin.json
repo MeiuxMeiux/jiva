@@ -1,7 +1,7 @@
 {
   "name": "jiva",
   "version": "0.1.0",
-  "description": "JIVA fleet: boot payload, breakers, guard, affinity hooks and boss/worker role cards (local only)",
+  "description": "JIVA hive: boot payload, breakers, guard, affinity hooks and queen/worker role cards (local only)",
   "author": {
     "name": "saintpetejackboy"
   }

@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# status — one-line fleet summary + a row per session, from $J/state.json (written by the watchdog).
+# status — one-line hive summary + a row per session, from $J/state.json (written by the watchdog).
 # Never crashes on a bad runtime: tmux down → "runtime down"; state.json unreadable → says so (the
 # watchdog rewrites it every tick, checked before tmux so bad JSON never reads as "runtime down");
 # ts older than JIVA_WD_STALE (30s) → "watchdog dead", lease unknown. Line 1 is prefixed "PAUSED · "

@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # doctor-dash — dash.sh against a scratch TARGET in /tmp on a scratch port (never the live dash): seed two flags,
-# a decision + a protected ask, a stale lease, board lines + burn markers, a notify.log; curl /flags /asks /lease
-# /board /alerts and assert the JSON shape; static files still served, board.log not; delete the lease → none; css never-grey
+# a decision + a protected ask, a stale lease, comb lines + burn markers, a notify.log; curl /flags /asks /lease
+# /comb /alerts and assert the JSON shape; static files still served, comb.log not; delete the lease → none; css never-grey
 # scrollbars + no unsafe-inline CSP + fonts/ 200; scratch git repo → /commits shape/pagination/400, /commit/<sha> diffstat;
 # snapshot.json allowlist/no-path/no-text + phone.{html,css,js} 200 + phone CSP; portraits 200 + party chips (dash + phone); trailer-less commit soul = desk;
 # /history shape/pagination/kind+name filter/400s + /history/summary buckets ≤200 on a seeded history.jsonl;
@@ -24,10 +24,10 @@ jq -nc --argjson ts $((now - 120)) '{id:"aa11", ts:$ts, from:"w1", class:"decisi
   > "$J/asks/open.jsonl"
 jq -nc --argjson ts "$now" '{id:"bb22", ts:$ts, from:"w2", class:"deploy", q:"ship it?", opts:[], default:"no", deadline:0}' \
   >> "$J/asks/open.jsonl"
-echo "$((now - 400)) sid-doc -" > "$J/lease/boss"
+echo "$((now - 400)) sid-doc -" > "$J/lease/queen"
 jq -nc --argjson ts "$now" '{ts:$ts, sessions:[{name:"w1", tok:50000}, {name:"w2", tok:20000}, {name:"/x/y", tok:1}]}' > "$J/state.json"
 hm=$(date +%H:%M); mkdir -p "$J/nudged"; echo "2 5000" > "$J/nudged/w1.last"; echo "1 15000" > "$J/nudged/w2.last"
-{ for i in $(seq 1 22); do echo "$hm w2     note step $i"; done; echo "$hm w1     done: shipped the thing"; } > "$J/board.log"
+{ for i in $(seq 1 22); do echo "$hm w2     note step $i"; done; echo "$hm w1     done: shipped the thing"; } > "$J/comb.log"
 { for i in $(seq 1 23); do echo "$((now - 600 + i)) alert $i"; done; echo "junk line"; echo "$now newest: lease stale"; } > "$J/notify.log"
 
 { for i in $(seq 1 300); do echo "{\"ts\":$((now - 3000 + i * 10)),\"kind\":\"tok\",\"who\":\"watchdog\",\"tok\":$((i * 1000)),\"s\":{\"w1\":$i},\"q5h\":$((i / 4)),\"q7d\":null}"; done
@@ -45,7 +45,7 @@ snap() { JIVA_TARGET="$S" JIVA_LEASE_TTL=90 "$H/core/snapshot.sh" >/dev/null; ge
 t "snapshot.json: allowlisted keys only" eval 'jq -e "(keys == [\"asks\",\"flags\",\"lease\",\"live\",\"quota\",\"sessions\",\"state_ts\",\"ts\"])
   and all(.sessions[]; keys == [\"color\",\"name\",\"slot\",\"status\",\"tok\",\"verb\"]) and all(.asks[]; keys == [\"age\",\"class\",\"id\"])
   and all(.flags[]; keys == [\"age\",\"name\"]) and (.asks | length) == 2 and (.sessions[0] | .slot == 1 and .verb == \"done\")" <<<"$(snap)" >/dev/null'
-t "snapshot.json: no \"/\" path, no ask/board text" eval 'sj="$(snap)"; [[ -n $sj && $sj != */* && $sj != *"pick a port"* && $sj != *shipped* ]]'
+t "snapshot.json: no \"/\" path, no ask/comb text" eval 'sj="$(snap)"; [[ -n $sj && $sj != */* && $sj != *"pick a port"* && $sj != *shipped* ]]'
 t "snapshot: soul binding wins (w1→slot 3), no .soul → wN→N" eval 'jq -c ".sessions[0].soul = {name: \"Ash\", slot: 3, color: null}" "$J/state.json" > "$J/st.tmp" &&
   mv "$J/st.tmp" "$J/state.json" && jq -e "(.sessions[0] | .name == \"w1\" and .slot == 3) and .sessions[1].slot == 2" <<<"$(snap)" >/dev/null'
 t "phone.html + phone.css + phone.js served 200" eval 'get phone.html >/dev/null && get phone.css >/dev/null && get phone.js >/dev/null'
@@ -61,23 +61,23 @@ t "/flags: 2 named, age + first/last" jt flags 'length == 2 and (map(.name) | so
 t "/asks: id/class/text/age/protected" jt asks 'length == 2 and .[0] == {id:"aa11", class:"decision", text:"pick a port",
   age:.[0].age, protected:false} and .[0].age >= 119 and .[1].class == "deploy" and .[1].protected == true'
 t "/lease: stale + age (>3×TTL)" jt lease '.state == "stale" and .age >= 400'
-echo "$now sid-doc -" > "$J/lease/boss"; t "/lease: fresh after refresh" jt lease '.state == "fresh" and .age < 60'
-rm "$J/lease/boss"; t "/lease: none without a file" jt lease '. == {state:"none", age:null}'
-t "/board: last per session {name,ts,age,verb,text}" jt board '(.last | length) == 2 and (.last[] | select(.name == "w1"))
+echo "$now sid-doc -" > "$J/lease/queen"; t "/lease: fresh after refresh" jt lease '.state == "fresh" and .age < 60'
+rm "$J/lease/queen"; t "/lease: none without a file" jt lease '. == {state:"none", age:null}'
+t "/comb: last per session {name,ts,age,verb,text}" jt comb '(.last | length) == 2 and (.last[] | select(.name == "w1"))
   == {name:"w1", ts:"'"$hm"'", age:(.last[] | select(.name == "w1") | .age), verb:"done", text:"shipped the thing"}
   and (.last[] | select(.name == "w2") | .text == "step 22" and .verb == "note" and .age < 120)'
-t "/board: tail = last 20 overall" jt board '(.tail | length) == 20 and .tail[-1].name == "w1" and .tail[0].text == "step 4"'
-t "/board: quiet = tok +45k past the burn marker" jt board '.quiet == ["w1"]'
+t "/comb: tail = last 20 overall" jt comb '(.tail | length) == 20 and .tail[-1].name == "w1" and .tail[0].text == "step 4"'
+t "/comb: quiet = tok +45k past the burn marker" jt comb '.quiet == ["w1"]'
 t "/alerts: last 20, newest first, {ts,age,text}" jt alerts 'length == 20 and .[0] == {ts:'"$now"', age:.[0].age,
   text:"newest: lease stale"} and .[0].age < 60 and .[1].text == "alert 23" and .[-1].text == "alert 5" and (map(.ts) | . == (sort | reverse))'
 rm "$J/notify.log"; t "no notify.log → []" jt alerts '. == []'
-rm "$J/board.log"; t "no board.log → empty /board" jt board '.last == [] and .tail == []'
+rm "$J/comb.log"; t "no comb.log → empty /comb" jt comb '.last == [] and .tail == []'
 rm -r "$J/flags" "$J/asks"; t "empty dirs → []" jt flags '. == []'; t "no open.jsonl → []" jt asks '. == []'
 t "content-type json" grep -qi '^content-type: application/json' <(curl -s -D - -o /dev/null --max-time 3 "${U}lease")
 t "index.html + dash.js + dash-panels.js + state.json served" eval 'get "" >/dev/null && get dash.js >/dev/null &&
   get dash-panels.js >/dev/null && get state.json >/dev/null'
 t "page loads dash-panels.js before dash.js" eval 'get "" | grep -o "src=\"dash[-a-z]*\.js" | tr "\n" " " | grep -q "panels.js.*dash.js"'
-t "board.log file itself not reachable" eval '! get board.log >/dev/null && ! get ../board.log >/dev/null'
+t "comb.log file itself not reachable" eval '! get comb.log >/dev/null && ! get ../comb.log >/dev/null'
 # shellcheck disable=SC2034  # sb/page/p2 are read inside t … eval strings
 for c in dash.css dash-parts.css phone.css; do css="$(get "$c")"; sb="$(sed "s:/\*.*\*/::g" <<<"$css" | grep -i scrollbar)"   # comments stripped
   t "$c served, scrollbar-color uses palette hexes" eval 'grep -qiE "scrollbar-color: *#(ef4fbc|00ffd8|21ff00) +#060128" <<<"$sb"'

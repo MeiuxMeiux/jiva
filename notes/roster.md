@@ -1,7 +1,7 @@
 # roster — pack format + slots (v0 2026-10-13)
 
 Names and avatars are cosmetic labels, never personalities. No art spend; no copyrighted names/art.
-- Pack = `packs/<name>/pack.json`: `{"name", "boss": {slot:0,name,color}, "slots": [24 × {slot,name,
+- Pack = `packs/<name>/pack.json`: `{"name", "queen": {slot:0,name,color}, "slots": [24 × {slot,name,
   color,avatar}]}`; avatar paths are relative to the pack dir (`avatars/NN.svg`).
 - `scripts/roster.sh gen|check|show [pack]` (default pack: default). gen = deterministic 64×64
   silhouette SVGs (head with a notch + notch-cut shoulders, seeded by slot via random.Random("jiva-
@@ -10,7 +10,7 @@ Names and avatars are cosmetic labels, never personalities. No art spend; no cop
 - Colors: 24-hue wheel, HLS(i/24, L .62, S .75). All ≥3:1 on #060128 (worst: slot 17 #5555e7 3.68).
   Contrast math duplicated from site/scripts/contrast.py on purpose (site/ isn't a dependency).
 - Caps: soft 6 / hard 12 bodies ⇒ slots 1–12 are live, 13–24 are reserve (future caps, swaps).
-- Session → slot: worker wN → slot N (w1→1 …). Boss = slot 0, reserved near-white #f2f0ff outside
+- Session → slot: worker wN → slot N (w1→1 …). Queen = slot 0, reserved near-white #f2f0ff outside
   the wheel so it never collides with a worker. Desk/watchdog get no slot (not bodies).
 - Test art (e.g. fan rosters) only in `packs/local/` (gitignored); run `roster.sh check local`.
 - Optional top-level `"title"` = site label. 27 alt packs (art-pack.sh, notes/art.md) reuse default colors + silhouettes.

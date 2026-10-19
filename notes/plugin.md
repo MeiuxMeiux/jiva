@@ -21,10 +21,10 @@
   JIVA_HOOKS=plugin|settings overrides. Never installs/uninstalls as a side effect.
 - `plugin/install.sh status` reads $CLAUDE_CONFIG_DIR/plugins/installed_plugins.json (scope user) +
   settings.json enabledPlugins (false = off); no `claude` call. `jiva doctor plugin` round-trips in a scratch
-  CLAUDE_CONFIG_DIR. Installing into the real ~/.claude is the human's call (`just plugin install`).
+  CLAUDE_CONFIG_DIR. Installing into the real ~/.claude is the keeper's call (`just plugin install`).
 - Local install copies into plugins/cache/jiva-local/jiva/<ver> (installPath), not the checkout.
 - Wrappers: pane env (cmdline) carries JIVA_HOME/TARGET/ROLE/NAME; core hooks take TARGET from
   CLAUDE_PROJECT_DIR first. perm-relay.sh wrapper exists, opt-in (not in hooks.json).
 - check.sh runs `claude plugin validate plugin/` when claude is on PATH (symlink-skill warning is expected).
 - Drift: `plugin/check.sh` FAILs if plugin/**/*.md (symlinked skills too) names a `jiva <sub>`/`just <recipe>` the CLI lacks; WARNs on unmentioned verbs.
-- Verb tables: each role card (core/roles/*.md) ends with "## Verbs you use" (verb · when); human verbs live in commands/jiva-desk.md. check.sh WARNs on any `jiva help` verb none names; ALLOW stays empty.
+- Verb tables: each role card (core/roles/*.md) ends with "## Verbs you use" (verb · when); keeper verbs live in commands/jiva-desk.md. check.sh WARNs on any `jiva help` verb none names; ALLOW stays empty.

@@ -4,13 +4,13 @@ bar: 4 live · 0 flag · 296k · 5h 8%
 status:
   4 live · 0 flag · 296k
     jiva-12	idle	0k
-    boss	idle	155k
+    queen	idle	155k
     w1	busy	83k
     w2	busy	57k
 inbox:
   00:43 w2     ship: plugin: local Claude Code plugin jiva@jiva-local (hook wrappers,
-  00:43 boss   assign w2 (pick: w2)
-  00:43 boss   note: boss: plugin layout shipped [sha] (local marketplace, validate
+  00:43 queen  assign w2 (pick: w2)
+  00:43 queen  note: queen: plugin layout shipped [sha] (local marketplace, validate
   00:43 w2     claim site notes/site.md
   00:44 w1     done: asks lifecycle: core/asks.sh (open/answered.jsonl, class w/ ASK_
   00:44 w1     ship: core: asks lifecycle — typed asks (open/answered.jsonl, class; o
@@ -19,13 +19,13 @@ bar: 4 live · 0 flag · 300k · 5h 8%
 status:
   4 live · 0 flag · 300k
     jiva-12	idle	0k
-    boss	busy	156k
+    queen	busy	156k
     w1	busy	85k
     w2	busy	58k
 inbox:
   00:43 w2     ship: plugin: local Claude Code plugin jiva@jiva-local (hook wrappers,
-  00:43 boss   assign w2 (pick: w2)
-  00:43 boss   note: boss: plugin layout shipped [sha] (local marketplace, validate
+  00:43 queen  assign w2 (pick: w2)
+  00:43 queen  note: queen: plugin layout shipped [sha] (local marketplace, validate
   00:43 w2     claim site notes/site.md
   00:44 w1     done: asks lifecycle: core/asks.sh (open/answered.jsonl, class w/ ASK_
   00:44 w1     ship: core: asks lifecycle — typed asks (open/answered.jsonl, class; o
@@ -34,13 +34,13 @@ bar: 4 live · 0 flag · 300k · 5h 8%
 status:
   4 live · 0 flag · 300k
     jiva-12	idle	0k
-    boss	busy	156k
+    queen	busy	156k
     w1	busy	85k
     w2	busy	58k
 inbox:
   00:43 w2     ship: plugin: local Claude Code plugin jiva@jiva-local (hook wrappers,
-  00:43 boss   assign w2 (pick: w2)
-  00:43 boss   note: boss: plugin layout shipped [sha] (local marketplace, validate
+  00:43 queen  assign w2 (pick: w2)
+  00:43 queen  note: queen: plugin layout shipped [sha] (local marketplace, validate
   00:43 w2     claim site notes/site.md
   00:44 w1     done: asks lifecycle: core/asks.sh (open/answered.jsonl, class w/ ASK_
   00:44 w1     ship: core: asks lifecycle — typed asks (open/answered.jsonl, class; o
@@ -49,13 +49,13 @@ bar: 4 live · 0 flag · 300k · 5h 8%
 status:
   4 live · 0 flag · 300k
     jiva-12	idle	0k
-    boss	busy	156k
+    queen	busy	156k
     w1	idle	86k
     w2	busy	58k
 inbox:
   00:43 w2     ship: plugin: local Claude Code plugin jiva@jiva-local (hook wrappers,
-  00:43 boss   assign w2 (pick: w2)
-  00:43 boss   note: boss: plugin layout shipped [sha] (local marketplace, validate
+  00:43 queen  assign w2 (pick: w2)
+  00:43 queen  note: queen: plugin layout shipped [sha] (local marketplace, validate
   00:43 w2     claim site notes/site.md
   00:44 w1     done: asks lifecycle: core/asks.sh (open/answered.jsonl, class w/ ASK_
   00:44 w1     ship: core: asks lifecycle — typed asks (open/answered.jsonl, class; o
@@ -64,13 +64,13 @@ bar: 4 live · 0 flag · 301k · 5h 8%
 status:
   4 live · 0 flag · 301k
     jiva-12	idle	0k
-    boss	busy	156k
+    queen	busy	156k
     w1	idle	86k
     w2	busy	58k
 inbox:
   00:43 w2     ship: plugin: local Claude Code plugin jiva@jiva-local (hook wrappers,
-  00:43 boss   assign w2 (pick: w2)
-  00:43 boss   note: boss: plugin layout shipped [sha] (local marketplace, validate
+  00:43 queen  assign w2 (pick: w2)
+  00:43 queen  note: queen: plugin layout shipped [sha] (local marketplace, validate
   00:43 w2     claim site notes/site.md
   00:44 w1     done: asks lifecycle: core/asks.sh (open/answered.jsonl, class w/ ASK_
   00:44 w1     ship: core: asks lifecycle — typed asks (open/answered.jsonl, class; o
@@ -79,13 +79,13 @@ bar: 4 live · 0 flag · 302k · 5h 8%
 status:
   4 live · 0 flag · 302k
     jiva-12	idle	0k
-    boss	busy	157k
+    queen	busy	157k
     w1	idle	86k
     w2	busy	58k
 inbox:
   00:43 w2     ship: plugin: local Claude Code plugin jiva@jiva-local (hook wrappers,
-  00:43 boss   assign w2 (pick: w2)
-  00:43 boss   note: boss: plugin layout shipped [sha] (local marketplace, validate
+  00:43 queen  assign w2 (pick: w2)
+  00:43 queen  note: queen: plugin layout shipped [sha] (local marketplace, validate
   00:43 w2     claim site notes/site.md
   00:44 w1     done: asks lifecycle: core/asks.sh (open/answered.jsonl, class w/ ASK_
   00:44 w1     ship: core: asks lifecycle — typed asks (open/answered.jsonl, class; o
@@ -94,13 +94,13 @@ bar: 4 live · 0 flag · 305k · 5h 8%
 status:
   4 live · 0 flag · 305k
     jiva-12	idle	0k
-    boss	busy	157k
+    queen	busy	157k
     w1	idle	86k
     w2	busy	61k
 inbox:
   00:43 w2     ship: plugin: local Claude Code plugin jiva@jiva-local (hook wrappers,
-  00:43 boss   assign w2 (pick: w2)
-  00:43 boss   note: boss: plugin layout shipped [sha] (local marketplace, validate
+  00:43 queen  assign w2 (pick: w2)
+  00:43 queen  note: queen: plugin layout shipped [sha] (local marketplace, validate
   00:43 w2     claim site notes/site.md
   00:44 w1     done: asks lifecycle: core/asks.sh (open/answered.jsonl, class w/ ASK_
   00:44 w1     ship: core: asks lifecycle — typed asks (open/answered.jsonl, class; o
@@ -109,253 +109,253 @@ bar: 4 live · 0 flag · 305k · 5h 8%
 status:
   4 live · 0 flag · 305k
     jiva-12	idle	0k
-    boss	busy	157k
+    queen	busy	157k
     w1	idle	86k
     w2	busy	61k
 inbox:
-  00:43 boss   note: boss: plugin layout shipped [sha] (local marketplace, validate
+  00:43 queen  note: queen: plugin layout shipped [sha] (local marketplace, validate
   00:43 w2     claim site notes/site.md
   00:44 w1     done: asks lifecycle: core/asks.sh (open/answered.jsonl, class w/ ASK_
   00:44 w1     ship: core: asks lifecycle — typed asks (open/answered.jsonl, class; o
-  00:45 boss   assign w1 (pick: w1)
-  00:45 boss   note: boss: asks lifecycle shipped [sha] (33 doctor cases ok), watch
+  00:45 queen  assign w1 (pick: w1)
+  00:45 queen  note: queen: asks lifecycle shipped [sha] (33 doctor cases ok), watch
 === frame 9 04:45:18
 bar: 4 live · 0 flag · 256k · 5h 8%
 status:
   4 live · 0 flag · 256k
     jiva-12	idle	0k
-    boss	busy	157k
+    queen	busy	157k
     w2	busy	61k
     w1	busy	37k
 inbox:
-  00:43 boss   note: boss: plugin layout shipped [sha] (local marketplace, validate
+  00:43 queen  note: queen: plugin layout shipped [sha] (local marketplace, validate
   00:43 w2     claim site notes/site.md
   00:44 w1     done: asks lifecycle: core/asks.sh (open/answered.jsonl, class w/ ASK_
   00:44 w1     ship: core: asks lifecycle — typed asks (open/answered.jsonl, class; o
-  00:45 boss   assign w1 (pick: w1)
-  00:45 boss   note: boss: asks lifecycle shipped [sha] (33 doctor cases ok), watch
+  00:45 queen  assign w1 (pick: w1)
+  00:45 queen  note: queen: asks lifecycle shipped [sha] (33 doctor cases ok), watch
 === frame 10 04:45:23
 bar: 4 live · 0 flag · 273k · 5h 8%
 status:
   4 live · 0 flag · 273k
     jiva-12	busy	0k
-    boss	busy	158k
+    queen	busy	158k
     w2	busy	61k
     w1	busy	53k
 inbox:
   00:43 w2     claim site notes/site.md
   00:44 w1     done: asks lifecycle: core/asks.sh (open/answered.jsonl, class w/ ASK_
   00:44 w1     ship: core: asks lifecycle — typed asks (open/answered.jsonl, class; o
-  00:45 boss   assign w1 (pick: w1)
-  00:45 boss   note: boss: asks lifecycle shipped [sha] (33 doctor cases ok), watch
+  00:45 queen  assign w1 (pick: w1)
+  00:45 queen  note: queen: asks lifecycle shipped [sha] (33 doctor cases ok), watch
   00:45 w1     claim core plugin justfile notes/plugin.md notes/core.md
 === frame 11 04:45:28
 bar: 4 live · 0 flag · 273k · 5h 8%
 status:
   4 live · 0 flag · 273k
     jiva-12	busy	0k
-    boss	busy	158k
+    queen	busy	158k
     w2	busy	61k
     w1	busy	53k
 inbox:
   00:43 w2     claim site notes/site.md
   00:44 w1     done: asks lifecycle: core/asks.sh (open/answered.jsonl, class w/ ASK_
   00:44 w1     ship: core: asks lifecycle — typed asks (open/answered.jsonl, class; o
-  00:45 boss   assign w1 (pick: w1)
-  00:45 boss   note: boss: asks lifecycle shipped [sha] (33 doctor cases ok), watch
+  00:45 queen  assign w1 (pick: w1)
+  00:45 queen  note: queen: asks lifecycle shipped [sha] (33 doctor cases ok), watch
   00:45 w1     claim core plugin justfile notes/plugin.md notes/core.md
 === frame 12 04:45:33
 bar: 4 live · 0 flag · 276k · 5h 8%
 status:
   4 live · 0 flag · 276k
     jiva-12	idle	0k
-    boss	idle	159k
+    queen	idle	159k
     w2	busy	61k
     w1	busy	55k
 inbox:
   00:43 w2     claim site notes/site.md
   00:44 w1     done: asks lifecycle: core/asks.sh (open/answered.jsonl, class w/ ASK_
   00:44 w1     ship: core: asks lifecycle — typed asks (open/answered.jsonl, class; o
-  00:45 boss   assign w1 (pick: w1)
-  00:45 boss   note: boss: asks lifecycle shipped [sha] (33 doctor cases ok), watch
+  00:45 queen  assign w1 (pick: w1)
+  00:45 queen  note: queen: asks lifecycle shipped [sha] (33 doctor cases ok), watch
   00:45 w1     claim core plugin justfile notes/plugin.md notes/core.md
 === frame 13 04:45:38
 bar: 4 live · 0 flag · 282k · 5h 8%
 status:
   4 live · 0 flag · 282k
     jiva-12	idle	0k
-    boss	idle	159k
+    queen	idle	159k
     w2	busy	65k
     w1	busy	57k
 inbox:
   00:43 w2     claim site notes/site.md
   00:44 w1     done: asks lifecycle: core/asks.sh (open/answered.jsonl, class w/ ASK_
   00:44 w1     ship: core: asks lifecycle — typed asks (open/answered.jsonl, class; o
-  00:45 boss   assign w1 (pick: w1)
-  00:45 boss   note: boss: asks lifecycle shipped [sha] (33 doctor cases ok), watch
+  00:45 queen  assign w1 (pick: w1)
+  00:45 queen  note: queen: asks lifecycle shipped [sha] (33 doctor cases ok), watch
   00:45 w1     claim core plugin justfile notes/plugin.md notes/core.md
 === frame 14 04:45:43
 bar: 4 live · 0 flag · 284k · 5h 8%
 status:
   4 live · 0 flag · 284k
     jiva-12	idle	0k
-    boss	idle	159k
+    queen	idle	159k
     w2	busy	67k
     w1	busy	58k
 inbox:
   00:43 w2     claim site notes/site.md
   00:44 w1     done: asks lifecycle: core/asks.sh (open/answered.jsonl, class w/ ASK_
   00:44 w1     ship: core: asks lifecycle — typed asks (open/answered.jsonl, class; o
-  00:45 boss   assign w1 (pick: w1)
-  00:45 boss   note: boss: asks lifecycle shipped [sha] (33 doctor cases ok), watch
+  00:45 queen  assign w1 (pick: w1)
+  00:45 queen  note: queen: asks lifecycle shipped [sha] (33 doctor cases ok), watch
   00:45 w1     claim core plugin justfile notes/plugin.md notes/core.md
 === frame 15 04:45:48
 bar: 4 live · 0 flag · 284k · 5h 8%
 status:
   4 live · 0 flag · 284k
     jiva-12	idle	0k
-    boss	idle	159k
+    queen	idle	159k
     w2	busy	67k
     w1	busy	58k
 inbox:
   00:43 w2     claim site notes/site.md
   00:44 w1     done: asks lifecycle: core/asks.sh (open/answered.jsonl, class w/ ASK_
   00:44 w1     ship: core: asks lifecycle — typed asks (open/answered.jsonl, class; o
-  00:45 boss   assign w1 (pick: w1)
-  00:45 boss   note: boss: asks lifecycle shipped [sha] (33 doctor cases ok), watch
+  00:45 queen  assign w1 (pick: w1)
+  00:45 queen  note: queen: asks lifecycle shipped [sha] (33 doctor cases ok), watch
   00:45 w1     claim core plugin justfile notes/plugin.md notes/core.md
 === frame 16 04:45:53
 bar: 4 live · 0 flag · 288k · 5h 8%
 status:
   4 live · 0 flag · 288k
     jiva-12	idle	0k
-    boss	idle	159k
+    queen	idle	159k
     w2	busy	69k
     w1	busy	59k
 inbox:
   00:43 w2     claim site notes/site.md
   00:44 w1     done: asks lifecycle: core/asks.sh (open/answered.jsonl, class w/ ASK_
   00:44 w1     ship: core: asks lifecycle — typed asks (open/answered.jsonl, class; o
-  00:45 boss   assign w1 (pick: w1)
-  00:45 boss   note: boss: asks lifecycle shipped [sha] (33 doctor cases ok), watch
+  00:45 queen  assign w1 (pick: w1)
+  00:45 queen  note: queen: asks lifecycle shipped [sha] (33 doctor cases ok), watch
   00:45 w1     claim core plugin justfile notes/plugin.md notes/core.md
 === frame 17 04:45:58
 bar: 4 live · 0 flag · 289k · 5h 8%
 status:
   4 live · 0 flag · 289k
     jiva-12	idle	0k
-    boss	idle	159k
+    queen	idle	159k
     w2	busy	69k
     w1	busy	59k
 inbox:
   00:43 w2     claim site notes/site.md
   00:44 w1     done: asks lifecycle: core/asks.sh (open/answered.jsonl, class w/ ASK_
   00:44 w1     ship: core: asks lifecycle — typed asks (open/answered.jsonl, class; o
-  00:45 boss   assign w1 (pick: w1)
-  00:45 boss   note: boss: asks lifecycle shipped [sha] (33 doctor cases ok), watch
+  00:45 queen  assign w1 (pick: w1)
+  00:45 queen  note: queen: asks lifecycle shipped [sha] (33 doctor cases ok), watch
   00:45 w1     claim core plugin justfile notes/plugin.md notes/core.md
 === frame 18 04:46:03
 bar: 4 live · 0 flag · 289k · 5h 8%
 status:
   4 live · 0 flag · 289k
     jiva-12	idle	0k
-    boss	idle	159k
+    queen	idle	159k
     w2	busy	69k
     w1	busy	59k
 inbox:
   00:43 w2     claim site notes/site.md
   00:44 w1     done: asks lifecycle: core/asks.sh (open/answered.jsonl, class w/ ASK_
   00:44 w1     ship: core: asks lifecycle — typed asks (open/answered.jsonl, class; o
-  00:45 boss   assign w1 (pick: w1)
-  00:45 boss   note: boss: asks lifecycle shipped [sha] (33 doctor cases ok), watch
+  00:45 queen  assign w1 (pick: w1)
+  00:45 queen  note: queen: asks lifecycle shipped [sha] (33 doctor cases ok), watch
   00:45 w1     claim core plugin justfile notes/plugin.md notes/core.md
 === frame 19 04:46:08
 bar: 4 live · 0 flag · 293k · 5h 8%
 status:
   4 live · 0 flag · 293k
     jiva-12	idle	0k
-    boss	idle	159k
+    queen	idle	159k
     w2	busy	70k
     w1	busy	63k
 inbox:
   00:43 w2     claim site notes/site.md
   00:44 w1     done: asks lifecycle: core/asks.sh (open/answered.jsonl, class w/ ASK_
   00:44 w1     ship: core: asks lifecycle — typed asks (open/answered.jsonl, class; o
-  00:45 boss   assign w1 (pick: w1)
-  00:45 boss   note: boss: asks lifecycle shipped [sha] (33 doctor cases ok), watch
+  00:45 queen  assign w1 (pick: w1)
+  00:45 queen  note: queen: asks lifecycle shipped [sha] (33 doctor cases ok), watch
   00:45 w1     claim core plugin justfile notes/plugin.md notes/core.md
 === frame 20 04:46:13
 bar: 4 live · 0 flag · 294k · 5h 8%
 status:
   4 live · 0 flag · 294k
     jiva-12	idle	0k
-    boss	idle	159k
+    queen	idle	159k
     w2	busy	71k
     w1	busy	63k
 inbox:
   00:43 w2     claim site notes/site.md
   00:44 w1     done: asks lifecycle: core/asks.sh (open/answered.jsonl, class w/ ASK_
   00:44 w1     ship: core: asks lifecycle — typed asks (open/answered.jsonl, class; o
-  00:45 boss   assign w1 (pick: w1)
-  00:45 boss   note: boss: asks lifecycle shipped [sha] (33 doctor cases ok), watch
+  00:45 queen  assign w1 (pick: w1)
+  00:45 queen  note: queen: asks lifecycle shipped [sha] (33 doctor cases ok), watch
   00:45 w1     claim core plugin justfile notes/plugin.md notes/core.md
 === frame 21 04:46:18
 bar: 4 live · 0 flag · 296k · 5h 8%
 status:
   4 live · 0 flag · 296k
     jiva-12	idle	0k
-    boss	idle	159k
+    queen	idle	159k
     w2	busy	73k
     w1	busy	63k
 inbox:
   00:43 w2     claim site notes/site.md
   00:44 w1     done: asks lifecycle: core/asks.sh (open/answered.jsonl, class w/ ASK_
   00:44 w1     ship: core: asks lifecycle — typed asks (open/answered.jsonl, class; o
-  00:45 boss   assign w1 (pick: w1)
-  00:45 boss   note: boss: asks lifecycle shipped [sha] (33 doctor cases ok), watch
+  00:45 queen  assign w1 (pick: w1)
+  00:45 queen  note: queen: asks lifecycle shipped [sha] (33 doctor cases ok), watch
   00:45 w1     claim core plugin justfile notes/plugin.md notes/core.md
 === frame 22 04:46:23
 bar: 4 live · 0 flag · 296k · 5h 8%
 status:
   4 live · 0 flag · 296k
     jiva-12	idle	0k
-    boss	idle	159k
+    queen	idle	159k
     w2	busy	73k
     w1	busy	63k
 inbox:
   00:43 w2     claim site notes/site.md
   00:44 w1     done: asks lifecycle: core/asks.sh (open/answered.jsonl, class w/ ASK_
   00:44 w1     ship: core: asks lifecycle — typed asks (open/answered.jsonl, class; o
-  00:45 boss   assign w1 (pick: w1)
-  00:45 boss   note: boss: asks lifecycle shipped [sha] (33 doctor cases ok), watch
+  00:45 queen  assign w1 (pick: w1)
+  00:45 queen  note: queen: asks lifecycle shipped [sha] (33 doctor cases ok), watch
   00:45 w1     claim core plugin justfile notes/plugin.md notes/core.md
 === frame 23 04:46:28
 bar: 4 live · 0 flag · 298k · 5h 8%
 status:
   4 live · 0 flag · 298k
     jiva-12	idle	0k
-    boss	idle	159k
+    queen	idle	159k
     w2	busy	73k
     w1	busy	65k
 inbox:
   00:43 w2     claim site notes/site.md
   00:44 w1     done: asks lifecycle: core/asks.sh (open/answered.jsonl, class w/ ASK_
   00:44 w1     ship: core: asks lifecycle — typed asks (open/answered.jsonl, class; o
-  00:45 boss   assign w1 (pick: w1)
-  00:45 boss   note: boss: asks lifecycle shipped [sha] (33 doctor cases ok), watch
+  00:45 queen  assign w1 (pick: w1)
+  00:45 queen  note: queen: asks lifecycle shipped [sha] (33 doctor cases ok), watch
   00:45 w1     claim core plugin justfile notes/plugin.md notes/core.md
 === frame 24 04:46:33
 bar: 4 live · 0 flag · 298k · 5h 8%
 status:
   4 live · 0 flag · 298k
     jiva-12	idle	0k
-    boss	idle	159k
+    queen	idle	159k
     w2	busy	73k
     w1	busy	65k
 inbox:
   00:43 w2     claim site notes/site.md
   00:44 w1     done: asks lifecycle: core/asks.sh (open/answered.jsonl, class w/ ASK_
   00:44 w1     ship: core: asks lifecycle — typed asks (open/answered.jsonl, class; o
-  00:45 boss   assign w1 (pick: w1)
-  00:45 boss   note: boss: asks lifecycle shipped [sha] (33 doctor cases ok), watch
+  00:45 queen  assign w1 (pick: w1)
+  00:45 queen  note: queen: asks lifecycle shipped [sha] (33 doctor cases ok), watch
   00:45 w1     claim core plugin justfile notes/plugin.md notes/core.md

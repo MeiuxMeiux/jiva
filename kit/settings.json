@@ -1,22 +1,22 @@
 {
   "statusLine": {
     "type": "command",
-    "command": "\"${CLAUDE_PROJECT_DIR:-.}\"/.fleet/bin/statusline.sh"
+    "command": "\"${CLAUDE_PROJECT_DIR:-.}\"/.hive/bin/statusline.sh"
   },
   "permissions": {
     "allow": [
-      "Bash(just fleet ls)",
-      "Bash(just fleet peek *)",
-      "Bash(just fleet say *)",
-      "Bash(just fleet claim *)",
-      "Bash(just fleet release *)",
-      "Bash(just fleet claims)",
-      "Bash(just fleet ship *)",
-      "Bash(just fleet gate-add *)",
-      "Bash(just fleet gate-list)",
-      "Bash(just fleet gate-result *)",
-      "Bash(just fleet digest)",
-      "Bash(just fleet usage)",
+      "Bash(just hive ls)",
+      "Bash(just hive peek *)",
+      "Bash(just hive say *)",
+      "Bash(just hive claim *)",
+      "Bash(just hive release *)",
+      "Bash(just hive claims)",
+      "Bash(just hive ship *)",
+      "Bash(just hive gate-add *)",
+      "Bash(just hive gate-list)",
+      "Bash(just hive gate-result *)",
+      "Bash(just hive digest)",
+      "Bash(just hive usage)",
       "Bash(git status *)",
       "Bash(git diff *)",
       "Bash(git log *)"

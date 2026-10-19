@@ -1,13 +1,13 @@
 #!/usr/bin/env bash
-# claim — seats own PATHS, not topics. .fleet/state/claims holds "<seat> <glob>" lines; globs never overlap.
-#   claim.sh claim <glob…>     add claims for $FLEET_NAME (default: desk); refused if any overlaps another seat's
+# claim — cells own PATHS, not topics. .hive/state/claims holds "<cell> <glob>" lines; globs never overlap.
+#   claim.sh claim <glob…>     add claims for $FLEET_NAME (default: desk); refused if any overlaps another cell's
 #   claim.sh release <glob…|all>  drop your own claims
-#   claim.sh list [seat]       every claim (or one seat's globs)
+#   claim.sh list [cell]       every claim (or one cell's globs)
 #   claim.sh ship "<msg>"      stage + commit ONLY your claimed paths (pathspec), never `add -A`
 # A dir claim (src or src/) covers everything under it. Overlap = one glob matches the other, or a file in
-# the repo matches both. All writes hold an flock on .fleet/state/claims.lock.
+# the repo matches both. All writes hold an flock on .hive/state/claims.lock.
 set -euo pipefail
-ROOT="${FLEET_ROOT:-$(git rev-parse --show-toplevel)}"; S="$ROOT/.fleet/state"; C="$S/claims"
+ROOT="${FLEET_ROOT:-$(git rev-parse --show-toplevel)}"; S="$ROOT/.hive/state"; C="$S/claims"
 ME="${FLEET_NAME:-desk}"; mkdir -p "$S"; touch "$C"
 die() { echo "claim: $*" >&2; exit 1; }
 norm() { # glob → repo-relative, no trailing slash; refuses /abs, .. and the bare root

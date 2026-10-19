@@ -30,7 +30,7 @@ for s, y in zip(p["slots"], spec["slots"]):
 d = root / "packs" / name; d.mkdir(parents=True, exist_ok=True)
 lines = ",\n".join("  " + json.dumps(s, ensure_ascii=False) for s in p["slots"])
 title = f',\n "title": {json.dumps(p["title"], ensure_ascii=False)}' if "title" in p else ""
-(d / "pack.json").write_text(f'{{"name": {json.dumps(name)}{title},\n "boss": {json.dumps(p["boss"])},\n "slots": [\n{lines}\n ]}}\n',
+(d / "pack.json").write_text(f'{{"name": {json.dumps(name)}{title},\n "queen": {json.dumps(p["queen"])},\n "slots": [\n{lines}\n ]}}\n',
                              encoding="utf-8")
 PY
   "$root/scripts/roster.sh" gen "$pack" >/dev/null

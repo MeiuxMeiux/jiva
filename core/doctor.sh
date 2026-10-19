@@ -5,7 +5,7 @@
 #   doctor.sh breakers  only the breaker unit tests (core/doctor-breakers.sh; static runs them too)
 #   doctor.sh asks      only the asks lifecycle tests (core/doctor-asks.sh; static runs them too)
 #   doctor.sh perm      only perm-relay timeout/allow/deny + flag (core/doctor-perm.sh, scratch; static too)
-#   doctor.sh lease     only the boss-lease tests (core/doctor-lease.sh, scratch TARGET + socket; static too)
+#   doctor.sh lease     only the queen-lease tests (core/doctor-lease.sh, scratch TARGET + socket; static too)
 #   doctor.sh dash      only the dashboard endpoints /flags /asks /lease (core/doctor-dash.sh, scratch port; static too)
 #   doctor.sh fault     only the fault-injection tests (core/doctor-fault.sh, scratch TARGET + socket, stub claude; static too)
 #   doctor.sh notify    only the notify tests (core/doctor-notify.sh, scratch; static too)
@@ -13,7 +13,7 @@
 #   doctor.sh souls     only the soul-binding tests (core/doctor-souls.sh, scratch J + stub pack; static too)
 #   doctor.sh watch     only the live-view tests (core/doctor-watch.sh; static too)
 #   doctor.sh budgets   only CLAUDE.md/caps/150k (75%) nudge/state diet/version+spike/Stop-hook (core/doctor-budgets.sh; static too)
-#   doctor.sh fleet     only gate rows/card lint/desk digest/profile/lean launch (core/doctor-fleet.sh, scratch; static too)
+#   doctor.sh hive     only gate rows/card lint/desk digest/profile/lean launch (core/doctor-hive.sh, scratch; static too)
 #   doctor.sh payload   only the boot-payload checks (doctor-lease runs it from a fake worker pane)
 #   doctor.sh plugin    only plugin-vs-settings hooks mode (core/doctor-plugin.sh, scratch config; static too)
 set -uo pipefail
@@ -78,7 +78,7 @@ live() { # scratch worker w9: spawn, kill -9, expect the watchdog to bring it ba
 
 cleanup() { T kill-window -t "jiva:$1" 2>/dev/null; rm -f "$J/launch/$1" "$J/state/$1.json" "$J/claims/$1"; }
 
-[[ ${1:-} == payload ]] && { payload boss boss; payload worker w1; exit $bad; }   # doctor-lease regression
+[[ ${1:-} == payload ]] && { payload queen queen; payload worker w1; exit $bad; }   # doctor-lease regression
 [[ ${1:-} == breakers ]] && exec "$JIVA_HOME/core/doctor-breakers.sh"
 [[ ${1:-} == asks ]] && exec "$JIVA_HOME/core/doctor-asks.sh"
 [[ ${1:-} == perm ]] && exec "$JIVA_HOME/core/doctor-perm.sh"
@@ -90,9 +90,9 @@ cleanup() { T kill-window -t "jiva:$1" 2>/dev/null; rm -f "$J/launch/$1" "$J/sta
 [[ ${1:-} == watch ]] && exec "$JIVA_HOME/core/doctor-watch.sh"
 [[ ${1:-} == notify ]] && exec "$JIVA_HOME/core/doctor-notify.sh"
 [[ ${1:-} == history ]] && exec "$JIVA_HOME/core/doctor-history.sh"
-[[ ${1:-} == fleet ]] && exec "$JIVA_HOME/core/doctor-fleet.sh"
+[[ ${1:-} == hive ]] && exec "$JIVA_HOME/core/doctor-hive.sh"
 [[ ${1:-} == budgets ]] && exec "$JIVA_HOME/core/doctor-budgets.sh"
-payload boss boss
+payload queen queen
 payload worker w1
 sizes "$J/handoff/*.md" 40 "handoffs"
 sizes "$J/tasks/*.md" 20 "task cards"
@@ -110,6 +110,6 @@ hooks
 "$JIVA_HOME/core/doctor-notify.sh" || bad=1
 "$JIVA_HOME/core/doctor-history.sh" || bad=1
 "$JIVA_HOME/core/doctor-budgets.sh" || bad=1
-"$JIVA_HOME/core/doctor-fleet.sh" || bad=1
+"$JIVA_HOME/core/doctor-hive.sh" || bad=1
 [[ ${1:-} == live ]] && live
 exit $bad

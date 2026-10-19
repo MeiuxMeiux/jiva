@@ -1,17 +1,17 @@
 #!/usr/bin/env bash
 # guard — PreToolUse hook (matcher *): .jiva/STOP denies every tool. Bash|Skill: Shared-tree git safety: workers commit claimed paths via `jiva ship`,
 # so deny the commands that sweep, hide or rewrite other sessions' work. Loop engines (Skill loop|goal, a Bash
-# `claude … /loop|/goal`) are capped: the watchdog does the waking. packs/local/ (the human's private roster):
+# `claude … /loop|/goal`) are capped: the watchdog does the waking. packs/local/ (the keeper's private roster):
 # Write/Edit by file_path, Bash only as a write target (rm/mv/cp/tee/touch/mkdir/sed -i/> /git rm/art+roster
 # scripts) — a mere mention (echo, heredoc body, comment) passes. Read-only `git stash list|show` pass. Exit 2 + reason.
 in="$(cat)"
 # shellcheck source=core/lib.sh
 JIVA_TARGET="${CLAUDE_PROJECT_DIR:-${JIVA_TARGET:-}}"; source "$(dirname "$(readlink -f "$0")")/../lib.sh"
-if stopped; then   # .jiva/STOP: deny every tool (matcher "*") until the human removes it
+if stopped; then   # .jiva/STOP: deny every tool (matcher "*") until the keeper removes it
   echo '{"hookSpecificOutput":{"hookEventName":"PreToolUse","permissionDecision":"deny","permissionDecisionReason":"JIVA STOPPED"}}'; exit 0
 fi
 loop() { echo "JIVA: loop engines are capped — the watchdog wakes you" >&2; exit 2; }
-mine() { echo "JIVA guard: packs/local is the human's — never write, overwrite or delete under it" >&2; exit 2; }
+mine() { echo "JIVA guard: packs/local is the keeper's — never write, overwrite or delete under it" >&2; exit 2; }
 PL='(^|[^A-Za-z0-9_.-])packs/local(/|[^A-Za-z0-9_.-]|$)'
 tool="$(jq -r '.tool_name // ""' <<<"$in")"
 if [[ $tool =~ ^(Write|Edit|MultiEdit|NotebookEdit)$ ]]; then

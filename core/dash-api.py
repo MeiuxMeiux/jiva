@@ -33,19 +33,19 @@ def asks(now):
         except (ValueError, TypeError, AttributeError): pass
     return rows
 def lease(now):
-    ls = lines(os.path.join(J, "lease", "boss"))
+    ls = lines(os.path.join(J, "lease", "queen"))
     try: age = int(now - int(ls[0].split()[0]))
     except (IndexError, ValueError): return {"state": "none", "age": None}
     return {"state": "stale" if age > 3 * TTL else "fresh", "age": age}
-def bline(l, sod):  # "HH:MM name  verb text" → dict; age from time-of-day (board has no date; wraps at midnight)
+def bline(l, sod):  # "HH:MM name  verb text" → dict; age from time-of-day (comb has no date; wraps at midnight)
     p = l.split("\t", 1)[0].split(None, 3); hm = p[0].split(":") if p else []
     try: age = (sod - int(hm[0]) * 3600 - int(hm[1]) * 60) % 86400
     except (IndexError, ValueError): return None
     return {"name": p[1][:32] if len(p) > 1 else "", "ts": p[0][:5], "age": age,
             "verb": (p[2] if len(p) > 2 else "").rstrip(":")[:24], "text": p[3] if len(p) > 3 else ""}
-def board(now):  # last line per session + last 20 overall; quiet = state tok grew >QUIET past the burn marker
+def comb(now):  # last line per session + last 20 overall; quiet = state tok grew >QUIET past the burn marker
     t = time.localtime(now); sod = t.tm_hour * 3600 + t.tm_min * 60 + t.tm_sec
-    rows = [r for r in (bline(l, sod) for l in lines(os.path.join(J, "board.log"))) if r]
+    rows = [r for r in (bline(l, sod) for l in lines(os.path.join(J, "comb.log"))) if r]
     last = {r["name"]: r for r in rows}
     try: ss = json.load(open(os.path.join(J, "state.json"))).get("sessions") or []
     except (OSError, ValueError, AttributeError): ss = []
@@ -70,9 +70,9 @@ def git(*a):
 def sha(v):
     if not SHA.fullmatch(v or ""): raise Bad(400, "sha must be [0-9a-f]{7,40}")
     return v
-def soul(trailer):  # "jiva: wN|boss|desk" trailer; trailer-less (desk/human) commits → "desk"
+def soul(trailer):  # "jiva: wN|queen|desk" trailer; trailer-less (desk/keeper) commits → "desk"
     t = trailer.split(",")[0].strip()
-    return t if re.fullmatch(r"w\d{1,2}|boss|desk", t) else "desk"
+    return t if re.fullmatch(r"w\d{1,2}|queen|desk", t) else "desk"
 def commits(now, q):  # newest first; next page = ?before=<last sha>
     try: n = int(q.get("n", ["50"])[0])
     except ValueError: raise Bad(400, "n must be an integer")
@@ -99,7 +99,7 @@ def commit(now, h):  # {sha, subject, body (first non-trailer line), stat: [{fil
         p = l.split("\t", 2)
         if len(p) == 3: stat.append({"file": p[2][:300], "add": int(p[0]) if p[0].isdigit() else None, "del": int(p[1]) if p[1].isdigit() else None})
     return {"sha": f[0], "subject": f[1][:200] if len(f) > 1 else "", "body": body[:200], "stat": stat[:300]}
-API = {"/flags": flags, "/asks": asks, "/lease": lease, "/board": board, "/alerts": alerts}
+API = {"/flags": flags, "/asks": asks, "/lease": lease, "/comb": comb, "/alerts": alerts}
 class H(http.server.SimpleHTTPRequestHandler):
     def __init__(s, *a, **k): super().__init__(*a, directory=WWW, **k)
     def log_message(s, *a): pass

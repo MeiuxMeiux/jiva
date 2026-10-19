@@ -111,7 +111,7 @@ def main():
     for js in (SRC / "js").glob("*.js"):
         (OUT / "js" / js.name).write_text(min_js(js.read_text(encoding="utf-8")), encoding="utf-8")
     shutil.copytree(SRC / "fonts", OUT / "fonts", ignore=shutil.ignore_patterns(".gitkeep"))
-    shutil.copy(ROOT.parent / "docs/MICRO.md", OUT / "micro.md")  # JIVA Micro: paste-in fleet guide, raw at /micro.md
+    shutil.copy(ROOT.parent / "docs/MICRO.md", OUT / "micro.md")  # JIVA Micro: paste-in hive guide, raw at /micro.md
     subprocess.run([sys.executable, "-I", str(ROOT.parent / "scripts/kit-build.py"), str(OUT / "kit.md")], check=True)  # JIVA Kit
     for name in STATIC:  # unhashed on purpose: crawlers and scrapers ask for these exact paths
         (OUT / name).parent.mkdir(parents=True, exist_ok=True)

@@ -30,7 +30,7 @@ export PATH="$HOME/jiva/bin:$PATH"
 
 - Every file ≤150 lines; `notes/*.md` ≤30 lines. Split rather than grow.
 - Prefer a `just` recipe over ad-hoc shell; if you repeat a sequence twice, propose a recipe.
-- No secrets in git, logs or the board. Keys are read only inside scripts, via `scripts/keys.sh`.
+- No secrets in git, logs or the comb. Keys are read only inside scripts, via `scripts/keys.sh`.
 - No copyrighted art in git. Private test rosters go in `packs/local/` (gitignored); shipped packs
   follow [packs/README.md](packs/README.md).
 - The dashboard binds to `127.0.0.1` only; keep it that way.

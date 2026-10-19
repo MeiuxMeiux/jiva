@@ -47,7 +47,7 @@ report() { # report <done|blocked|note> <msg> — done is verified by check()
 }
 
 ask() { ask_new "$@"; }          # ask <question> <options> <default> [class] — typed ask for the desk (core/asks.sh)
-answer() { ask_answer "$1" "${2:-}"; }  # answer <id> [text] — desk/human; no text applies the default
+answer() { ask_answer "$1" "${2:-}"; }  # answer <id> [text] — desk/keeper; no text applies the default
 
 ship() { # ship <msg> — commit only claimed paths, push under a lock
   local paths keep=() p; mapfile -t paths < <(cat "$J/claims/$ME" 2>/dev/null)
@@ -77,7 +77,7 @@ handoff() { # handoff <file> — ≤40 lines of pointers (or pipe: printf ... | 
   log "handoff written"; hist handoff lines="$(wc -l < "$J/handoff/$ME.md")"; echo "handoff saved; stop now — the watchdog respawns you when idle"
 }
 
-inbox() { # recent board + open desk asks (open.jsonl; desk.tsv retired)
+inbox() { # recent comb + open desk asks (open.jsonl; desk.tsv retired)
   local b; b="$(board_tail "${1:-15}")"; echo "${b:-(empty)}"
   ask_inbox
 }

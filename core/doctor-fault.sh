@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # doctor-fault — fault injection against a scratch TARGET (/tmp/jiva-doctor-*) on its own tmux socket, never
-# the live fleet. `claude` is a stub on PATH (prints the ready prompt, `agents` lists the boss), so nothing
+# the live hive. `claude` is a stub on PATH (prints the ready prompt, `agents` lists the queen), so nothing
 # boots for real and no trust dialog appears. One function per fault; each must self-heal or raise a flag:
 #   disk     ulimit -f 0 → one flags/disk-full, one log line (no error loop); cleared once writable
 #   quota    statusline rate_limits 87% → flags/quota + reason; spawn and assign refuse
@@ -21,7 +21,7 @@ trap 'T kill-server 2>/dev/null; rm -rf "$S"' EXIT
 mkdir -p "$S/stub" "$J/state"
 cat > "$S/stub/claude" <<'SH'
 #!/usr/bin/env bash
-[[ ${1:-} == agents ]] && { jq -nc --arg c "$JIVA_TARGET" '[{name: "boss", cwd: $c, status: "idle", startedAt: (now * 1000)}]'; exit; }
+[[ ${1:-} == agents ]] && { jq -nc --arg c "$JIVA_TARGET" '[{name: "queen", cwd: $c, status: "idle", startedAt: (now * 1000)}]'; exit; }
 echo "? for agents"; exec sleep 600
 SH
 chmod +x "$S/stub/claude"
@@ -76,7 +76,7 @@ wd() {
 }
 
 server_death() {
-  mkdir -p "$J/lease"; echo "$(date +%s) s-1 %0" > "$J/lease/boss"; T kill-server
+  mkdir -p "$J/lease"; echo "$(date +%s) s-1 %0" > "$J/lease/queen"; T kill-server
   local out; out="$("$ST" 2>&1)"
   t "tmux: dead → status says runtime down" grep -q 'runtime down' <<<"$out"
   t "tmux: lease not reported fresh" bash -c "! grep -q 'lease fresh' <<<'$out'"
@@ -105,26 +105,26 @@ wsh() { # code → run it after sourcing the watchdog (no loop), toast/say/heal/
   ( source "$H/core/watchdog.sh"; toast() { echo "toast $*"; }; heal() { echo HEAL; }; lease_tick() { echo LEASE; }
     JV="$S/stub/jv"; eval "$1" ) 2>&1
 }
-governor() { # pause: no heal/lease/rotation, one handoff say ≥95%; fleet $ cap auto-pauses once
+governor() { # pause: no heal/lease/rotation, one handoff say ≥95%; hive $ cap auto-pauses once
   local G="$H/core/governor.sh" out; printf '#!/usr/bin/env bash\necho "jv $*"\n' > "$S/stub/jv"; chmod +x "$S/stub/jv"
-  mkdir -p "$J"/{launch,rotate,parked,flags}; echo worker > "$J/launch/boss"; touch "$J/rotate/boss"; echo '{"tok":196000,"usd":1}' > "$J/state/boss.json"
+  mkdir -p "$J"/{launch,rotate,parked,flags}; echo worker > "$J/launch/queen"; touch "$J/rotate/queen"; echo '{"tok":196000,"usd":1}' > "$J/state/queen.json"
   "$G" pause doctor >/dev/null
   t "gov: pause → status line 1 PAUSED · " grep -q '^PAUSED · ' <<<"$("$ST" 2>&1)"
   out="$(wsh 'tick; tick')"
   t "gov: paused → no heal, no lease_tick, no rotation respawn" bash -c "! grep -qE 'HEAL|LEASE|jv respawn' <<<\"\$1\"" _ "$out"
   t "gov: paused ≥95% → one handoff-now say" test "$(grep -c 'handoff now' <<<"$out")" = 1
   t "gov: bar PAUSED" grep -q '^PAUSED · ' "$J/bar"
-  rm -f "$J/parked/boss"; echo '{"tok":1000}' > "$J/state/boss.json"   # the storm breaker parked it
+  rm -f "$J/parked/queen"; echo '{"tok":1000}' > "$J/state/queen.json"   # the storm breaker parked it
   "$G" resume >/dev/null; out="$(wsh tick)"
-  t "gov: resume → heal + lease_tick + rotation again" bash -c "grep -q HEAL <<<\"\$1\" && grep -q LEASE <<<\"\$1\" && grep -q 'jv respawn boss' <<<\"\$1\"" _ "$out"
-  rm -f "$J"/{parked,flags,rotate}/boss "$J"/nudged/boss*; echo '{"tok":1000,"usd":6}' > "$J/state/boss.json"
+  t "gov: resume → heal + lease_tick + rotation again" bash -c "grep -q HEAL <<<\"\$1\" && grep -q LEASE <<<\"\$1\" && grep -q 'jv respawn queen' <<<\"\$1\"" _ "$out"
+  rm -f "$J"/{parked,flags,rotate}/queen "$J"/nudged/queen*; echo '{"tok":1000,"usd":6}' > "$J/state/queen.json"
   out="$(JIVA_FLEET_USD=5 wsh 'tick; tick')"
-  t "gov: fleet \$6 ≥ cap 5 → paused + flags/fleet-usd" bash -c "grep -q fleet '$J/paused' && test -e '$J/flags/fleet-usd'"
-  local nt nh; nt=$(grep -c 'toast jiva: fleet' <<<"$out"); nh=$(grep -c '"governor".*"pause"' "$J/history.jsonl")
+  t "gov: hive \$6 ≥ cap 5 → paused + flags/hive-usd" bash -c "grep -q hive '$J/paused' && test -e '$J/flags/hive-usd'"
+  local nt nh; nt=$(grep -c 'toast jiva: hive' <<<"$out"); nh=$(grep -c '"governor".*"pause"' "$J/history.jsonl")
   t "gov: cap → one toast, one hist pause (+1 by hand)" test "$nt $nh" = "1 2"
   "$G" resume >/dev/null; JIVA_FLEET_USD=5 wsh tick >/dev/null
-  t "gov: resume clears pause + flag, cap does not re-pause" bash -c "[[ ! -e '$J/paused' && ! -e '$J/flags/fleet-usd' ]]"
-  rm -f "$J/state/boss.json" "$J/governor.capped" "$J"/nudged/boss*
+  t "gov: resume clears pause + flag, cap does not re-pause" bash -c "[[ ! -e '$J/paused' && ! -e '$J/flags/hive-usd' ]]"
+  rm -f "$J/state/queen.json" "$J/governor.capped" "$J"/nudged/queen*
 }
 
 auth() { # a pane tail with "API Error" → flags/<n>-auth + one toast; text gone → cleared

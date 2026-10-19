@@ -82,7 +82,7 @@ def render(date, frames, anim):
     total = round(len(frames) * STEP + (0 if drop else REBIRTH), 2)
     H = TOP + ROW * len(names) + 92
     o = [f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W} {H}" width="{W}" height="{H}" '
-         f'font-family="{FONT}" role="img" aria-labelledby="ht"><title id="ht">Recording of a JIVA fleet, '
+         f'font-family="{FONT}" role="img" aria-labelledby="ht"><title id="ht">Recording of a JIVA hive, '
          f'{date}: {html.escape(frames[-1]["bar"])}</title>',
          f'<rect width="{W}" height="{H}" fill="{BG}"/><rect x=".5" y=".5" width="{W - 1}" height="{H - 1}" '
          f'fill="none" stroke="{LINE}"/>', t(16, 28, "tmux -L jiva · watchdog every 5s", MUTE, 12) + "</text>",
@@ -111,10 +111,10 @@ def render(date, frames, anim):
                         f'width="{min(v, 200) * 1.6:.0f}" fill="{PINK if v >= 170 else CYAN}">'
                         ).replace("</text>", "</rect>") + "</g>")
     y = TOP + ROW * len(names) + 22
-    board = [" ".join(f["inbox"][-1]) if f["inbox"] else "" for f in frames]
+    comb = [" ".join(f["inbox"][-1]) if f["inbox"] else "" for f in frames]
     if anim and not drop:
-        board.append(f"{soul} handoff · stop → watchdog respawns {soul}")
-    o.append(series(board, total, anim, lambda v: t(16, y, v[:74], MUTE, 12)))
+        comb.append(f"{soul} handoff · stop → watchdog respawns {soul}")
+    o.append(series(comb, total, anim, lambda v: t(16, y, v[:74], MUTE, 12)))
     bars = [f["bar"] for f in frames]
     yb = H - 34
     o.append(f'<rect x="0" y="{yb}" width="{W}" height="34" fill="{PINK}"/>' + t(14, yb + 22, "[jiva]", BG, 13, 700)

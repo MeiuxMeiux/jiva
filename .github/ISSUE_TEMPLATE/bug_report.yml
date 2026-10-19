@@ -7,7 +7,7 @@ body:
       value: |
         Security problem? Do not file it here; use
         [private reporting](https://github.com/MeiuxMeiux/jiva/security/advisories/new).
-        Never paste keys, tokens or private board lines.
+        Never paste keys, tokens or private comb lines.
   - type: textarea
     id: what
     attributes:

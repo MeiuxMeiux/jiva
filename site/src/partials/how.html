@@ -5,12 +5,12 @@
       (<code>tmux -L jiva-&lt;repo&gt;</code>), so they never touch your own tmux.</p>
     <dl class="roles">
       <dt>desk</dt><dd>The only session you talk to. Relays asks and reports, and brings real decisions to you: server and deploy changes, spend, destructive ops, sudo.</dd>
-      <dt>boss</dt><dd>Splits a goal into task cards and assigns them. Doesn't write product code.</dd>
+      <dt>queen</dt><dd>Splits a goal into task cards and assigns them. Doesn't write product code.</dd>
       <dt>workers</dt><dd>One card each. They claim paths, do the work, run checks, ship.</dd>
       <dt>watchdog</dt><dd>Not an LLM. A bash loop that writes <code>.jiva/state.json</code>,
         the tmux status bar, flags and respawns.</dd>
     </dl>
-    <p id="asks"><strong>Asks bubble up.</strong> A worker that is stuck asks the boss. If the boss
+    <p id="asks"><strong>Asks bubble up.</strong> A worker that is stuck asks the queen. If the queen
       can't decide, it files a typed ask (question, options, default, class) for the desk. The
       watchdog batches open asks into one digest for the desk, which puts them to you. You answer
       in one place with <code>jiva answer &lt;id&gt;</code>. Only a <code>decision</code> ever falls
@@ -18,8 +18,8 @@
   </div>
   <figure class="diagram">
     <svg viewBox="0 0 640 380" role="img" aria-labelledby="dg-t dg-d">
-      <title id="dg-t">desk, boss and workers</title>
-      <desc id="dg-d">You talk to the desk. The desk talks to the boss. The boss assigns three workers.
+      <title id="dg-t">desk, queen and workers</title>
+      <desc id="dg-d">You talk to the desk. The desk talks to the queen. The queen assigns three workers.
         Asks travel back up the same path. A bash watchdog observes every session.</desc>
       <defs>
         <marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
@@ -31,7 +31,7 @@
       </defs>
       <g class="node you"><rect x="240" y="14" width="140" height="44" rx="4"/><text x="310" y="42">you</text></g>
       <g class="node"><rect x="240" y="104" width="140" height="44" rx="4"/><text x="310" y="132">desk</text></g>
-      <g class="node"><rect x="240" y="194" width="140" height="44" rx="4"/><text x="310" y="222">boss</text></g>
+      <g class="node"><rect x="240" y="194" width="140" height="44" rx="4"/><text x="310" y="222">queen</text></g>
       <g class="node w"><rect x="70" y="300" width="130" height="44" rx="4"/><text x="135" y="328">w1</text></g>
       <g class="node w"><rect x="245" y="300" width="130" height="44" rx="4"/><text x="310" y="328">w2</text></g>
       <g class="node w"><rect x="420" y="300" width="130" height="44" rx="4"/><text x="485" y="328">w3</text></g>

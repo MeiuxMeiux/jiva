@@ -17,9 +17,9 @@ parked() { [[ -e $J/parked/$1 ]]; }
 once() { [[ ! -e $J/nudged/$1.$2 ]] && touch "$J/nudged/$1.$2"; }  # name kind → true the first time
 fresh_life() { rm -f "$J/nudged/$1" "$J/nudged/$1".{ceil,alert,burn,time,usd,last,pause}; }
 
-burn() { # name tok — tokens since this session's last board line; nudged/<name>.last = "lines tok"
+burn() { # name tok — tokens since this session's last comb line; nudged/<name>.last = "lines tok"
   local name=$1 tok=$2 n lc=-1 lt=0
-  n=$(awk -v n="$name" '$2 == n' "$J/board.log" 2>/dev/null | wc -l)
+  n=$(awk -v n="$name" '$2 == n' "$J/comb.log" 2>/dev/null | wc -l)
   [[ -e $J/nudged/$name.last ]] && read -r lc lt < "$J/nudged/$name.last"
   [[ $lc =~ ^-?[0-9]+$ && $lt =~ ^-?[0-9]+$ ]] || { lc=-1; lt=0; }   # file text never reaches (( ))
   if (( n != lc )); then
@@ -81,7 +81,7 @@ heal() { # live-names → respawn a launched session whose pane died or whose ag
     [[ -e $f ]] || continue; n=$(basename "$f")
     if grep -qx "$n" <<<"$live" && ! grep -qx "$n 1" <<<"$panes"; then unset "missing[$n]"; continue; fi
     parked "$n" && continue
-    T capture-pane -p -t "jiva:$n" 2>/dev/null | grep -q 'trust this folder' && continue  # human's click
+    T capture-pane -p -t "jiva:$n" 2>/dev/null | grep -q 'trust this folder' && continue  # keeper's click
     : "${missing[$n]:=$now}"
     grep -qx "$n 1" <<<"$panes" || (( now - missing[$n] > 15 )) || continue
     missing[$n]=$now; heal_ok "$n" || continue

@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# spike helpers — all tmux traffic goes to the dedicated `jiva` server, never the human's.
+# spike helpers — all tmux traffic goes to the dedicated `jiva` server, never the keeper's.
 set -euo pipefail
 T() { tmux -L jiva "$@"; }
 ROOT="$(git -C "$(dirname "${BASH_SOURCE[0]}")" rev-parse --show-toplevel)"

@@ -8,7 +8,7 @@ H="$(cd "$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")/.." && pwd)"
 S="$(mktemp -d /tmp/jiva-doctor-XXXXXX)"; trap 'rm -rf "$S"' EXIT
 printf '#!/usr/bin/env bash\necho "$1|$2" >> %q\n' "$S/says" > "$S/say"; chmod +x "$S/say"; : > "$S/says"
 export JIVA_TARGET="$S" JIVA_SAY="$S/say" JIVA_DESK=desk
-V() { JIVA_NAME=boss "$H/core/verbs.sh" "$@"; }
+V() { JIVA_NAME=queen "$H/core/verbs.sh" "$@"; }
 # shellcheck source=core/lib.sh
 source "$H/core/lib.sh"
 # shellcheck source=core/asks.sh
@@ -23,19 +23,19 @@ closed() { jq -r --arg i "$1" "select(.id == \$i) | .$2" "$A/answered.jsonl" 2>/
 # ask → inbox → answer with text
 id="$(idof "$(V ask "ship w2?" "yes|no" no)")"
 t "ask writes one decision line" test "$(jq -r '"\(.class) \(.opts | length) \(.deadline - .ts)"' "$A/open.jsonl")" = "decision 2 1800"
-t "inbox shows id, from, default" grep -q "^$id .*boss \[decision\]: ship w2?.*default: no" <(V inbox 1)
+t "inbox shows id, from, default" grep -q "^$id .*queen \[decision\]: ship w2?.*default: no" <(V inbox 1)
 V answer "$id" yes >/dev/null
 t "answer closes it" test "$(ask_count)" = 0
 t "answer recorded" test "$(closed "$id" answer)" = yes
-t "asker gets the say text" grep -qx "boss|JIVA answer $id: yes" "$S/says"
+t "asker gets the say text" grep -qx "queen|JIVA answer $id: yes" "$S/says"
 
 # answer with no text applies the default
 id="$(idof "$(V ask "rebase?" "a,b" b)")"; V answer "$id" >/dev/null
 t "bare answer applies default" test "$(closed "$id" answer)" = b
-t "unknown id refused" bash -c "! JIVA_NAME=boss '$H/core/verbs.sh' answer zzzzzz 2>/dev/null"
-t "bad class refused" bash -c "! JIVA_NAME=boss '$H/core/verbs.sh' ask q o d bogus 2>/dev/null"
+t "unknown id refused" bash -c "! JIVA_NAME=queen '$H/core/verbs.sh' answer zzzzzz 2>/dev/null"
+t "bad class refused" bash -c "! JIVA_NAME=queen '$H/core/verbs.sh' ask q o d bogus 2>/dev/null"
 V claim a b/c d >/dev/null; V unclaim b/c/ d >/dev/null
-t "unclaim drops only those paths" test "$(cat "$J/claims/boss")" = a
+t "unclaim drops only those paths" test "$(cat "$J/claims/queen")" = a
 t "unclaim with no claims file refused" bash -c "! JIVA_NAME=nob '$H/core/verbs.sh' unclaim a 2>/dev/null"
 
 # expiry: decision → default once; deploy stays open
@@ -43,7 +43,7 @@ id="$(idof "$(JIVA_ASK_TTL=-1 V ask "pick a name?" "x|y" y)")"
 dep="$(idof "$(JIVA_ASK_TTL=-1 V ask "deploy site?" "go|hold" go deploy)")"
 ask_expire; ask_expire
 t "expired decision got its default" test "$(closed "$id" answer)/$(closed "$id" by)" = "y/expired"
-t "expired logs expired→default" grep -q "ask $id expired→default: y" "$J/board.log"
+t "expired logs expired→default" grep -q "ask $id expired→default: y" "$J/comb.log"
 t "expiry applied once" test "$(grep -c "\"id\":\"$id\"" "$A/answered.jsonl")" = 1
 t "deploy ask never auto-resolves" test "$(jq -r .id "$A/open.jsonl")/$(closed "$dep" answer)" = "$dep/"
 
@@ -80,13 +80,13 @@ t "recap: flags w3" grep -q '^recap: flags w3 $' <<<"$rc"
 t "recap: worker gets none" bash -c "! CLAUDE_PROJECT_DIR='$S' JIVA_ROLE=worker JIVA_NAME=w1 '$H/core/hooks/session-start.sh' </dev/null | grep -q recap:"
 : > "$A/open.jsonl"; rm -f "$J/flags/w3"
 
-# message ttl: board lines carry an epoch stamp; inbox/watch hide lines past JIVA_MSG_TTL (asks keep deadlines)
-printf '01:00 w5     note: stale line\t%s\n' $(( $(date +%s) - 30000 )) >> "$J/board.log"
+# message ttl: comb lines carry an epoch stamp; inbox/watch hide lines past JIVA_MSG_TTL (asks keep deadlines)
+printf '01:00 w5     note: stale line\t%s\n' $(( $(date +%s) - 30000 )) >> "$J/comb.log"
 V report note "fresh line" >/dev/null
-t "ttl: board line stamped" grep -qP '^\d\d:\d\d boss   note: fresh line\t\d{10}$' "$J/board.log"
+t "ttl: comb line stamped" grep -qP '^\d\d:\d\d queen  note: fresh line\t\d{10}$' "$J/comb.log"
 out="$(V inbox 50)"
 t "ttl: inbox hides stale line" bash -c '! grep -q "stale line" <<<"$1"' _ "$out"
-t "ttl: inbox shows fresh line, stamp stripped" grep -qP '^\d\d:\d\d boss   note: fresh line$' <<<"$out"
+t "ttl: inbox shows fresh line, stamp stripped" grep -qP '^\d\d:\d\d queen  note: fresh line$' <<<"$out"
 t "ttl: JIVA_MSG_TTL widens it" grep -q "stale line" <<<"$(JIVA_MSG_TTL=40000 V inbox 50)"
 out="$("$H/core/watch.sh" 2>/dev/null)"
 t "ttl: watch hides stale, shows fresh" bash -c 'grep -q "fresh line" <<<"$1" && ! grep -q "stale line" <<<"$1"' _ "$out"

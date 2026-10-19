@@ -1,6 +1,6 @@
 {"name": "fake-humans",
- "title": "Fake Humans",
- "boss": {"slot": 0, "name": "Boss", "color": "#f2f0ff"},
+ "title": "Fake Keepers",
+ "queen": {"slot": 0, "name": "Queen", "color": "#f2f0ff"},
  "slots": [
   {"slot": 1, "name": "Amara", "color": "#e75555", "avatar": "avatars/01.svg", "portrait": "avatars/01.webp"},
   {"slot": 2, "name": "Bao", "color": "#e77a55", "avatar": "avatars/02.svg", "portrait": "avatars/02.webp"},

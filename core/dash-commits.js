@@ -9,11 +9,11 @@
   let opener = null;
   const get = async u => { const r = await fetch(u, { cache: "no-store" }); if (!r.ok) throw new Error(r.status); return r.json(); };
 
-  // soul chip: a fleet soul (wN/boss) gets its pack avatar + slot colour; "desk" (trailer-less) gets a plain D
+  // soul chip: a hive soul (wN/queen) gets its pack avatar + slot colour; "desk" (trailer-less) gets a plain D
   function chip(s) {
-    const name = txt(s, 8).replace(/[^\w]/g, "") || "?", sl = /^(w\d+|boss)$/.test(name) ? soul(name) : null;
+    const name = txt(s, 8).replace(/[^\w]/g, "") || "?", sl = /^(w\d+|queen)$/.test(name) ? soul(name) : null;
     const span = el("span", null, "soul"), av = el("span", null, "av");
-    const initial = () => av.replaceChildren(el("b", (/^(w\d+|boss|desk)$/.test(name) ? name[0] : name.slice(0, 2)).toUpperCase()));
+    const initial = () => av.replaceChildren(el("b", (/^(w\d+|queen|desk)$/.test(name) ? name[0] : name.slice(0, 2)).toUpperCase()));
     if (sl) span.style.setProperty("--slot", sl.color);
     if (sl && sl.avatar) {
       const img = el("img"); img.alt = ""; img.addEventListener("error", initial); img.src = sl.avatar; av.appendChild(img);

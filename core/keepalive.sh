@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # keepalive — a hidden Windows-side wsl.exe holds the distro up so the jiva tmux server survives
-# closing Windows Terminal. Lasts until reboot. Human-run (`! just keepalive`); auto mode won't start it.
+# closing Windows Terminal. Lasts until reboot. Keeper-run (`! just keepalive`); auto mode won't start it.
 set -euo pipefail
 running() { pgrep -f '^jiva-keepalive' >/dev/null; }
 case "${1:-start}" in

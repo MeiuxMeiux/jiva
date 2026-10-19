@@ -9,7 +9,7 @@ skills() {   # every plugin skill stays a symlink (worktree + index mode 120000)
     [[ -e $f || -L $f ]] || continue
     r="$(readlink -f "$f")"; m="$(git ls-files -s -- "$f" | cut -c1-6)"
     if [[ ! -L $f || ! -f $r || $r != "$(pwd -P)"/core/roles/* || ${m:-120000} != 120000 ]]; then
-      echo "FAIL plugin skill $(basename "$(dirname "$f")") is not a symlink into core/roles (edit the role via the human)"; bad=1
+      echo "FAIL plugin skill $(basename "$(dirname "$f")") is not a symlink into core/roles (edit the role via the keeper)"; bad=1
     fi
   done
 }

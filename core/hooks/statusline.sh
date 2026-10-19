@@ -10,7 +10,7 @@ jq -c '{ts: (now|floor), tok: (.context_window.total_input_tokens // 0),
         q5h: (.rate_limits.five_hour.used_percentage // null),
         q7d: (.rate_limits.seven_day.used_percentage // null)}' <<<"$in" > "$dir/$name.tmp" &&
   mv "$dir/$name.tmp" "$dir/$name.json"
-if [[ $name == boss ]]; then   # refresh the boss lease (no-op if another fresh holder has it)
+if [[ $name == queen ]]; then   # refresh the queen lease (no-op if another fresh holder has it)
   # shellcheck source=core/lease.sh
   source "$JIVA_HOME/core/lease.sh"; lease_take "$(jq -r '.session_id // "?"' <<<"$in")" "$(lease_pane)" || true
 fi

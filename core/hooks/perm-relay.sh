@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # PermissionRequest hook (opt-in; not wired in core/settings.json) — relays the prompt to the desk,
-# never decides on its own. Posts .jiva/asks/<id>.json; the human answers by writing allow|deny
+# never decides on its own. Posts .jiva/asks/<id>.json; the keeper answers by writing allow|deny
 # to .jiva/asks/<id>.answer (in the JIVA repo: `just j-perm-answer <id> allow|deny`).
 # No answer within JIVA_ASK_WAIT secs, or .jiva/STOP present → exit 0 silently → native prompt in the pane,
 # and append `<ts> <session> <tool>` to .jiva/flags/perm-timeout (last 20 lines; desk clears with rm).

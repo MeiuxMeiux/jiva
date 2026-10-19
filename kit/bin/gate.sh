@@ -1,15 +1,15 @@
 #!/usr/bin/env bash
-# gate — anything that needs the human becomes ONE runnable line ending in a hard gate, so it fails loudly.
-# Seats propose rows; ONLY the human runs them. A wrong row gets a corrected new row, never an edit.
+# gate — anything that needs the keeper becomes ONE runnable line ending in a hard gate, so it fails loudly.
+# Cells propose rows; ONLY the keeper runs them. A wrong row gets a corrected new row, never an edit.
 #   gate.sh add "<one line>" [why]   linted: one line, ends `… && echo X-OK || { echo X-MISSING; exit 1; }`,
 #                                     no $VAR inside a single-quoted sed/awk program (never expands: silent no-op)
 #   gate.sh list                      every row + status (pending | ok | fail <rc>)
 #   gate.sh run                       what would run (pending + failed rows)
-#   gate.sh run go <id…>              human only (refused inside a seat): run exactly these, in order, stop at a fail
+#   gate.sh run go <id…>              keeper only (refused inside a cell): run exactly these, in order, stop at a fail
 #   gate.sh result <id> [n]           status + last n output lines; exit 0 ok, 1 fail, 2 pending
-# Rows: .fleet/state/gate/rows.tsv (id, from, why, cmd) · output <id>.out · exit code <id>.rc
+# Rows: .hive/state/gate/rows.tsv (id, from, why, cmd) · output <id>.out · exit code <id>.rc
 set -uo pipefail
-ROOT="${FLEET_ROOT:-$(git rev-parse --show-toplevel)}"; G="$ROOT/.fleet/state/gate"; R="$G/rows.tsv"
+ROOT="${FLEET_ROOT:-$(git rev-parse --show-toplevel)}"; G="$ROOT/.hive/state/gate"; R="$G/rows.tsv"
 mkdir -p "$G"; touch "$R"
 die() { echo "gate: $*" >&2; exit 1; }
 row() { [[ ${1:-} =~ ^g[0-9a-f]{6}$ ]] && awk -F'\t' -v id="$1" '$1 == id' "$R" | tail -1; }
@@ -33,7 +33,7 @@ add() {
   lint "$c" || die "row refused — write a corrected one"
   id="g$(od -An -N3 -tx1 /dev/urandom | tr -d ' \n')"
   { flock 8; printf '%s\t%s\t%s\t%s\n' "$id" "${FLEET_NAME:-desk}" "${why//$'\t'/ }" "$c" >> "$R"; } 8> "$G/lock"
-  echo "gate $id queued — the human runs \`just fleet gate-run go $id\`; check it with \`just fleet gate-result $id\`"
+  echo "gate $id queued — the keeper runs \`just hive gate-run go $id\`; check it with \`just hive gate-result $id\`"
 }
 
 list() { # [open]
@@ -46,7 +46,7 @@ list() { # [open]
 }
 
 go() {
-  [[ -z ${FLEET_ROLE:-} ]] || die "go is human-only (this is fleet seat ${FLEET_NAME:-?}) — ask the human"
+  [[ -z ${FLEET_ROLE:-} ]] || die "go is keeper-only (this is hive cell ${FLEET_NAME:-?}) — ask the keeper"
   (($#)) || die "run go <id…> — \`gate.sh run\` shows the plan first"
   local id r rc
   for id; do r=$(row "$id"); [[ -n $r ]] || die "no row '$id'"; [[ $(st "$id") != ok ]] || die "$id already ran ok"; done

@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
-# governor — fleet pause/resume + fleet $ cap (docs/history/PLAN.md "Loops"). `.jiva/paused` = "<epoch> <reason…>".
+# governor — hive pause/resume + hive $ cap (docs/history/PLAN.md "Loops"). `.jiva/paused` = "<epoch> <reason…>".
 # While paused the watchdog keeps writing state but does no dead-pane heal, no lease spawn and no rotation
 # respawn; a session at ≥95% of the context ceiling gets ONE "handoff now" say per life (nudged/<n>.pause).
-# Fleet $ cap: JIVA_FLEET_USD (0 = off) vs Σ sessions[].usd → auto-pause once + flags/fleet-usd + toast +
+# Hive $ cap: JIVA_FLEET_USD (0 = off) vs Σ sessions[].usd → auto-pause once + flags/hive-usd + toast +
 # hist; `resume` clears both. governor/capped keeps it from re-pausing until Σ drops below the cap.
 #   governor.sh pause [reason] | resume | status       (sourced by watchdog/status: paused, gov_tick)
 set -uo pipefail
@@ -17,22 +17,22 @@ gov_pause() { # reason → .jiva/paused + hist; 1 if already paused
   paused && return 1; mkdir -p "$J"; echo "$(date +%s) ${1:-paused by hand}" > "$GOV"
   hist governor st=pause why="${1:-hand}"
 }
-gov_resume() { # → rm paused + flags/fleet-usd + hist; 1 if not paused
-  paused || return 1; rm -f "$GOV" "$J/flags/fleet-usd"; hist governor st=resume
+gov_resume() { # → rm paused + flags/hive-usd + hist; 1 if not paused
+  paused || return 1; rm -f "$GOV" "$J/flags/hive-usd"; hist governor st=resume
 }
-gov_tick() { # merged-json → fleet $ cap check; watchdog calls it each tick (needs toast)
+gov_tick() { # merged-json → hive $ cap check; watchdog calls it each tick (needs toast)
   local cap=${JIVA_FLEET_USD:-0} sum; sum="$(jq -r '[.sessions[].usd // 0] | add // 0' <<<"$1")"
   awk -v c="$cap" 'BEGIN { exit !(c > 0) }' || { rm -f "$J/governor.capped"; return 0; }
   if awk -v s="$sum" -v c="$cap" 'BEGIN { exit !(s >= c) }'; then
     [[ -e $J/governor.capped ]] && return 0
-    touch "$J/governor.capped"; printf 'fleet $%.2f ≥ cap $%s\n' "$sum" "$cap" > "$J/flags/fleet-usd"
-    gov_pause "fleet \$$(printf %.2f "$sum") ≥ cap \$$cap"
-    toast "jiva: fleet \$$(printf %.2f "$sum") ≥ JIVA_FLEET_USD \$$cap — paused (jiva pause/resume)"
+    touch "$J/governor.capped"; printf 'hive $%.2f ≥ cap $%s\n' "$sum" "$cap" > "$J/flags/hive-usd"
+    gov_pause "hive \$$(printf %.2f "$sum") ≥ cap \$$cap"
+    toast "jiva: hive \$$(printf %.2f "$sum") ≥ JIVA_FLEET_USD \$$cap — paused (jiva pause/resume)"
   else rm -f "$J/governor.capped"; fi
 }
 gov_handoff() { # name tok → while paused, one "handoff now" say per life at ≥95% of CEIL
   paused && (( $2 * 100 >= CEIL * 95 )) && once "$1" pause || return 0
-  "$JV" say "$1" "JIVA governor: fleet paused and context at ${2} tokens — handoff now: \`jiva handoff\`, then stop."
+  "$JV" say "$1" "JIVA governor: hive paused and context at ${2} tokens — handoff now: \`jiva handoff\`, then stop."
 }
 
 [[ ${BASH_SOURCE[0]} == "$0" ]] || return 0

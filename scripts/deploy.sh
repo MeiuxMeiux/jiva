@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# deploy the static site to your Apache host. HUMAN-RUN ONLY — agents never deploy (docs/DEPLOY.md).
+# deploy the static site to your Apache host. KEEPER-RUN ONLY — agents never deploy (docs/DEPLOY.md).
 #   (none)    site-check → rsync to releases/<sha>-<ts> → atomic symlink swap → keep last 5 → verify
 #   rollback  point `current` at the previous release
 #   verify    curl header asserts against the live site

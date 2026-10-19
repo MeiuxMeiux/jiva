@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# hero capture — READ-ONLY snapshots of the live fleet for site/src/hero/frames.txt (the hero is a real recording).
+# hero capture — READ-ONLY snapshots of the live hive for site/src/hero/frames.txt (the hero is a real recording).
 # Every 5s for ~2 min: the watchdog bar (tmux status source .jiva/bar, plus the watchdog pane's last
 # line via capture-pane -p), `jiva status`, `jiva inbox 8`. Never attaches, never sends keys.
 # Redacts token-like strings, absolute paths, commit hashes, branch names; inbox bodies trimmed.

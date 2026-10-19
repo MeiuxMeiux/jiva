@@ -12,7 +12,7 @@ root=$(cd "$(dirname "$0")/.." && pwd)
 slot=$1; model=${2:-openai/gpt-image-2:free}; seed=${3:-0}
 # shellcheck source=keys.sh
 source "$root/scripts/keys.sh"
-load_key IMAGEROUTER_API_KEY "$IMAGEROUTER_KEY_FILE" || { echo "art-gen: no key — ask the human" >&2; exit 1; }
+load_key IMAGEROUTER_API_KEY "$IMAGEROUTER_KEY_FILE" || { echo "art-gen: no key — ask the keeper" >&2; exit 1; }
 exec python3 -I - "$root" "$slot" "$model" "$seed" <<'PY'
 import base64, hashlib, json, os, pathlib, sys, time, urllib.error, urllib.request
 import yaml
@@ -50,7 +50,7 @@ if ledger.is_file():
     for ln in ledger.read_text().splitlines()[1:]:
         total += float(ln.split("\t")[3])
 if est > 0 and total + est >= budget:
-    sys.exit(f"art-gen: HARD STOP — ledger ${total:.4f} + est ${est:.2f} ≥ budget ${budget:.2f}; ask the human")
+    sys.exit(f"art-gen: HARD STOP — ledger ${total:.4f} + est ${est:.2f} ≥ budget ${budget:.2f}; ask the keeper")
 
 body = {"model": model, "prompt": prompt, "size": size, "quality": "low" if model.endswith(":free") else quality,
         "background": "transparent", "output_format": "png", "response_format": "b64_json", "n": 1}

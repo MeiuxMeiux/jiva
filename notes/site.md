@@ -15,7 +15,7 @@
   committed; build only copies. SMIL not CSS: check bans <style> in svg. Notch = motion.css keyframes,
   parsed by hero.py (CSS copy is otherwise unused). 2026-10-13 capture holds a real w1 respawn (86k→37k).
 - Hero bar = watchdog format `N live · N flag · NNNk · 5h N%`; dashboard labels = state.json fields. Deploy is run by a person, never an agent (docs/DEPLOY.md). `just site-verify <url>` = verify.sh, curl only. site-dev uses scripts/serve.py: http.server strips `..` and serves / (200), which hid the check. verify-assets.sh: HEAD every ref, FAIL empty/wrong Content-Type (live .webp went untyped + nosniff).
-- favicon.svg + og.svg hand-written in src/; `bash site/scripts/raster.sh` renders og.png (1200×630), apple-touch-icon, favicon.ico (committed). seo.py: head/OG/robots+sitemap/humans/security.txt + leak scan of build (only jiva@meiuxmeiux.com, security.txt's first Contact, is exempt). No manifest (CSP default-src none).
+- favicon.svg + og.svg hand-written in src/; `bash site/scripts/raster.sh` renders og.png (1200×630), apple-touch-icon, favicon.ico (committed). seo.py: head/OG/robots+sitemap/keepers/security.txt + leak scan of build (only jiva@meiuxmeiux.com, security.txt's first Contact, is exempt). No manifest (CSP default-src none).
 - drift.py: `jiva <x>`/`just <x>` inside <code>/<pre> (+ hero frames, + verbs <ol>) must be in `jiva help` /
   `just --list` (FAIL); unnamed WARN, zeroed by partials/reference.html (§08; GENERATED, gitignored, by
   reference.py, site-build step 1). `drift.py <scratch src>` proves FAIL. Copy facts ← core/, not notes.

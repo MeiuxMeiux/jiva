@@ -7,7 +7,7 @@
     {
       "name": "jiva",
       "source": "./",
-      "description": "JIVA fleet hooks + role skills",
+      "description": "JIVA hive hooks + role skills",
       "author": {
         "name": "saintpetejackboy"
       }

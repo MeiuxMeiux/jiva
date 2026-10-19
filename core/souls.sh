@@ -2,13 +2,13 @@
 # souls — semi-persistent slot binding (notes/roster.md). Sourced after lib.sh ($J, $JIVA_HOME).
 # $J/souls.json = {"w1": {"slot": 1}, …}: a session keeps its slot across respawn/rotate/up/down; a new
 # session takes the lowest free live slot (1–$SOUL_MAX); none free → unbound (label = session name).
-# boss → slot 0 (pack .boss), never stored; desk/watchdog are not bodies → never bound.
+# queen → slot 0 (pack .queen), never stored; desk/watchdog are not bodies → never bound.
 # Names are LABELS only (dash, bar, pane titles): never injected into prompts or role payloads (PLAN "Souls").
 # Addresses, claims and messaging stay wN. Writes are flock'd ($J/souls.lock) and atomic (tmp → mv).
 SOUL_PACK="${JIVA_SOUL_PACK:-$JIVA_HOME/packs/default/pack.json}"; SOUL_MAX="${JIVA_SOUL_MAX:-12}"
 
-souls_bind() { # session… → bind every unbound one (skips boss/desk/watchdog); prints nothing
-  local want; want="$(printf '%s\n' "$@" | grep -vxE 'boss|desk|watchdog|' | sort -V | jq -Rsc 'split("\n") | map(select(. != ""))')"
+souls_bind() { # session… → bind every unbound one (skips queen/desk/watchdog); prints nothing
+  local want; want="$(printf '%s\n' "$@" | grep -vxE 'queen|desk|watchdog|' | sort -V | jq -Rsc 'split("\n") | map(select(. != ""))')"
   [[ $want == '[]' ]] && return 0
   mkdir -p "$J"
   (
@@ -22,8 +22,8 @@ souls_bind() { # session… → bind every unbound one (skips boss/desk/watchdog
   ) 9>"$J/souls.lock"
 }
 
-soul_bind() { # session → its slot (binding it if new); boss → 0; exit 1 + empty when unbound
-  [[ $1 == boss ]] && { echo 0; return 0; }
+soul_bind() { # session → its slot (binding it if new); queen → 0; exit 1 + empty when unbound
+  [[ $1 == queen ]] && { echo 0; return 0; }
   souls_bind "$1"
   local s; s="$(jq -r --arg n "$1" '.[$n].slot // empty' "$J/souls.json" 2>/dev/null)"
   [[ -n $s ]] && echo "$s"
@@ -33,7 +33,7 @@ souls_map() { # session… → {"<s>": {name, slot, color, avatar}} from souls.j
   printf '%s\n' "$@" | jq -Rsc --slurpfile p "$SOUL_PACK" --slurpfile b <(cat "$J/souls.json" 2>/dev/null || echo '{}') '
     ($p[0]) as $p | ($b[0] // {}) as $b
     | split("\n") | map(select(. != "")) | map({(.): (
-        if . == "boss" then ($p.boss + {avatar: ($p.boss.avatar // null)})
+        if . == "queen" then ($p.queen + {avatar: ($p.queen.avatar // null)})
         else (($b[.].slot // null) as $s | ($p.slots | map(select(.slot == $s)) | first)
               // {name: ., slot: null, color: null, avatar: null}) end
         | {name, slot, color, avatar})}) | add // {}'

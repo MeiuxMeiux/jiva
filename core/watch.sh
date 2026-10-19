@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
-# watch — one live terminal view for the human, redrawn every ${JIVA_WATCH_EVERY:-2}s:
-#   status line (core/status.sh line 1 + quota) · session rows · FLAGS · OPEN ASKS · ALERTS · last board lines.
+# watch — one live terminal view for the keeper, redrawn every ${JIVA_WATCH_EVERY:-2}s:
+#   status line (core/status.sh line 1 + quota) · session rows · FLAGS · OPEN ASKS · ALERTS · last comb lines.
 # Keys: q quit · a answer (`<id> [text]` → jiva answer) · any other key redraws. Piped (non-tty): one frame, exit 0.
 # The first line goes red when it says lease stale / runtime down / protected ask / quota ≥85% (plain if NO_COLOR).
 set -uo pipefail
 # shellcheck source=core/lib.sh
 source "$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")/lib.sh"
-QUIET="${JIVA_QUIET:-40000}"   # tok since the last board line before a row reads "quiet"
+QUIET="${JIVA_QUIET:-40000}"   # tok since the last comb line before a row reads "quiet"
 PROTECTED="permission deploy spend destructive sudo remote license"   # mirrors ASK_PROTECTED in core/asks.sh
 TTY=0; [[ -t 1 ]] && TTY=1
 RED="" OFF=""
@@ -37,7 +37,7 @@ alarm() { # line extra-words → alarm words to append (empty = calm)
   printf '%s' "$w"
 }
 
-sessions() { # rows + "· Nm ago verb text" from the session's last board line; "quiet" = tok +>QUIET since it
+sessions() { # rows + "· Nm ago verb text" from the session's last comb line; "quiet" = tok +>QUIET since it
   [[ -s $J/state.json ]] || return 0
   local nm r name x y lt last cols tok; nm=$(( 10#$(date +%H) * 60 + 10#$(date +%M) )); cols=$(tput cols 2>/dev/null || echo 120)
   (( TTY )) || cols=${COLUMNS:-120}
@@ -94,7 +94,7 @@ frame() { # build the whole frame in one variable
   rows=$(tput lines 2>/dev/null || echo 40); (( TTY )) || rows=${LINES:-40}
   used=$(( 3 + $(grep -c '' <<<"$body") ))
   n=$(( rows - used - 1 )); (( n < 5 )) && n=5
-  F="$top"$'\n'"$body"$'\n'"-- board (last $n)"$'\n'"$(board_tail "$n")"
+  F="$top"$'\n'"$body"$'\n'"-- comb (last $n)"$'\n'"$(board_tail "$n")"
   (( TTY )) || return 0
   F+=$'\n'"[q] quit  [a] answer  [any] redraw   $(date +%H:%M:%S)"
   local l cols out=""; cols=$(tput cols 2>/dev/null || echo 120)   # clip, so long lines never wrap the header away

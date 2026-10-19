@@ -2,25 +2,25 @@
 # jiva — launcher + verbs for any repo. Sessions live on a private tmux server (one socket per repo),
 # never your own. Run from the target repo (or set JIVA_TARGET); code always comes from JIVA_HOME.
 #   plugin [install|uninstall|status|mode]  local plugin at user scope (plugin/install.sh); mode = hooks source
-#   init                make this repo fleet-ready (.jiva/, .gitignore, CLAUDE.md pointer if absent)
-#   up [profile]        watchdog + seats: solo | duo[:N] | full[:N] | N (auto from host + quota; prints why)
+#   init                make this repo hive-ready (.jiva/, .gitignore, CLAUDE.md pointer if absent)
+#   up [profile]        watchdog + cells: solo | duo[:N] | full[:N] | N (auto from host + quota; prints why)
 #   spawn <role> <name> start one session in its own window
 #   respawn <name>      kill the pane and boot a fresh body (same role/name, re-reads boot payload)
 #   assign <w> <card>   install a task card for worker <w>, respawn it, kick it off
-#   restart-watchdog    respawn the watchdog pane (picks up core/watchdog.sh edits; fleet untouched)
+#   restart-watchdog    respawn the watchdog pane (picks up core/watchdog.sh edits; hive untouched)
 #   say <name> <text>   type "[HH:MM] text" into a session (the ts is the message ttl stamp)
 #   down                stop everything (kills this target's tmux server + dash only)
-#   status              one-line fleet summary from .jiva/state.json
+#   status              one-line hive summary from .jiva/state.json
 #   doctor [live|breakers|asks|perm|lease|plugin|watch|fault]  budgets as tests; `live` kill -9 self-heal; others run only that set
 #   dash [start|stop|url]  tier-1 dashboard on 127.0.0.1:<random port>
-#   watch               one live terminal view: bar + open asks + last board lines (core/watch.sh)
+#   watch               one live terminal view: bar + open asks + last comb lines (core/watch.sh)
 #   mine [n]            rank repeated Bash commands from this repo's transcripts (recipe candidates)
 #   roster [gen|check|show] [pack]  name/color/avatar pack tooling (scripts/roster.sh; default pack)
-#   pick <paths…>       best idle worker for these paths (affinity table; boss still chooses)
+#   pick <paths…>       best idle worker for these paths (affinity table; queen still chooses)
 #   check               files ≤150 lines, notes ≤30, scripts parse, shellcheck (run in the target)
 #   scratch <name> [rm] make (print) or clean /tmp/jiva-scratch/<name> — never rm a computed path yourself
-#   pause [reason]      fleet pause: watchdog stops heal, lease spawn and rotation (core/governor.sh)
-#   resume              lift the pause (and the fleet $ cap flag)
+#   pause [reason]      hive pause: watchdog stops heal, lease spawn and rotation (core/governor.sh)
+#   resume              lift the pause (and the hive $ cap flag)
 #   governor [status]   running, or paused: <reason> (<age>)
 #   spike               re-test version-sensitive assumptions on scratch socket jiva-spike
 #   claim|unclaim|report|ask|answer|ship|handoff|inbox|pending  session verbs (core/verbs.sh)
@@ -30,7 +30,7 @@ set -euo pipefail
 source "$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")/lib.sh"
 BOSS_MODEL="${JIVA_BOSS_MODEL:-opus}"; WORKER_MODEL="${JIVA_WORKER_MODEL:-opus}"   # aliases; pin ids in ~/.config/jiva/env
 DESK="${JIVA_DESK:-desk}"
-# a tmux server started from inside claude (desk/boss `jiva up`) leaks that session's identity to every pane
+# a tmux server started from inside claude (desk/queen `jiva up`) leaks that session's identity to every pane
 LEAKED="CLAUDECODE CLAUDE_PID CLAUDE_EFFORT CLAUDE_PROJECT_DIR CLAUDE_CODE_SESSION_ID CLAUDE_CODE_CHILD_SESSION
   CLAUDE_CODE_ENTRYPOINT CLAUDE_CODE_EXECPATH CLAUDE_CODE_MESSAGING_SOCKET CLAUDE_CODE_MESSAGING_TOKEN CLAUDE_CODE_SESSION_ATTENDED"
 
@@ -61,20 +61,20 @@ quota_ok() {
   (( ${hi%.*} < ${JIVA_QUOTA_MAX:-85} )) || { echo "jiva: quota at ${hi}% — not spawning" >&2; return 1; }
 }
 
-lean() { # lean seat (default; JIVA_LEAN=0 opts out): no MCP servers, no tools a seat never needs (~half the boot context)
+lean() { # lean cell (default; JIVA_LEAN=0 opts out): no MCP servers, no tools a cell never needs (~half the boot context)
   [[ ${JIVA_LEAN:-1} == 0 ]] || printf -- '--strict-mcp-config --disallowedTools %q ' "${JIVA_LEAN_DENY:-Artifact,ArtifactComments,ArtifactData,NotebookEdit}"; }
 cmdline() { # role name → shell command for the pane (settings rendered with absolute JIVA_HOME hooks)
-  local model=$WORKER_MODEL; [[ $1 == boss ]] && model=$BOSS_MODEL
+  local model=$WORKER_MODEL; [[ $1 == queen ]] && model=$BOSS_MODEL
   render_settings
   printf 'unset %s; PATH=%q:$PATH JIVA_HOME=%q JIVA_TARGET=%q JIVA_ROLE=%q JIVA_NAME=%q JIVA_DESK=%q claude %s--model %q --name %q --settings %q; exec bash' \
     "${LEAKED//[[:space:]]/ }" "$JIVA_HOME/bin" "$JIVA_HOME" "$TARGET" "$1" "$2" "$DESK" "$(lean)" "$model" "$2" "$J/settings.json"
 }
 
-ready() { # name → wait for the input prompt; a trust dialog means the human must accept once
+ready() { # name → wait for the input prompt; a trust dialog means the keeper must accept once
   local s
   for _ in $(seq 60); do
     s="$(T capture-pane -p -t "jiva:$1" 2>/dev/null)"
-    if grep -q 'trust this folder' <<<"$s"; then   # human's click: show where, never send the keys
+    if grep -q 'trust this folder' <<<"$s"; then   # keeper's click: show where, never send the keys
       T select-window -t "jiva:$1"
       echo "tmux -L $SOCK attach -t jiva:$1" >&2
       echo "↓ then Enter to trust (once per repo path); Ctrl-b n for the next one, Ctrl-b d to detach." >&2
@@ -115,13 +115,13 @@ assign() {
   say "$1" "Start your task card."
 }
 
-up() { # [profile|N] — core/profile.sh sizes the fleet (solo|duo|full, auto from host + quota) and says why
+up() { # [profile|N] — core/profile.sh sizes the hive (solo|duo|full, auto from host + quota) and says why
   local plan b l n prof rc=0; preflight >&2 || return 1; plan="$("$JIVA_HOME/core/profile.sh" "${1:-}")" || return 1
   read -r b l n prof <<<"$plan"; sed 1d <<<"$plan"; cap_ok "$n"
-  echo "hooks: $(hooks_mode) · models: boss $BOSS_MODEL, worker $WORKER_MODEL"   # plugin installed → settings carry statusLine only (no double-fire)
-  T has-session -t jiva 2>/dev/null || rm -f "$J"/launch/* "$J"/claims/*   # fresh up: heal respawns any launch file, so the last fleet's seats stay down
-  server; echo "$prof" > "$J/profile"   # window 0 is the watchdog; solo → lease never spawns a boss
-  if (( b )); then spawn boss boss || rc=1; fi
+  echo "hooks: $(hooks_mode) · models: queen $BOSS_MODEL, worker $WORKER_MODEL"   # plugin installed → settings carry statusLine only (no double-fire)
+  T has-session -t jiva 2>/dev/null || rm -f "$J"/launch/* "$J"/claims/*   # fresh up: heal respawns any launch file, so the last hive's cells stay down
+  server; echo "$prof" > "$J/profile"   # window 0 is the watchdog; solo → lease never spawns a queen
+  if (( b )); then spawn queen queen || rc=1; fi
   if (( l )); then spawn loop loop || rc=1; fi
   for i in $(seq "$n"); do spawn worker "w$i" || rc=1; done
   T list-windows -t jiva -F '#I #W'

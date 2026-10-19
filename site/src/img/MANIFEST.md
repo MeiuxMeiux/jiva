@@ -9,7 +9,7 @@ Palette: navy #060128, pink #ef4fbc, cyan #00ffd8, green #21ff00. All files are 
 | header-banner.webp | 1600×120, 24 KB | header/top strip banner (first paint); neon circuit traces across the middle |
 | section-tile.webp | 384×384, 11 KB | seamless repeating `.band` section background (very low contrast dots/traces) |
 | emblem-problem.webp | 144×144, transparent | §01 The problem — tangled overlapping terminal windows |
-| emblem-how.webp | 144×144, transparent | §02 How it works — one node fanning out to two (desk/boss/workers) |
+| emblem-how.webp | 144×144, transparent | §02 How it works — one node fanning out to two (desk/queen/workers) |
 | emblem-verbs.webp | 144×144, transparent | §03 Six verbs — six arrows circling a centre |
 | emblem-ceiling.webp | 144×144, transparent | §04 Reincarnation at ~200k (`#ceiling`) — phoenix in a cycle arrow |
 | emblem-souls.webp | 144×144, transparent | §05 The party (`#souls`) — three bust silhouettes |

@@ -7,7 +7,7 @@
 A="$J/asks"; mkdir -p "$A"
 declare -F hist >/dev/null || source "$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")/history.sh"  # hist (notes/history.md)
 # the ONE list of ask classes. Only `decision` may auto-apply its default at the deadline; every
-# protected class stays open past it and is only re-surfaced by the digest (a human must answer).
+# protected class stays open past it and is only re-surfaced by the digest (a keeper must answer).
 ASK_PROTECTED="permission deploy spend destructive sudo remote license"
 ask_log() { board_log "${JIVA_NAME:-desk}" "$*"; }
 ask_say() { # name text — best effort; a missing window never breaks the caller

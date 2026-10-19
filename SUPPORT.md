@@ -17,7 +17,7 @@ JIVA is an alpha maintained by one person, best effort. Before asking:
 | conduct problem | see [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md) |
 | anything else | <jiva@meiuxmeiux.com> |
 
-Never paste keys, tokens, private board lines or `.jiva/` state you have not read first.
+Never paste keys, tokens, private comb lines or `.jiva/` state you have not read first.
 
 ## Not supported
 
