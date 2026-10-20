@@ -28,6 +28,11 @@ def expand(path, depth=0):
     return INCLUDE.sub(lambda m: expand(SRC / m.group(1), depth + 1), text)
 
 
+INLINE = "a|abbr|b|cite|code|em|i|kbd|mark|q|small|span|strong|sub|sup|time|var"
+INLINE_EDGE = re.compile(rf"</?(?:{INLINE})\b")   # "</b> <code>" keeps its space; "</p> <h2>" does not
+INTER_TAG = re.compile(r"(</?[^>]+>) (</?[^>]+>)")
+
+
 def min_html(html):
     parts = re.split(r"(<pre\b.*?</pre>)", html, flags=re.S)
     out = []
@@ -37,7 +42,7 @@ def min_html(html):
             continue
         p = re.sub(r"<!--(?!\s*@).*?-->", "", p, flags=re.S)
         p = re.sub(r"\s+", " ", p)
-        p = re.sub(r">\s+<", "><", p)
+        p = INTER_TAG.sub(lambda m: m.group(0) if INLINE_EDGE.match(m.group(1)) or INLINE_EDGE.match(m.group(2)) else m.group(1) + m.group(2), p)
         out.append(p)
     return "".join(out).strip() + "\n"
 

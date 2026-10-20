@@ -39,7 +39,7 @@ class Head(html.parser.HTMLParser):
         self._t = self._t and tag != "title"
 
     def handle_data(self, data):
-        self.titles[-1] += data if self._t else ""
+        if self._t and self.titles: self.titles[-1] += data
 
 
 def need(ok, msg):
