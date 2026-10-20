@@ -14,7 +14,7 @@ Where no bee word is faithful, the plain engineering word stays. Renamed 2026-10
 - **watchdog** — the bash loop that checks every cell every 5 s and respawns bodies. Plain word, kept.
 - **card** — a ≤20-line task (Area / Owned paths / Done-when) handed to a worker. Plain word, kept.
 - **comb** [board] — the append-only log every cell writes to: `.jiva/comb.log`; `jiva inbox` reads it.
-- **claim** — a path a cell owns while editing (`.jiva/claims/<cell>`). **handoff** — ≤40 lines a body leaves
+- **claim** — a path a cell owns while editing (`.jiva/claims/<cell>`; overlap check + append run under `claims.lock`). **handoff** — ≤40 lines a body leaves
   for its successor. **gate** — one shell line proposed for the keeper to run. Plain words, kept.
 
 Renamed with the words: `JIVA_BOSS_MODEL` → `JIVA_QUEEN_MODEL`, `just fleet` → `just hive`, the Kit's `.fleet/` →

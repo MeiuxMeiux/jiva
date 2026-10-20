@@ -4,6 +4,7 @@
 #             fix supersedes · result exit codes   ·   card lint: missing fields rejected, Claim:/Done-check: accepted
 #   desk digest: silent when unchanged, one line on change   ·   profile: solo/duo/full lines + bad input refused
 #   lean launch: cmdline carries --strict-mcp-config + --disallowedTools, JIVA_LEAN=0 drops them
+#   claim race: N parallel `jiva claim` of one path → exactly one claims file (claims.lock)
 set -uo pipefail
 H="$(cd "$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")/.." && pwd)"; bad=0
 ok() { printf 'ok    hive %s\n' "$1"; }
@@ -48,5 +49,9 @@ t "profile: bad input refused" bash -c "! '$P' bogus && ! '$P' solo:2"
 l="$(sed -n '/^lean() {/,/^cmdline()/p' "$H/core/jiva.sh" | sed '$d')"
 t "lean: cells launch --strict-mcp-config + --disallowedTools" bash -c "$l; [[ \$(lean) == *--strict-mcp-config*--disallowedTools*Artifact* ]]"
 t "lean: JIVA_LEAN=0 opts out" bash -c "$l; [[ -z \$(JIVA_LEAN=0 lean) ]]"
+V="$H/core/verbs.sh"; rm -rf "$S/.jiva/claims"; mkdir -p "$S/.jiva/claims"
+for i in $(seq 1 16); do JIVA_NAME=w$i "$V" claim core/x >/dev/null 2>&1 & done; wait   # same path, 16 racers
+t "claim: 16 racing claimers of one path, exactly one wins" bash -c "[[ \$(ls '$S/.jiva/claims' | wc -l) == 1 ]]"
+t "claim: the winner's claim is intact" bash -c "cat '$S'/.jiva/claims/* | grep -qx core/x"
 rm -rf "${S:?}"
 exit $bad

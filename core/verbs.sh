@@ -12,7 +12,10 @@ mkdir -p "$J"/{claims,handoff,rotate,asks}
 ME="${JIVA_NAME:-desk}"
 log() { board_log "$ME" "$*"; }
 
-claim() { # claim <paths...> — directory-level, refused if it overlaps another session's claim
+claim() { # claim <paths...> — directory-level, refused if it overlaps another session's claim; one claimer at a time
+  ( flock 9; claim_locked "$@" ) 9> "$J/claims.lock" || exit 1   # check-then-append is atomic across sessions
+}
+claim_locked() { # body of claim, runs under claims.lock (exit 1 inside only ends the locked subshell)
   local p q f
   for p in "$@"; do
     p="${p%/}"; p="${p#./}"   # `.`, `..`, /abs or ./x would dodge the overlap test (and ship would sweep the tree)
