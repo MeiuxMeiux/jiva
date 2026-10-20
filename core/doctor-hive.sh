@@ -4,7 +4,7 @@
 #             fix supersedes · result exit codes   ·   card lint: missing fields rejected, Claim:/Done-check: accepted
 #   desk digest: silent when unchanged, one line on change   ·   profile: solo/duo/full lines + bad input refused
 #   lean launch: cmdline carries --strict-mcp-config + --disallowedTools, JIVA_LEAN=0 drops them
-#   claim race: N parallel `jiva claim` of one path → exactly one claims file (claims.lock)
+#   claim race: N parallel `jiva claim` of one path → exactly one claims file (claims.lock)   ·   comb: N racing reports, no torn lines (comb.lock)
 set -uo pipefail
 H="$(cd "$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")/.." && pwd)"; bad=0
 ok() { printf 'ok    hive %s\n' "$1"; }
@@ -53,5 +53,7 @@ V="$H/core/verbs.sh"; rm -rf "$S/.jiva/claims"; mkdir -p "$S/.jiva/claims"
 for i in $(seq 1 16); do JIVA_NAME=w$i "$V" claim core/x >/dev/null 2>&1 & done; wait   # same path, 16 racers
 t "claim: 16 racing claimers of one path, exactly one wins" bash -c "[[ \$(ls '$S/.jiva/claims' | wc -l) == 1 ]]"
 t "claim: the winner's claim is intact" bash -c "cat '$S'/.jiva/claims/* | grep -qx core/x"
+rm -f "$S/.jiva/comb.log"; for i in $(seq 1 32); do JIVA_NAME=w$i "$V" report note "line $i $(printf 'x%.0s' {1..300})" >/dev/null 2>&1 & done; wait
+t "comb: 32 racing 300-char reports, every line intact" bash -c "[[ \$(wc -l < '$S/.jiva/comb.log') == 32 && \$(awk -F'\t' 'NF != 2 || \$2 !~ /^[0-9]+\$/' '$S/.jiva/comb.log' | wc -l) == 0 ]]"
 rm -rf "${S:?}"
 exit $bad

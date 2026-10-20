@@ -77,8 +77,9 @@ MD
   echo "tmux window (tmux -L $SOCK a). JIVA never auto-accepts it."
 }
 
-board_log() { # name text… → "HH:MM name text<TAB>epoch" in comb.log; the epoch is the line's ttl stamp (readers strip it)
-  local t="${*:2}"; printf '%s %-6s %s\t%s\n' "$(date +%H:%M)" "$1" "${t//$'\t'/ }" "$(date +%s)" >> "$J/comb.log"; }
+board_log() { # name text… → "HH:MM name text<TAB>epoch" in comb.log (one line, under comb.lock ≤1s; never blocks a verb)
+  local t="${*:2}"; { flock -w 1 8; printf '%s %-6s %s\t%s\n' "$(date +%H:%M)" "$1" "${t//$'\t'/ }" "$(date +%s)" >> "$J/comb.log"
+  } 8>> "$J/comb.lock" 2>/dev/null || true; }
 board_tail() { # n → last n comb lines younger than JIVA_MSG_TTL s (6h), stamps stripped; unstamped legacy lines kept
   { tail -n 2000 "$J/comb.log" 2>/dev/null || true; } | awk -F'\t' -v now="$(date +%s)" -v ttl="${JIVA_MSG_TTL:-21600}" \
     'NF < 2 || $NF !~ /^[0-9]+$/ { print; next } now - $NF <= ttl { print $1 }' | tail -n "$1"; }
