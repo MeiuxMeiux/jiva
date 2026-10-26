@@ -8,6 +8,9 @@ aims to follow [Semantic Versioning](https://semver.org/spec/v2.0.0.html) once i
 
 ### Added
 
+- **JIVA Crosstalk** — `docs/CROSSTALK.md`, served as `/crosstalk.md` with site §09: Claude Code sessions messaging
+  each other across servers with tmux, ssh and `just` (`just xt agents|peek|say|post|outbox` per box, one hub recipe
+  per box, append-only outbox followed by a zero-token `tail -F`); `say` refuses at a permission prompt.
 - **JIVA Kit** — `kit/` (tested `.hive/` scripts, `just hive` module, roles, templates) and `just kit`, which
   bundles it into one paste-in `kit.md` (served next to `micro.md`); CI runs `kit/test.sh`.
 - **JIVA Micro** gained a "just = the blessed path" section and Phase 6 (graduate to the kit).

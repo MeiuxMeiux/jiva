@@ -17,5 +17,8 @@ Where no bee word is faithful, the plain engineering word stays. Renamed 2026-10
 - **claim** — a path a cell owns while editing (`.jiva/claims/<cell>`; overlap check + append run under `claims.lock`). **handoff** — ≤40 lines a body leaves
   for its successor. **gate** — one shell line proposed for the keeper to run. Plain words, kept.
 
+- **crosstalk** — sessions on different machines messaging each other: `just <box> say|peek` in, an append-only outbox
+  out (docs/CROSSTALK.md). Same machine: Claude Code peer messaging or `jiva say`.
+
 Renamed with the words: `JIVA_BOSS_MODEL` → `JIVA_QUEEN_MODEL`, `just fleet` → `just hive`, the Kit's `.fleet/` →
 `.hive/`, `.jiva/board.log` → `.jiva/comb.log` (move the file once; nothing else in `.jiva/` changes).

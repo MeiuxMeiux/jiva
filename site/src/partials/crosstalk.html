@@ -1,0 +1,32 @@
+<section class="band split" id="crosstalk">
+  <div class="side">
+    <h2><span class="num">09</span>Crosstalk, across servers</h2>
+    <p>Claude Code sessions can message each other on one machine. Crosstalk carries that across
+      machines with nothing new to install: tmux, ssh and <code>just</code>.</p>
+    <ol class="steps">
+      <li>Each box gets five recipes: <code>agents</code>, <code>peek</code>, <code>say</code>,
+        <code>post</code>, <code>outbox</code>. <code>say</code> types a stamped line into a session's
+        pane and refuses if that pane sits at a permission prompt.</li>
+      <li>Your hub gets one recipe per box. It runs the box's recipes over ssh, so
+        <code>just ernie say desk "ship it"</code> reaches an agent on another server.</li>
+      <li>The way back is a file. Far agents <code>post</code> to an append-only outbox, and the hub
+        follows it with <code>tail -F</code>. That costs no tokens until a message lands.</li>
+    </ol>
+    <p>Rules come from real incidents: never type into a prompt, clear the input box first,
+      append and never rewrite, quote with <code>printf %q</code>, and write down who the desk is.</p>
+  </div>
+  <div class="side">
+    <h3>From your desk, to a box</h3>
+    <pre class="cmd"><span class="p">$</span> just ernie agents             <span class="c"># busy | idle | PROMPT</span>
+<span class="p">$</span> just ernie peek gw-boss 20
+<span class="p">$</span> just ernie say desk "status?"</pre>
+    <h3>From any agent there, back to you</h3>
+    <pre class="cmd"><span class="p">$</span> just xt post "GW status" "3 shipped, 1 needs Jack"</pre>
+    <h3>JIVA Crosstalk: one file, no install</h3>
+    <p>One markdown, pasted in as <code>CROSSTALK.md</code>. Your agent writes
+      <code>crosstalk.just</code> on each box and the hub recipe, adds three lines to CLAUDE.md, and runs a
+      two-minute test against a fake agent before a single token is spent.</p>
+    <p class="micro-row"><button type="button" class="micro-copy" data-src="crosstalk.md" hidden>Copy CROSSTALK.md</button>
+      <a href="crosstalk.md">View crosstalk.md</a></p>
+  </div>
+</section>

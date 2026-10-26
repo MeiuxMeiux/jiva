@@ -32,7 +32,8 @@ Linux or WSL2. bash ≥4, git, tmux ≥3.2, jq ≥1.6, just, python3, util-linux
 macOS: untested (needs Homebrew bash, coreutils, util-linux).
 
 Clone and put `bin/` on PATH. No-install options: paste [JIVA Micro](docs/MICRO.md) into a repo (the walkthrough),
-or the **JIVA Kit** (the same hive as plain `.hive/` files: roles, templates, `just` recipes, bash scripts;
+or [JIVA Crosstalk](docs/CROSSTALK.md) (Claude Code sessions messaging each other across servers via tmux, ssh
+and `just`), or the **JIVA Kit** (the same hive as plain `.hive/` files: roles, templates, `just` recipes, bash scripts;
 `just kit KIT.md` in a checkout, or `kit.md` next to `micro.md` on the site; `just hive selftest` proves it on your
 machine with a fake `claude` before a single token is spent):
 
@@ -123,6 +124,7 @@ plus one append-only comb. The desk has two more: `answer` and `pending`.
 ## Docs
 
 - [docs/QUICKSTART.md](docs/QUICKSTART.md) — step by step for a second repo.
+- [docs/CROSSTALK.md](docs/CROSSTALK.md) — sessions talking across servers: `just <box> say|peek|agents`, an append-only outbox back.
 - [docs/DEPLOY.md](docs/DEPLOY.md) — the project site's deploy runbook (maintainer only).
 - [notes/](notes/) — durable facts per area (core, plugin, site, perms, breakers, …), ≤30 lines each.
 - [docs/history/](docs/history/) — the original design brief and architecture plan (historical; may be out of date).

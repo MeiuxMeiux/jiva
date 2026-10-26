@@ -10,6 +10,7 @@ import fnmatch, html, os, pathlib, re, subprocess, sys
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 HOME = pathlib.Path(os.environ.get("JIVA_HOME") or ROOT.parent)
 SRC = pathlib.Path(sys.argv[1]) if len(sys.argv) > 1 else ROOT / "src"
+FOREIGN = {"xt", "ernie"}  # recipes docs/CROSSTALK.md installs in YOUR repos (xt module, a hub recipe per box), not ours
 SIX = ["claim", "report", "ask", "ship", "handoff", "inbox"]
 WORD = r"(?<![\w/@.-]){}\s+([a-z][a-z0-9*-]*)"
 
@@ -69,7 +70,7 @@ def main():
         if sub not in subs:
             bad.append(f"drift: {where} names `jiva {sub}`, which `jiva help` doesn't list")
     for rec, where in sorted(js.items()):
-        if not fnmatch.filter(recs, rec):
+        if rec not in FOREIGN and not fnmatch.filter(recs, rec):
             bad.append(f"drift: {where} names `just {rec}`, which `just --list` doesn't list")
     named = set(jv)
     warn += [f"jiva {s}" for s in sorted(subs - named - {"help"})]
