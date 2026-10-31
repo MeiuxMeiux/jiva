@@ -80,7 +80,7 @@ ready() { # name → wait for the input prompt; a trust dialog means the keeper 
       echo "↓ then Enter to trust (once per repo path); Ctrl-b n for the next one, Ctrl-b d to detach." >&2
       echo "The session boots itself after the click — no re-run needed; \`jiva status\` to confirm." >&2; return 1
     fi
-    grep -q 'for agents' <<<"$s" && return 0
+    grep -qE 'for agents|shift\+tab to cycle' <<<"$s" && return 0
     sleep 1
   done
   echo "jiva: $1 not ready" >&2; return 1
