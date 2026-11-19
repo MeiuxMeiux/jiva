@@ -1,0 +1,18 @@
+/* one signature motion: a soul reincarnating — dissolve, collapse through the notch, re-form.
+   These keyframes are the source of truth for scripts/hero.py, which copies the clip-path steps into
+   hero.svg as SMIL (svg-as-img can't use page CSS). Reduced motion: <picture> serves hero-static.svg. */
+@keyframes dissolve {
+  0%   { clip-path: polygon(0 0, 100% 0, 100% 100%, 62% 100%, 62% 100%, 38% 100%, 38% 100%, 0 100%); opacity: 1; filter: blur(0); }
+  60%  { clip-path: polygon(0 0, 100% 0, 100% 100%, 62% 100%, 62% 40%, 38% 40%, 38% 100%, 0 100%); opacity: .5; filter: blur(1px); }
+  100% { clip-path: polygon(38% 0, 62% 0, 62% 0, 62% 0, 62% 0, 38% 0, 38% 0, 38% 0); opacity: 0; filter: blur(3px); }
+}
+@keyframes reform {
+  0%   { clip-path: polygon(38% 0, 62% 0, 62% 0, 62% 0, 62% 0, 38% 0, 38% 0, 38% 0); opacity: 0; }
+  50%  { clip-path: polygon(0 0, 100% 0, 100% 100%, 62% 100%, 62% 40%, 38% 40%, 38% 100%, 0 100%); opacity: .8; }
+  100% { clip-path: polygon(0 0, 100% 0, 100% 100%, 62% 100%, 62% 100%, 38% 100%, 38% 100%, 0 100%); opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+  .cta:hover { transform: none; }
+}

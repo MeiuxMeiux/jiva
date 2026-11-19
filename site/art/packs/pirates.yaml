@@ -1,0 +1,21 @@
+# pirates — golden-age pirate crew busts (original characters)
+title: "Pirates"
+style: >-
+  Swashbuckling painterly adventure illustration of a pirate crew, salt-weathered faces, tricorne hats,
+  bandanas, earrings, warm sunset lighting. Original characters, no skull-and-crossbones flags.
+size: 1536x1024
+quality: medium
+est: 0.30
+slots:
+  - {name: Redbeard, look: "captain with a crimson-red coat and big beard"}
+  - {name: Coral, look: "navigator with a coral-orange headscarf"}
+  - {name: Barrel, look: "cook with a tangerine-orange bandana"}
+  - {name: Doubloon, look: "quartermaster with golden-yellow earrings"}
+  - {name: Gunner, look: "cannoneer with lemon-yellow sash"}
+  - {name: Kelp, look: "lookout with chartreuse-green spyglass strap"}
+  - {name: Parley, look: "diplomat pirate with lime-green feathered hat"}
+  - {name: Squall, look: "first mate with a spring-green eyepatch"}
+  - {name: Emerald, look: "duelist with an emerald-green coat"}
+  - {name: Mutiny, look: "young deckhand with mint-green striped shirt"}
+  - {name: Brine, look: "old salt with a seafoam-green knit cap"}
+  - {name: Lagoon, look: "diver with a turquoise-aqua shell necklace"}

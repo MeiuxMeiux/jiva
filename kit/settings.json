@@ -1,0 +1,25 @@
+{
+  "statusLine": {
+    "type": "command",
+    "command": "\"${CLAUDE_PROJECT_DIR:-.}\"/.hive/bin/statusline.sh"
+  },
+  "permissions": {
+    "allow": [
+      "Bash(just hive ls)",
+      "Bash(just hive peek *)",
+      "Bash(just hive say *)",
+      "Bash(just hive claim *)",
+      "Bash(just hive release *)",
+      "Bash(just hive claims)",
+      "Bash(just hive ship *)",
+      "Bash(just hive gate-add *)",
+      "Bash(just hive gate-list)",
+      "Bash(just hive gate-result *)",
+      "Bash(just hive digest)",
+      "Bash(just hive usage)",
+      "Bash(git status *)",
+      "Bash(git diff *)",
+      "Bash(git log *)"
+    ]
+  }
+}

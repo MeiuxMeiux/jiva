@@ -1,0 +1,9 @@
+{
+  "statusLine": {"type": "command", "command": "\"$CLAUDE_PROJECT_DIR\"/core/hooks/statusline.sh", "refreshInterval": 30},
+  "hooks": {
+    "SessionStart": [{"hooks": [{"type": "command", "command": "\"$CLAUDE_PROJECT_DIR\"/core/hooks/session-start.sh"}]}],
+    "PostToolUse": [{"hooks": [{"type": "command", "command": "\"$CLAUDE_PROJECT_DIR\"/core/hooks/breaker.sh"}]},
+      {"matcher": "Edit|Write|MultiEdit", "hooks": [{"type": "command", "command": "\"$CLAUDE_PROJECT_DIR\"/core/hooks/affinity.sh"}]}],
+    "PreToolUse": [{"matcher": "*", "hooks": [{"type": "command", "command": "\"$CLAUDE_PROJECT_DIR\"/core/hooks/guard.sh"}]}]
+  }
+}

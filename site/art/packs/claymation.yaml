@@ -1,0 +1,21 @@
+# claymation — stop-motion plasticine character busts
+title: "Claymation"
+style: >-
+  Handmade stop-motion claymation puppets: plasticine with visible fingerprints and tool marks, bead eyes,
+  chunky friendly shapes, miniature felt and fabric clothes, soft studio lighting.
+size: 1536x1024
+quality: medium
+est: 0.30
+slots:
+  - {name: Clay, look: "grinning inventor with a crimson-red sweater vest"}
+  - {name: Dot, look: "girl with pigtails and a coral-orange raincoat"}
+  - {name: Gus, look: "grumpy mailman with a tangerine-orange cap"}
+  - {name: Hattie, look: "baker grandma with a golden-yellow apron"}
+  - {name: Jem, look: "boy with big ears and a lemon-yellow scarf"}
+  - {name: Marge, look: "gardener with a chartreuse-green sun hat"}
+  - {name: Ned, look: "nervous professor with lime-green bow tie"}
+  - {name: Olive, look: "pilot with a spring-green flight cap"}
+  - {name: Percy, look: "dapper gent with an emerald-green waistcoat"}
+  - {name: Rosa, look: "painter with a mint-green smock"}
+  - {name: Stan, look: "fisherman with a seafoam-green beanie"}
+  - {name: Tilly, look: "astronaut kid with a turquoise-aqua helmet ring"}

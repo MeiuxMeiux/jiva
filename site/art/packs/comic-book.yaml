@@ -1,0 +1,22 @@
+# comic-book — bold comic-book busts (original costumed heroes; no existing costumes, emblems or logos)
+title: "Comic Book"
+style: >-
+  Bold modern American comic-book art: thick confident black ink outlines, flat bright colors with
+  halftone dot shading, dramatic cel shadows, heroic confident expressions. Original costumes with plain
+  chest designs (no letters, no symbols, no logos).
+size: 1536x1024
+quality: medium
+est: 0.30
+slots:
+  - {name: Blaze, look: "red-haired heroine with a crimson-red eye mask and suit"}
+  - {name: Bolt, look: "square-jawed man with a buzz cut and a coral-orange armored suit"}
+  - {name: Comet, look: "young woman with a streaming white ponytail and tangerine-orange goggles"}
+  - {name: Dynamo, look: "bald strong man with a golden-yellow suit and gold trim"}
+  - {name: Flare, look: "teen boy with spiky black hair, glowing lemon-yellow eyes, black suit with yellow stripes"}
+  - {name: Grit, look: "rugged older man with grey stubble and a chartreuse-green coat collar"}
+  - {name: Hornet, look: "woman with a short dark bob and a lime-green winged helmet visor pushed up"}
+  - {name: Ion, look: "young man with round glasses and a spring-green energy glow"}
+  - {name: Jade, look: "acrobat woman with long black braids and an emerald-green hood and cape"}
+  - {name: Knox, look: "huge gentle giant with stone-grey skin, a kind smile and a mint-green chest plate"}
+  - {name: Lynx, look: "agile hero with a cat-ear cowl and seafoam-green lenses"}
+  - {name: Mach, look: "speedster with a winged helmet and a turquoise-aqua streamlined suit"}

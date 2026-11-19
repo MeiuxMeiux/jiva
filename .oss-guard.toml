@@ -1,0 +1,31 @@
+# oss-guard project config for the public Jiva repo.
+allowed_identities = ["oss-factory <oss-factory@noreply.invalid>"]
+allowed_emails = ["conduct@meiuxmeiux.com", "jiva@meiuxmeiux.com", "security@meiuxmeiux.com"]
+allowed_email_domains = []
+license = "MIT"
+public_orgs = ["MeiuxMeiux"]
+
+[[allow]]
+rule = "FILE-AGENT"
+path = "CLAUDE.md"
+match = "sha256:6ebdb617a8104a7756d0cf36578ab01103dc9f07e4dc6feb751296b9c402faf7"
+reason = "the repo's own agent router; Jiva is an agent kit and this file is part of the public product"
+added = "2026-11-19"
+expires = "2027-05-19"
+
+[[allow]]
+rule = "FILE-AGENT"
+path = "kit/templates/CLAUDE.md"
+match = "sha256:34b51bbeb88a878d4c0c3783e668b7a2399361f9fe96c470a9bbd9b0a3c5813d"
+reason = "router template that Jiva installs into user projects; a public product file"
+added = "2026-11-19"
+expires = "2027-05-19"
+
+[[allow]]
+rule = "FILE-AGENT"
+path = "kit/templates/handoff.md"
+match = "sha256:29686189e5dae8015eb091c9bdd8e48b086d423b8321d76c0ed93efb230174c7"
+reason = "handoff template that Jiva installs into user projects; a public product file"
+added = "2026-11-19"
+expires = "2027-05-19"
+

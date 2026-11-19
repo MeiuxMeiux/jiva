@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# Block commits containing secrets. Fails closed if gitleaks is missing.
+set -euo pipefail
+if ! command -v gitleaks >/dev/null; then
+  echo "pre-commit: gitleaks not installed — refusing to commit (install: https://github.com/gitleaks/gitleaks#installing)" >&2
+  exit 1
+fi
+exec gitleaks git --pre-commit --staged --redact --no-banner

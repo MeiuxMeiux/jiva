@@ -1,0 +1,21 @@
+# cats — cat busts in little outfits
+title: "Cats"
+style: >-
+  Elegant painterly portraits of house cats posed like distinguished sitters, realistic fur, expressive
+  eyes, each wearing one small garment in its accent color, soft window light.
+size: 1536x1024
+quality: medium
+est: 0.30
+slots:
+  - {name: Tabby, look: "orange tabby with a crimson-red collar ruff"}
+  - {name: Mittens, look: "calico with a coral-orange bow"}
+  - {name: Ginger, look: "ginger cat with tangerine-orange scarf"}
+  - {name: Sunny, look: "cream cat with golden-yellow eyes and gold medal"}
+  - {name: Butter, look: "fluffy cat with lemon-yellow bonnet"}
+  - {name: Smokey, look: "grey cat with chartreuse-green eyes"}
+  - {name: Pickle, look: "black cat with lime-green eyes and bow tie"}
+  - {name: Willow, look: "siamese with spring-green ribbon"}
+  - {name: Jasper, look: "russian blue with emerald-green eyes"}
+  - {name: Minty, look: "white cat with mint-green knit sweater"}
+  - {name: Misty, look: "silver tabby with seafoam-green collar"}
+  - {name: Azure, look: "sphynx-like cat with turquoise-aqua turtleneck"}

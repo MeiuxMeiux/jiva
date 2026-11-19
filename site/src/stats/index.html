@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self'; font-src 'self'; connect-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'">
+<meta name="referrer" content="no-referrer">
+<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#0b0a2a">
+<meta name="robots" content="index,follow">
+<title>JIVA stats · a month of a Claude Code hive, counted</title>
+<meta name="description" content="Real numbers from a month of parallel Claude Code sessions: tokens, cache hits, context growth, handoffs and waste, from an anonymized public dataset.">
+<link rel="canonical" href="https://jiva.meiuxmeiux.com/stats/">
+<link rel="icon" href="../favicon.ico" sizes="32x32">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<link rel="manifest" href="../manifest.webmanifest">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="JIVA">
+<meta property="og:title" content="JIVA stats · a month of a Claude Code hive, counted">
+<meta property="og:description" content="Real numbers from a month of parallel Claude Code sessions: tokens, cache hits, context growth, handoffs and waste, from an anonymized public dataset.">
+<meta property="og:url" content="https://jiva.meiuxmeiux.com/stats/">
+<meta property="og:image" content="https://jiva.meiuxmeiux.com/og/home.9fa88930.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="The JIVA wordmark in marigold and the line One terminal. Many souls. over hundreds of lit clay oil lamps on dark indigo water.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="JIVA stats · a month of a Claude Code hive, counted">
+<meta name="twitter:description" content="Real numbers from a month of parallel Claude Code sessions: tokens, cache hits, context growth, handoffs and waste.">
+<meta name="twitter:image" content="https://jiva.meiuxmeiux.com/og/home.9fa88930.jpg">
+<meta name="twitter:image:alt" content="The JIVA wordmark in marigold and the line One terminal. Many souls. over hundreds of lit clay oil lamps on dark indigo water.">
+<link rel="preload" href="fonts/bricolage-grotesque-latin-wght.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/familjen-grotesk-latin-wght.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="css/site.css">
+<link rel="stylesheet" href="stats/stats.css">
+<script src="js/site.js" defer></script>
+<!-- @scripts -->
+</head>
+<body>
+<header class="top">
+  <a class="logo" href="../" aria-label="JIVA home"><span class="notch" aria-hidden="true"></span>JIVA</a>
+  <nav aria-label="Sections">
+    <a href="#tokens">tokens</a>
+    <a href="#aging">aging</a>
+    <a href="#handoff">handoff</a>
+    <a href="#waste">waste</a>
+    <a href="#method">method</a>
+    <a href="../">home</a>
+  </nav>
+</header>
+<main id="top" data-src="data.json">
+<!-- @include stats/p-hero.html -->
+<!-- @include stats/p-body.html -->
+<!-- @include stats/p-fleet.html -->
+<!-- @include stats/p-method.html -->
+</main>
+<footer class="foot">
+  <p><span class="logo small"><span class="notch" aria-hidden="true"></span>JIVA</span>
+    Counted by a script, not a model: zero tokens spent on this page's numbers.</p>
+  <p>Fonts: Bricolage Grotesque, Familjen Grotesk and Departure Mono, under the SIL Open Font License
+    (<a href="../fonts/OFL-BricolageGrotesque.txt">Bricolage</a>, <a href="../fonts/OFL-FamiljenGrotesk.txt">Familjen</a>,
+    <a href="../fonts/OFL-DepartureMono.txt">Departure</a>). Art: generated plates, atmosphere only.</p>
+</footer>
+</body>
+</html>

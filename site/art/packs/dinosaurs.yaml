@@ -1,0 +1,21 @@
+# dinosaurs — friendly dinosaur busts
+title: "Dinosaurs"
+style: >-
+  Charming stylised 3D-animated dinosaurs with friendly expressions, textured scales, soft studio
+  lighting. Each wears one small accessory in its accent color.
+size: 1536x1024
+quality: medium
+est: 0.30
+slots:
+  - {name: Rex, look: "tyrannosaur with crimson-red scales"}
+  - {name: Trike, look: "triceratops with a coral-orange frill"}
+  - {name: Spike, look: "stegosaurus with tangerine-orange plates"}
+  - {name: Ptero, look: "pterosaur with golden-yellow crest"}
+  - {name: Dilo, look: "frilled dinosaur with lemon-yellow frill"}
+  - {name: Bronto, look: "long-necked sauropod with chartreuse-green skin"}
+  - {name: Raptor, look: "velociraptor with lime-green feathers"}
+  - {name: Ankyl, look: "ankylosaur with spring-green armor"}
+  - {name: Iggy, look: "iguanodon with emerald-green scales"}
+  - {name: Pachy, look: "dome-headed dinosaur with mint-green spots"}
+  - {name: Pleo, look: "baby sea reptile with seafoam-green fins"}
+  - {name: Para, look: "parasaurolophus with turquoise-aqua crest"}

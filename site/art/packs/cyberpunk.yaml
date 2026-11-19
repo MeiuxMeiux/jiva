@@ -1,0 +1,21 @@
+# cyberpunk — neon-city cyberpunk busts (original characters)
+title: "Cyberpunk"
+style: >-
+  Gritty cinematic cyberpunk concept-art painting, rain-slick neon reflections on skin and gear,
+  cybernetic implants, techwear, holographic visors, moody night lighting. Original characters.
+size: 1536x1024
+quality: medium
+est: 0.30
+slots:
+  - {name: Rift, look: "netrunner with a crimson-red visor"}
+  - {name: Neon, look: "courier with a coral-orange light-up jacket"}
+  - {name: Glitch, look: "hacker with tangerine-orange cyber-eye"}
+  - {name: Chrome, look: "mercenary with a golden-yellow chrome jaw"}
+  - {name: Spark, look: "street racer with lemon-yellow goggles"}
+  - {name: Static, look: "medic with a chartreuse-green holo-mask"}
+  - {name: Proxy, look: "fixer with lime-green circuit tattoos"}
+  - {name: Vector, look: "drone pilot with spring-green optic implants"}
+  - {name: Cipher, look: "hacker with emerald-green data dreadlocks"}
+  - {name: Echo, look: "singer with mint-green LED braids"}
+  - {name: Shard, look: "bodyguard with seafoam-green armor collar"}
+  - {name: Flux, look: "engineer with a turquoise-aqua cyber arm raised"}

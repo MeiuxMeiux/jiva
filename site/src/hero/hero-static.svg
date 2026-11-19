@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 280" width="640" height="280" font-family="Departure Mono, ui-monospace, Menlo, monospace" role="img" aria-labelledby="ht"><title id="ht">Recording of a JIVA hive, 2026-10-13: 4 live · 0 flag · 298k · 5h 8%</title>
+<rect width="640" height="280" fill="#0b0a2a"/><rect x=".5" y=".5" width="639" height="279" fill="none" stroke="#2c2942"/>
+<text x="16" y="28" fill="#a19999" font-size="12" font-weight="400">tmux -L jiva · watchdog every 5s</text>
+<text x="624" y="28" fill="#a19999" font-size="12" font-weight="400" text-anchor="end">recorded 2026-10-13</text>
+<g><rect x="12" y="52" width="616" height="30" fill="#131230" stroke="#2c2942"/><text x="26" y="72" fill="#f6ead8" font-size="13" font-weight="600">jiva-12</text>
+<text x="130" y="72" fill="#a19999" font-size="13" font-weight="400">idle</text>
+<text x="614" y="72" fill="#e2452b" font-size="13" font-weight="400" text-anchor="end">0k</text>
+<rect x="200" y="64" height="6" width="0" fill="#e2452b"></rect></g>
+<g><rect x="12" y="86" width="616" height="30" fill="#131230" stroke="#2c2942"/><text x="26" y="106" fill="#f6ead8" font-size="13" font-weight="600">queen</text>
+<text x="130" y="106" fill="#a19999" font-size="13" font-weight="400">idle</text>
+<text x="614" y="106" fill="#e2452b" font-size="13" font-weight="400" text-anchor="end">159k</text>
+<rect x="200" y="98" height="6" width="254" fill="#e2452b"></rect></g>
+<g><rect x="12" y="120" width="616" height="30" fill="#131230" stroke="#2c2942"/><text x="26" y="140" fill="#f6ead8" font-size="13" font-weight="600">w2</text>
+<text x="130" y="140" fill="#e2452b" font-size="13" font-weight="400">busy</text>
+<text x="614" y="140" fill="#e2452b" font-size="13" font-weight="400" text-anchor="end">73k</text>
+<rect x="200" y="132" height="6" width="117" fill="#e2452b"></rect></g>
+<g><rect x="12" y="154" width="616" height="30" fill="#131230" stroke="#2c2942"/><text x="26" y="174" fill="#f6ead8" font-size="13" font-weight="600">w1</text>
+<text x="130" y="174" fill="#e2452b" font-size="13" font-weight="400">busy</text>
+<text x="614" y="174" fill="#e2452b" font-size="13" font-weight="400" text-anchor="end">65k</text>
+<rect x="200" y="166" height="6" width="104" fill="#e2452b"></rect></g>
+<text x="16" y="210" fill="#a19999" font-size="12" font-weight="400">w1 claim core plugin justfile notes/plugin.md notes/core.md</text>
+<rect x="0" y="246" width="640" height="34" fill="#f2a900"/><text x="14" y="268" fill="#0b0a2a" font-size="13" font-weight="700">[jiva]</text><rect x="340" y="259" width="8" height="8" fill="#0f7c82" stroke="#0b0a2a"/>
+<text x="354" y="268" fill="#0b0a2a" font-size="13" font-weight="700">4 live · 0 flag · 298k · 5h 8%</text>
+<rect x="618" y="256" width="8" height="15" fill="#0b0a2a"></rect></svg>

@@ -1,0 +1,6 @@
+Contact: mailto:jiva@meiuxmeiux.com
+Contact: https://github.com/MeiuxMeiux/jiva/security/advisories/new
+Expires: 2027-10-13T00:00:00Z
+Preferred-Languages: en
+Canonical: https://jiva.meiuxmeiux.com/.well-known/security.txt
+Policy: https://github.com/MeiuxMeiux/jiva/blob/main/SECURITY.md

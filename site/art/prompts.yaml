@@ -1,0 +1,38 @@
+# art prompts — avatars for packs/default slots 01–12 (slots:), alternate-pack sheets (packs:), site scenes (scenes:) (originals only; never name a franchise/studio/character)
+budget: 5.70            # USD, ledger hard stop (scripts/art-gen.sh refuses a paid call at total+est ≥ budget)
+size: 1024x1024
+quality: medium
+est:                    # worst-case USD per image, used for the hard-stop check before a call
+  openai/gpt-image-2:free: 0
+  openai/gpt-image-2: 0.20
+base: >-
+  Original character portrait in the style of a late-1990s Japanese role-playing game party-menu
+  portrait. Bust, head and shoulders only, three-quarter view, centered, facing slightly left.
+  Cel-shaded anime main-character look with clean ink linework, dramatic sculpted hair, large
+  expressive eyes, painterly soft menu-portrait lighting with a warm rim light. Isolated subject on a
+  perfectly flat uniform pure magenta #ff00ff background (chroma key): no gradient, no shadow, no
+  checkerboard, no frame, no border, no text, no logo, no watermark. Leave a margin of magenta around the hair.
+  Square composition. An original character, not based on any existing character.
+slots:
+  "01": {name: Ash, color: "#e75555", look: "young swordsman with spiky ash-grey hair, a confident grin, crimson-red high-collared coat"}
+  "02": {name: Bram, color: "#e77a55", look: "broad-shouldered young smith with tousled auburn hair, a soot smudge on one cheek, coral-orange scarf over leather armor"}
+  "03": {name: Cove, color: "#e79e55", look: "calm young sailor-mage with long wavy sea-blue hair tied back, warm amber-orange eyes, tangerine-trimmed captain's jacket"}
+  "04": {name: Dune, color: "#e7c255", look: "desert wanderer with sun-bleached shaggy hair and a sly smile, golden-yellow sand cloak with a loose hood down"}
+  "05": {name: Ember, color: "#e7e755", look: "fiery young sorceress with wild flame-red hair, bright lemon-yellow eyes, a yellow-trimmed black mage collar"}
+  "06": {name: Fern, color: "#c2e755", look: "gentle young healer with soft mossy-green bob hair and a leaf hairpin, chartreuse-green robe with a hood down"}
+  "07": {name: Gale, color: "#9ee755", look: "energetic young sky-pirate with windswept silver hair and goggles on the forehead, lime-green flight jacket"}
+  "08": {name: Haze, color: "#7ae755", look: "mysterious quiet young ninja with long dark violet hair over one eye, bright spring-green eyes, dark scarf"}
+  "09": {name: Iris, color: "#55e755", look: "cheerful young archer with twin long chestnut-brown braids and a feather, vivid emerald-green tunic with a quiver strap"}
+  "10": {name: Jet, color: "#55e77a", look: "cool young gunslinger with slick jet-black swept-back hair and a scar on the chin, mint-green bandana around the neck"}
+  "11": {name: Kite, color: "#55e79e", look: "playful young thief with messy copper hair and a bandage on the nose, seafoam-green hooded vest"}
+  "12": {name: Lark, color: "#55e7c2", look: "elegant young bard with long flowing white hair and a small circlet, turquoise-aqua eyes and a turquoise cape clasp"}
+# pack sheets (art-gen.sh pack:NAME): this text + site/art/packs/NAME.yaml style + 12 numbered looks w/ slot colors
+sheet: >-
+  A character lineup sheet: exactly twelve separate head-and-shoulders bust portraits of twelve different
+  original fictional characters, arranged in a neat grid of 4 columns and 3 rows, all at the same scale,
+  facing the viewer or three-quarter view. Background: one perfectly flat uniform pure magenta #ff00ff
+  chroma-key color everywhere, no gradient, no shadow, no floor, no texture. Wide empty magenta gaps
+  between every bust and around the image edge; no bust touches or overlaps another or the edge; each bust
+  ends in a clean horizontal cut below the shoulders. No frames, no panels, no borders, no grid lines, no
+  text, no labels, no numbers, no logo, no watermark. Never use magenta or pink anywhere on the characters.
+  None of them resembles any real person or any existing character.

@@ -1,0 +1,57 @@
+/* /stats page layout: bands, hero tiles, money label, number tables, methodology, cross-reference strip.
+   Existing tokens only (tokens.css); charts.css holds the marks and their one-shot motion. */
+.sband > .side:first-child { grid-column: 1 / span 4; }
+.sband > .side:last-child { grid-column: 5 / -1; min-width: 0; }
+.shero { padding-top: 64px; }
+.shero > .side:first-child { grid-column: 1 / span 7; }
+.shero > .ringfig { grid-column: 8 / -1; margin: 0; align-self: center; }
+.ringfig .chart { max-width: 240px; }
+.shero h1 { font-size: clamp(40px, 6.4vw, 80px); }
+.shero .kicker .num { display: inline; margin: 0 10px 0 0; }
+.sband h3 { font: 500 13px/1.3 var(--mono); color: var(--secondary); letter-spacing: .06em; text-transform: uppercase; margin: 28px 0 10px; }
+.sband h3:first-child { margin-top: 0; }
+.sband p b, .lede b { font-family: var(--mono); font-weight: 600; color: var(--secondary); font-variant-numeric: tabular-nums; }
+.sband p span[data-stat] { font-family: var(--mono); font-size: .92em; color: var(--text); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.stiles { list-style: none; margin: 28px 0 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1px;
+  background: var(--line); border: 1px solid var(--line); box-shadow: 14px 14px 0 var(--shadow); }
+.stiles li { background: var(--background); padding: 16px 18px; min-width: 0; }
+.stiles b { display: block; font: 650 clamp(26px, 3.6vw, 40px)/1.1 var(--mono); color: var(--secondary); font-variant-numeric: tabular-nums; }
+.stiles li:last-child b { color: var(--accent); }
+.stiles span { font-size: 13px; color: var(--mute); }
+.ringfig figcaption { margin-top: 18px; color: var(--text); font-size: 15px; max-width: 34ch; }
+.ringfig small { display: block; margin-top: 8px; color: var(--mute); font: 12px/1.5 var(--mono); }
+.stats-notice { padding: 12px 16px; border-left: 3px solid var(--primary); background: var(--panel); }
+.money { margin-top: 20px; padding: 12px 14px; border: 1px dashed rgba(242, 169, 0, .55); font-size: 14px; line-height: 1.5; color: var(--text); }
+.money::before { content: "$ "; font: 700 14px var(--mono); color: var(--primary); }
+.fine { font-size: 13px; color: var(--mute); }
+.nums { margin-top: 18px; border-top: 1px solid var(--line); }
+.nums summary { cursor: pointer; padding: 10px 0; font: 500 12px/1.4 var(--mono); color: var(--mute); letter-spacing: .04em; }
+.nums summary:hover, .nums[open] summary { color: var(--text); }
+.nums summary:focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; }
+.nums table { width: 100%; border-collapse: collapse; font: 12.5px/1.4 var(--mono); font-variant-numeric: tabular-nums; margin-bottom: 12px; }
+.nums caption { text-align: left; padding: 6px 0; color: var(--secondary); font-size: 12px; }
+.nums th, .nums td { padding: 6px 12px 6px 0; text-align: right; border-top: 1px solid var(--line); white-space: nowrap; }
+.nums th:first-child, .nums thead th:first-child { text-align: left; font-weight: 500; }
+.nums thead th { color: var(--mute); font-weight: 500; }
+.prose h3 { margin-top: 32px; }
+.defs { display: grid; grid-template-columns: max-content 1fr; gap: 8px 18px; margin: 0; }
+.defs dt { font: 600 13px/1.6 var(--mono); color: var(--primary); }
+.defs dd { margin: 0; font-size: 15px; }
+.limits { padding-left: 1.1em; margin: 0; }
+.limits li { margin-bottom: 6px; }
+.xlinks { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 18px; }
+.xlinks a { position: relative; display: flex; flex-direction: column; gap: 6px; height: 100%; padding: 18px 40px 18px 18px; text-decoration: none;
+  border: 1px solid var(--line); background: var(--panel); box-shadow: 8px 8px 0 var(--shadow); transition: transform .3s cubic-bezier(.2, .7, .2, 1), box-shadow .3s; }
+.xlinks a:hover { transform: translate(-3px, -3px); box-shadow: 11px 11px 0 var(--shadow); color: var(--text); border-color: var(--primary); }
+.xlinks b { font: 700 18px/1.2 var(--display); color: var(--primary); }
+.xlinks span { font-size: 14px; color: var(--mute); }
+.xlinks i { position: absolute; top: 16px; right: 16px; font-style: normal; color: var(--secondary); }
+.nodata .chart { display: none; }
+@media (max-width: 860px) {
+  .shero > .ringfig { margin-top: 40px; }
+}
+@media (max-width: 520px) {
+  .stiles li { padding: 12px; }
+  .defs { grid-template-columns: 1fr; gap: 2px; }
+  .defs dd { margin-bottom: 8px; }
+}

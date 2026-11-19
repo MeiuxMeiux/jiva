@@ -1,0 +1,38 @@
+<section class="band sband" id="aging">
+  <div class="side">
+    <h2><span class="num">02</span>A body ages</h2>
+    <p>A session starts at about <span data-stat="derived.ctx_start" data-f="k"></span> tokens of context and gains roughly
+      <span data-stat="derived.ctx_per_req" data-f="int"></span> per request. By request 100 the median one is carrying
+      <span data-stat="derived.ctx_100" data-f="k"></span>, and it re-reads all of it every time.</p>
+    <p class="fine">Pink bands: middle 80% and middle 50% of sessions. Cyan line: the median.</p>
+  </div>
+  <div class="side">
+    <div class="chart tall" data-chart="fan"></div>
+    <!-- @table aging -->
+  </div>
+</section>
+<section class="band sband" id="handoff" data-money>
+  <div class="side">
+    <h2><span class="num">03</span>Cold start vs handoff</h2>
+    <p>A fresh session spends <span data-stat="cold_start.fresh.tokens_first_3.p50" data-f="k"></span> tokens before its
+      third answer. One that boots from a 40-line handoff spends <span data-stat="cold_start.handoff.tokens_first_3.p50" data-f="k"></span>,
+      <span data-stat="derived.first3_saving" data-f="pct0"></span> less.</p>
+    <!-- @include stats/money.html -->
+  </div>
+  <div class="side">
+    <div class="chart" data-chart="cold"></div>
+    <!-- @table handoff -->
+  </div>
+</section>
+<section class="band sband" id="rotation">
+  <div class="side">
+    <h2><span class="num">04</span>So we let them die</h2>
+    <p>At the nudge a session writes its handoff and stops; a new body picks it up at about
+      <span data-stat="derived.ctx_start" data-f="k"></span>. <span data-stat="rotation.sessions_ending_150_210k" data-f="int"></span>
+      sessions ended in that window this month.</p>
+  </div>
+  <div class="side">
+    <div class="chart" data-chart="rotation"></div>
+    <!-- @table rotation -->
+  </div>
+</section>

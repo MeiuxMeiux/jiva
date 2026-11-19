@@ -1,0 +1,2230 @@
+{
+ "schema": "jiva-token-stats/2",
+ "generated_hour": "2026-11-19T04:00Z",
+ "window": {
+  "first_day": "2026-10-19",
+  "last_day": "2026-11-19",
+  "days": 32
+ },
+ "pricing": {
+  "source": "Anthropic API list prices (platform.claude.com/docs/en/about-claude/pricing), as of 2026-11-03",
+  "note": "API-equivalent dollars, not what is actually paid: these sessions run on a flat subscription plan",
+  "per_million": {
+   "claude-opus-5-5": {
+    "input": 4.0,
+    "output": 20.0,
+    "cache_write_5m": 5.0,
+    "cache_write_1h": 8.0,
+    "cache_read": 0.2
+   },
+   "claude-sonnet-5-5": {
+    "input": 2.0,
+    "output": 10.0,
+    "cache_write_5m": 2.5,
+    "cache_write_1h": 4.0,
+    "cache_read": 0.1
+   },
+   "claude-fable-5-2": {
+    "input": 8.0,
+    "output": 40.0,
+    "cache_write_5m": 10.0,
+    "cache_write_1h": 16.0,
+    "cache_read": 0.2
+   },
+   "claude-fable-5-1": {
+    "input": 10.0,
+    "output": 50.0,
+    "cache_write_5m": 12.5,
+    "cache_write_1h": 20.0,
+    "cache_read": 0.25
+   },
+   "claude-haiku-5-5": {
+    "input": 0.1,
+    "output": 0.5,
+    "cache_write_5m": 0.125,
+    "cache_write_1h": 0.2,
+    "cache_read": 0.01
+   }
+  }
+ },
+ "scope": {
+  "boxes": 3,
+  "main_sessions": 1728,
+  "subagent_sessions": 561,
+  "repos_labelled": 9,
+  "note": "Three boxes; work-desk boxes and work-related project dirs excluded; repos with fewer than 5 sessions pooled as misc"
+ },
+ "totals": {
+  "requests": 103616,
+  "input": 224201,
+  "cache_write": 247499905,
+  "cache_read": 12644128458,
+  "output": 67965397,
+  "usd": 5702.76,
+  "cache_hit": 0.9808
+ },
+ "split": {
+  "main": {
+   "requests": 81485,
+   "input": 178777,
+   "cache_write": 170049227,
+   "cache_read": 9381555065,
+   "output": 48658894,
+   "usd": 4312.53,
+   "cache_hit": 0.9822
+  },
+  "subagent": {
+   "requests": 22131,
+   "input": 45424,
+   "cache_write": 77450678,
+   "cache_read": 3262573393,
+   "output": 19306503,
+   "usd": 1390.23,
+   "cache_hit": 0.9768
+  }
+ },
+ "sessions": {
+  "requests_per_session": {
+   "n": 1728,
+   "mean": 47,
+   "p10": 3,
+   "p50": 35,
+   "p90": 109,
+   "max": 387
+  },
+  "prompts_per_session": {
+   "n": 1728,
+   "mean": 3,
+   "p10": 1,
+   "p50": 1,
+   "p90": 6,
+   "max": 87
+  },
+  "max_context": {
+   "n": 1728,
+   "mean": 110191,
+   "p10": 31123,
+   "p50": 94756,
+   "p90": 205760,
+   "max": 904451
+  },
+  "final_context": {
+   "n": 1728,
+   "mean": 108697,
+   "p10": 31123,
+   "p50": 94198,
+   "p90": 200004,
+   "max": 904451
+  }
+ },
+ "cold_start": {
+  "fresh": {
+   "initial_context": {
+    "n": 636,
+    "mean": 43416,
+    "p10": 26310,
+    "p50": 48876,
+    "p90": 50628,
+    "max": 204269
+   },
+   "initial_cache_write": {
+    "n": 636,
+    "mean": 17042,
+    "p10": 11786,
+    "p50": 19690,
+    "p90": 21177,
+    "max": 27888
+   },
+   "tokens_to_first_tool": {
+    "n": 636,
+    "mean": 43755,
+    "p10": 26432,
+    "p50": 49005,
+    "p90": 50758,
+    "max": 206646
+   },
+   "tokens_first_3": {
+    "n": 636,
+    "mean": 144478,
+    "p10": 89127,
+    "p50": 159220,
+    "p90": 168504,
+    "max": 625011
+   },
+   "usd_first_3": {
+    "n": 636,
+    "mean": 0.25,
+    "p10": 0.17,
+    "p50": 0.25,
+    "p90": 0.32,
+    "max": 0.77
+   }
+  },
+  "handoff": {
+   "initial_context": {
+    "n": 1092,
+    "mean": 30981,
+    "p10": 29502,
+    "p50": 30810,
+    "p90": 32080,
+    "max": 49232
+   },
+   "initial_cache_write": {
+    "n": 1092,
+    "mean": 13377,
+    "p10": 9883,
+    "p50": 14122,
+    "p90": 15301,
+    "max": 19621
+   },
+   "tokens_to_first_tool": {
+    "n": 1092,
+    "mean": 31334,
+    "p10": 29641,
+    "p50": 31032,
+    "p90": 32359,
+    "max": 65304
+   },
+   "tokens_first_3": {
+    "n": 1092,
+    "mean": 98470,
+    "p10": 88682,
+    "p50": 98046,
+    "p90": 110935,
+    "max": 190033
+   },
+   "usd_first_3": {
+    "n": 1092,
+    "mean": 0.2,
+    "p10": 0.12,
+    "p50": 0.17,
+    "p90": 0.28,
+    "max": 1.04
+   }
+  },
+  "by_role": {
+   "boss": {
+    "initial_context": {
+     "n": 133,
+     "mean": 46159,
+     "p10": 26641,
+     "p50": 48992,
+     "p90": 50454,
+     "max": 50823
+    },
+    "tokens_first_3": {
+     "n": 133,
+     "mean": 153055,
+     "p10": 96227,
+     "p50": 162190,
+     "p90": 167447,
+     "max": 168735
+    },
+    "usd_first_3": {
+     "n": 133,
+     "mean": 0.25,
+     "p10": 0.21,
+     "p50": 0.26,
+     "p90": 0.28,
+     "max": 0.35
+    }
+   },
+   "desk": {
+    "initial_context": {
+     "n": 69,
+     "mean": 48524,
+     "p10": 41544,
+     "p50": 46332,
+     "p90": 50761,
+     "max": 204269
+    },
+    "tokens_first_3": {
+     "n": 69,
+     "mean": 163694,
+     "p10": 133037,
+     "p50": 157146,
+     "p90": 180799,
+     "max": 625011
+    },
+    "usd_first_3": {
+     "n": 69,
+     "mean": 0.3,
+     "p10": 0.17,
+     "p50": 0.26,
+     "p90": 0.51,
+     "max": 0.77
+    }
+   },
+   "loop": {
+    "initial_context": {
+     "n": 207,
+     "mean": 29633,
+     "p10": 28969,
+     "p50": 29920,
+     "p90": 30331,
+     "max": 31022
+    },
+    "tokens_first_3": {
+     "n": 207,
+     "mean": 90038,
+     "p10": 88321,
+     "p50": 90501,
+     "p90": 93843,
+     "max": 95953
+    },
+    "usd_first_3": {
+     "n": 207,
+     "mean": 0.14,
+     "p10": 0.11,
+     "p50": 0.14,
+     "p90": 0.22,
+     "max": 0.28
+    }
+   },
+   "other": {
+    "initial_context": {
+     "n": 445,
+     "mean": 41920,
+     "p10": 26187,
+     "p50": 48867,
+     "p90": 50628,
+     "max": 51106
+    },
+    "tokens_first_3": {
+     "n": 445,
+     "mean": 139462,
+     "p10": 88638,
+     "p50": 157850,
+     "p90": 168753,
+     "max": 183487
+    },
+    "usd_first_3": {
+     "n": 445,
+     "mean": 0.24,
+     "p10": 0.17,
+     "p50": 0.24,
+     "p90": 0.32,
+     "max": 0.49
+    }
+   },
+   "queen": {
+    "initial_context": {
+     "n": 101,
+     "mean": 30952,
+     "p10": 30021,
+     "p50": 30994,
+     "p90": 32137,
+     "max": 33874
+    },
+    "tokens_first_3": {
+     "n": 101,
+     "mean": 97151,
+     "p10": 92864,
+     "p50": 96441,
+     "p90": 103270,
+     "max": 110073
+    },
+    "usd_first_3": {
+     "n": 101,
+     "mean": 0.18,
+     "p10": 0.13,
+     "p50": 0.16,
+     "p90": 0.22,
+     "max": 0.46
+    }
+   },
+   "worker": {
+    "initial_context": {
+     "n": 773,
+     "mean": 31102,
+     "p10": 29959,
+     "p50": 31064,
+     "p90": 32147,
+     "max": 38592
+    },
+    "tokens_first_3": {
+     "n": 773,
+     "mean": 99942,
+     "p10": 92842,
+     "p50": 100315,
+     "p90": 113512,
+     "max": 190033
+    },
+    "usd_first_3": {
+     "n": 773,
+     "mean": 0.22,
+     "p10": 0.14,
+     "p50": 0.19,
+     "p90": 0.31,
+     "max": 1.04
+    }
+   }
+  }
+ },
+ "context_growth": {
+  "1": {
+   "n": 1728,
+   "p10": 28972,
+   "p25": 30111,
+   "p50": 31301,
+   "p75": 42897,
+   "p90": 49549
+  },
+  "2": {
+   "n": 1705,
+   "p10": 29589,
+   "p25": 31271,
+   "p50": 33325,
+   "p75": 47227,
+   "p90": 54119
+  },
+  "3": {
+   "n": 1680,
+   "p10": 30758,
+   "p25": 32291,
+   "p50": 37010,
+   "p75": 53384,
+   "p90": 59998
+  },
+  "5": {
+   "n": 1430,
+   "p10": 33328,
+   "p25": 37849,
+   "p50": 47559,
+   "p75": 60968,
+   "p90": 70410
+  },
+  "10": {
+   "n": 1249,
+   "p10": 42543,
+   "p25": 50348,
+   "p50": 62079,
+   "p75": 76328,
+   "p90": 89864
+  },
+  "20": {
+   "n": 1119,
+   "p10": 56258,
+   "p25": 65818,
+   "p50": 77776,
+   "p75": 98654,
+   "p90": 118669
+  },
+  "30": {
+   "n": 940,
+   "p10": 68622,
+   "p25": 78327,
+   "p50": 92322,
+   "p75": 116838,
+   "p90": 140310
+  },
+  "50": {
+   "n": 657,
+   "p10": 88124,
+   "p25": 100713,
+   "p50": 120211,
+   "p75": 152903,
+   "p90": 184009
+  },
+  "75": {
+   "n": 411,
+   "p10": 106398,
+   "p25": 120431,
+   "p50": 141705,
+   "p75": 180580,
+   "p90": 237318
+  },
+  "100": {
+   "n": 235,
+   "p10": 119161,
+   "p25": 133210,
+   "p50": 159880,
+   "p75": 219367,
+   "p90": 264581
+  },
+  "150": {
+   "n": 49,
+   "p10": 140835,
+   "p25": 178110,
+   "p50": 249461,
+   "p75": 290310,
+   "p90": 314002
+  },
+  "200": {
+   "n": 19,
+   "p10": 116783,
+   "p25": 222015,
+   "p50": 291780,
+   "p75": 380075,
+   "p90": 414680
+  },
+  "300": {
+   "n": 5,
+   "p10": 226396,
+   "p25": 288093,
+   "p50": 485360,
+   "p75": 559718,
+   "p90": 613748
+  }
+ },
+ "rotation": {
+  "sessions_ending_150_210k": 319,
+  "sessions_rotated_or_compacted": 17,
+  "sessions_over_200k": 187,
+  "final_context_hist_20k": {
+   "all": {
+    "0": 0,
+    "20": 466,
+    "40": 127,
+    "60": 158,
+    "80": 163,
+    "100": 125,
+    "120": 136,
+    "140": 206,
+    "160": 135,
+    "180": 39,
+    "200": 42,
+    "220": 28,
+    "240": 19,
+    "260": 14,
+    "280": 17,
+    "300": 53
+   },
+   "by_role": {
+    "boss": {
+     "0": 0,
+     "20": 1,
+     "40": 1,
+     "60": 3,
+     "80": 4,
+     "100": 6,
+     "120": 33,
+     "140": 74,
+     "160": 10,
+     "180": 0,
+     "200": 1,
+     "220": 0,
+     "240": 0,
+     "260": 0,
+     "280": 0,
+     "300": 0
+    },
+    "desk": {
+     "0": 0,
+     "20": 0,
+     "40": 3,
+     "60": 8,
+     "80": 4,
+     "100": 5,
+     "120": 8,
+     "140": 6,
+     "160": 4,
+     "180": 5,
+     "200": 6,
+     "220": 4,
+     "240": 2,
+     "260": 1,
+     "280": 2,
+     "300": 11
+    },
+    "loop": {
+     "0": 0,
+     "20": 207,
+     "40": 0,
+     "60": 0,
+     "80": 0,
+     "100": 0,
+     "120": 0,
+     "140": 0,
+     "160": 0,
+     "180": 0,
+     "200": 0,
+     "220": 0,
+     "240": 0,
+     "260": 0,
+     "280": 0,
+     "300": 0
+    },
+    "other": {
+     "0": 0,
+     "20": 0,
+     "40": 10,
+     "60": 18,
+     "80": 45,
+     "100": 24,
+     "120": 41,
+     "140": 49,
+     "160": 88,
+     "180": 30,
+     "200": 32,
+     "220": 23,
+     "240": 15,
+     "260": 13,
+     "280": 15,
+     "300": 42
+    },
+    "queen": {
+     "0": 0,
+     "20": 45,
+     "40": 16,
+     "60": 7,
+     "80": 8,
+     "100": 7,
+     "120": 4,
+     "140": 12,
+     "160": 2,
+     "180": 0,
+     "200": 0,
+     "220": 0,
+     "240": 0,
+     "260": 0,
+     "280": 0,
+     "300": 0
+    },
+    "worker": {
+     "0": 0,
+     "20": 213,
+     "40": 97,
+     "60": 122,
+     "80": 102,
+     "100": 83,
+     "120": 50,
+     "140": 65,
+     "160": 31,
+     "180": 4,
+     "200": 3,
+     "220": 1,
+     "240": 2,
+     "260": 0,
+     "280": 0,
+     "300": 0
+    }
+   },
+   "note": "Main sessions by final (or max) context, bucket = lower bound in thousands of tokens, 300 = 300k or more"
+  },
+  "max_context_hist_20k": {
+   "all": {
+    "0": 0,
+    "20": 466,
+    "40": 125,
+    "60": 154,
+    "80": 161,
+    "100": 124,
+    "120": 134,
+    "140": 205,
+    "160": 134,
+    "180": 38,
+    "200": 40,
+    "220": 32,
+    "240": 22,
+    "260": 15,
+    "280": 21,
+    "300": 57
+   },
+   "by_role": {
+    "boss": {
+     "0": 0,
+     "20": 1,
+     "40": 1,
+     "60": 3,
+     "80": 4,
+     "100": 6,
+     "120": 33,
+     "140": 74,
+     "160": 10,
+     "180": 0,
+     "200": 1,
+     "220": 0,
+     "240": 0,
+     "260": 0,
+     "280": 0,
+     "300": 0
+    },
+    "desk": {
+     "0": 0,
+     "20": 0,
+     "40": 3,
+     "60": 7,
+     "80": 3,
+     "100": 4,
+     "120": 6,
+     "140": 6,
+     "160": 4,
+     "180": 5,
+     "200": 4,
+     "220": 6,
+     "240": 3,
+     "260": 1,
+     "280": 4,
+     "300": 13
+    },
+    "loop": {
+     "0": 0,
+     "20": 207,
+     "40": 0,
+     "60": 0,
+     "80": 0,
+     "100": 0,
+     "120": 0,
+     "140": 0,
+     "160": 0,
+     "180": 0,
+     "200": 0,
+     "220": 0,
+     "240": 0,
+     "260": 0,
+     "280": 0,
+     "300": 0
+    },
+    "other": {
+     "0": 0,
+     "20": 0,
+     "40": 8,
+     "60": 15,
+     "80": 44,
+     "100": 24,
+     "120": 41,
+     "140": 48,
+     "160": 87,
+     "180": 29,
+     "200": 32,
+     "220": 25,
+     "240": 17,
+     "260": 14,
+     "280": 17,
+     "300": 44
+    },
+    "queen": {
+     "0": 0,
+     "20": 45,
+     "40": 16,
+     "60": 7,
+     "80": 8,
+     "100": 7,
+     "120": 4,
+     "140": 12,
+     "160": 2,
+     "180": 0,
+     "200": 0,
+     "220": 0,
+     "240": 0,
+     "260": 0,
+     "280": 0,
+     "300": 0
+    },
+    "worker": {
+     "0": 0,
+     "20": 213,
+     "40": 97,
+     "60": 122,
+     "80": 102,
+     "100": 83,
+     "120": 50,
+     "140": 65,
+     "160": 31,
+     "180": 4,
+     "200": 3,
+     "220": 1,
+     "240": 2,
+     "260": 0,
+     "280": 0,
+     "300": 0
+    }
+   }
+  }
+ },
+ "by_day": {
+  "2026-10-19": {
+   "requests": 88,
+   "input": 196,
+   "cache_write": 166833,
+   "cache_read": 5299231,
+   "output": 18860,
+   "usd": 2.55,
+   "cache_hit": 0.9694,
+   "sessions_started": 2
+  },
+  "2026-10-20": {
+   "requests": 717,
+   "input": 2750,
+   "cache_write": 1780011,
+   "cache_read": 61105218,
+   "output": 224573,
+   "usd": 31.54,
+   "cache_hit": 0.9717,
+   "sessions_started": 7
+  },
+  "2026-10-21": {
+   "requests": 4568,
+   "input": 9988,
+   "cache_write": 12486688,
+   "cache_read": 622283736,
+   "output": 1646155,
+   "usd": 239.74,
+   "cache_hit": 0.9803,
+   "sessions_started": 32
+  },
+  "2026-10-22": {
+   "requests": 2572,
+   "input": 5310,
+   "cache_write": 6343751,
+   "cache_read": 336829632,
+   "output": 1954294,
+   "usd": 151.7,
+   "cache_hit": 0.9815,
+   "sessions_started": 30
+  },
+  "2026-10-23": {
+   "requests": 4636,
+   "input": 9824,
+   "cache_write": 8667189,
+   "cache_read": 684616507,
+   "output": 2847803,
+   "usd": 258.04,
+   "cache_hit": 0.9875,
+   "sessions_started": 30
+  },
+  "2026-10-24": {
+   "requests": 7520,
+   "input": 15840,
+   "cache_write": 14569669,
+   "cache_read": 833891631,
+   "output": 4321176,
+   "usd": 364.57,
+   "cache_hit": 0.9828,
+   "sessions_started": 107
+  },
+  "2026-10-25": {
+   "requests": 5350,
+   "input": 11330,
+   "cache_write": 9181640,
+   "cache_read": 742247082,
+   "output": 3109994,
+   "usd": 280.23,
+   "cache_hit": 0.9878,
+   "sessions_started": 45
+  },
+  "2026-10-26": {
+   "requests": 1838,
+   "input": 4018,
+   "cache_write": 3723974,
+   "cache_read": 299554049,
+   "output": 1213032,
+   "usd": 110.9,
+   "cache_hit": 0.9877,
+   "sessions_started": 17
+  },
+  "2026-10-27": {
+   "requests": 1270,
+   "input": 2750,
+   "cache_write": 3270152,
+   "cache_read": 128723557,
+   "output": 653892,
+   "usd": 61.09,
+   "cache_hit": 0.9752,
+   "sessions_started": 7
+  },
+  "2026-10-28": {
+   "requests": 710,
+   "input": 1578,
+   "cache_write": 1584723,
+   "cache_read": 63398945,
+   "output": 355158,
+   "usd": 29.43,
+   "cache_hit": 0.9756,
+   "sessions_started": 4
+  },
+  "2026-10-29": {
+   "requests": 5146,
+   "input": 10800,
+   "cache_write": 14261997,
+   "cache_read": 1130551762,
+   "output": 5504522,
+   "usd": 413.64,
+   "cache_hit": 0.9875,
+   "sessions_started": 7
+  },
+  "2026-10-30": {
+   "requests": 560,
+   "input": 1280,
+   "cache_write": 1833743,
+   "cache_read": 53194755,
+   "output": 339363,
+   "usd": 28.56,
+   "cache_hit": 0.9667,
+   "sessions_started": 5
+  },
+  "2026-10-31": {
+   "requests": 688,
+   "input": 1644,
+   "cache_write": 2973141,
+   "cache_read": 77469396,
+   "output": 937413,
+   "usd": 57.4,
+   "cache_hit": 0.963,
+   "sessions_started": 21
+  },
+  "2026-11-01": {
+   "requests": 216,
+   "input": 538,
+   "cache_write": 583914,
+   "cache_read": 20316041,
+   "output": 99155,
+   "usd": 9.82,
+   "cache_hit": 0.972,
+   "sessions_started": 1
+  },
+  "2026-11-02": {
+   "requests": 321,
+   "input": 822,
+   "cache_write": 1005980,
+   "cache_read": 32680569,
+   "output": 207323,
+   "usd": 18.0,
+   "cache_hit": 0.9701,
+   "sessions_started": 5
+  },
+  "2026-11-03": {
+   "requests": 2324,
+   "input": 5020,
+   "cache_write": 4814149,
+   "cache_read": 318241440,
+   "output": 1455807,
+   "usd": 126.23,
+   "cache_hit": 0.9851,
+   "sessions_started": 19
+  },
+  "2026-11-04": {
+   "requests": 838,
+   "input": 1850,
+   "cache_write": 2009719,
+   "cache_read": 73912647,
+   "output": 351389,
+   "usd": 34.53,
+   "cache_hit": 0.9735,
+   "sessions_started": 5
+  },
+  "2026-11-05": {
+   "requests": 1896,
+   "input": 4036,
+   "cache_write": 4601176,
+   "cache_read": 290972132,
+   "output": 1080661,
+   "usd": 106.12,
+   "cache_hit": 0.9844,
+   "sessions_started": 8
+  },
+  "2026-11-06": {
+   "requests": 315,
+   "input": 744,
+   "cache_write": 625534,
+   "cache_read": 28025798,
+   "output": 98160,
+   "usd": 11.56,
+   "cache_hit": 0.9781,
+   "sessions_started": 2
+  },
+  "2026-11-07": {
+   "requests": 1623,
+   "input": 3493,
+   "cache_write": 3343360,
+   "cache_read": 229770606,
+   "output": 1022352,
+   "usd": 88.09,
+   "cache_hit": 0.9856,
+   "sessions_started": 8
+  },
+  "2026-11-08": {
+   "requests": 817,
+   "input": 1792,
+   "cache_write": 1830968,
+   "cache_read": 110780533,
+   "output": 391317,
+   "usd": 40.81,
+   "cache_hit": 0.9837,
+   "sessions_started": 3
+  },
+  "2026-11-09": {
+   "requests": 795,
+   "input": 1754,
+   "cache_write": 2036063,
+   "cache_read": 107697799,
+   "output": 391772,
+   "usd": 41.39,
+   "cache_hit": 0.9814,
+   "sessions_started": 6
+  },
+  "2026-11-10": {
+   "requests": 629,
+   "input": 1366,
+   "cache_write": 1255397,
+   "cache_read": 66396459,
+   "output": 360028,
+   "usd": 29.23,
+   "cache_hit": 0.9814,
+   "sessions_started": 6
+  },
+  "2026-11-11": {
+   "requests": 3864,
+   "input": 8226,
+   "cache_write": 16252127,
+   "cache_read": 424198667,
+   "output": 5479616,
+   "usd": 471.36,
+   "cache_hit": 0.9631,
+   "sessions_started": 88
+  },
+  "2026-11-12": {
+   "requests": 3297,
+   "input": 7128,
+   "cache_write": 6846413,
+   "cache_read": 305288627,
+   "output": 1932372,
+   "usd": 160.04,
+   "cache_hit": 0.978,
+   "sessions_started": 66
+  },
+  "2026-11-13": {
+   "requests": 10730,
+   "input": 23466,
+   "cache_write": 24908605,
+   "cache_read": 1038347795,
+   "output": 6498425,
+   "usd": 531.02,
+   "cache_hit": 0.9766,
+   "sessions_started": 262
+  },
+  "2026-11-14": {
+   "requests": 13699,
+   "input": 29668,
+   "cache_write": 32992028,
+   "cache_read": 1601353027,
+   "output": 8419900,
+   "usd": 754.87,
+   "cache_hit": 0.9798,
+   "sessions_started": 344
+  },
+  "2026-11-15": {
+   "requests": 97,
+   "input": 214,
+   "cache_write": 229859,
+   "cache_read": 10047722,
+   "output": 59986,
+   "usd": 3.61,
+   "cache_hit": 0.9776,
+   "sessions_started": 1
+  },
+  "2026-11-16": {
+   "requests": 257,
+   "input": 602,
+   "cache_write": 477785,
+   "cache_read": 26375679,
+   "output": 76225,
+   "usd": 9.66,
+   "cache_hit": 0.9822,
+   "sessions_started": 2
+  },
+  "2026-11-17": {
+   "requests": 8147,
+   "input": 17424,
+   "cache_write": 20411637,
+   "cache_read": 963746831,
+   "output": 4945996,
+   "usd": 363.15,
+   "cache_hit": 0.9792,
+   "sessions_started": 268
+  },
+  "2026-11-18": {
+   "requests": 11277,
+   "input": 24360,
+   "cache_write": 24501461,
+   "cache_read": 1098256983,
+   "output": 6388891,
+   "usd": 474.9,
+   "cache_hit": 0.9782,
+   "sessions_started": 224
+  },
+  "2026-11-19": {
+   "requests": 6811,
+   "input": 14390,
+   "cache_write": 17930219,
+   "cache_read": 858553602,
+   "output": 5579787,
+   "usd": 399.0,
+   "cache_hit": 0.9795,
+   "sessions_started": 96
+  }
+ },
+ "by_hour_utc": {
+  "0": {
+   "requests": 3711,
+   "input": 7958,
+   "cache_write": 8491601,
+   "cache_read": 374522807,
+   "output": 2082841,
+   "usd": 171.67,
+   "cache_hit": 0.9778
+  },
+  "1": {
+   "requests": 4359,
+   "input": 10068,
+   "cache_write": 9614478,
+   "cache_read": 515505227,
+   "output": 2902916,
+   "usd": 235.0,
+   "cache_hit": 0.9817
+  },
+  "2": {
+   "requests": 4513,
+   "input": 9808,
+   "cache_write": 10739748,
+   "cache_read": 548429853,
+   "output": 3231522,
+   "usd": 241.25,
+   "cache_hit": 0.9808
+  },
+  "3": {
+   "requests": 5828,
+   "input": 13144,
+   "cache_write": 13280771,
+   "cache_read": 700791097,
+   "output": 3941981,
+   "usd": 319.05,
+   "cache_hit": 0.9814
+  },
+  "4": {
+   "requests": 11758,
+   "input": 24968,
+   "cache_write": 27982851,
+   "cache_read": 1424728195,
+   "output": 8519883,
+   "usd": 629.24,
+   "cache_hit": 0.9807
+  },
+  "5": {
+   "requests": 7053,
+   "input": 15180,
+   "cache_write": 14810463,
+   "cache_read": 802878021,
+   "output": 4621283,
+   "usd": 348.08,
+   "cache_hit": 0.9819
+  },
+  "6": {
+   "requests": 6436,
+   "input": 13956,
+   "cache_write": 14500985,
+   "cache_read": 823347435,
+   "output": 4241105,
+   "usd": 329.66,
+   "cache_hit": 0.9827
+  },
+  "7": {
+   "requests": 7518,
+   "input": 16602,
+   "cache_write": 16332734,
+   "cache_read": 1045093287,
+   "output": 3936500,
+   "usd": 385.13,
+   "cache_hit": 0.9846
+  },
+  "8": {
+   "requests": 4586,
+   "input": 9878,
+   "cache_write": 10448514,
+   "cache_read": 676849658,
+   "output": 2907217,
+   "usd": 251.81,
+   "cache_hit": 0.9848
+  },
+  "9": {
+   "requests": 5095,
+   "input": 10876,
+   "cache_write": 15275973,
+   "cache_read": 614864591,
+   "output": 4523870,
+   "usd": 352.68,
+   "cache_hit": 0.9757
+  },
+  "10": {
+   "requests": 3998,
+   "input": 8558,
+   "cache_write": 12083744,
+   "cache_read": 475239233,
+   "output": 3387728,
+   "usd": 342.51,
+   "cache_hit": 0.9752
+  },
+  "11": {
+   "requests": 3214,
+   "input": 6814,
+   "cache_write": 7733306,
+   "cache_read": 350634387,
+   "output": 1853637,
+   "usd": 188.52,
+   "cache_hit": 0.9784
+  },
+  "12": {
+   "requests": 2460,
+   "input": 5348,
+   "cache_write": 5564037,
+   "cache_read": 252122119,
+   "output": 1368998,
+   "usd": 116.87,
+   "cache_hit": 0.9784
+  },
+  "13": {
+   "requests": 2044,
+   "input": 4406,
+   "cache_write": 5220634,
+   "cache_read": 231801668,
+   "output": 1536092,
+   "usd": 115.57,
+   "cache_hit": 0.978
+  },
+  "14": {
+   "requests": 2064,
+   "input": 4456,
+   "cache_write": 5460027,
+   "cache_read": 223235621,
+   "output": 1100839,
+   "usd": 107.14,
+   "cache_hit": 0.9761
+  },
+  "15": {
+   "requests": 2961,
+   "input": 6290,
+   "cache_write": 6207864,
+   "cache_read": 339958919,
+   "output": 1689853,
+   "usd": 146.65,
+   "cache_hit": 0.982
+  },
+  "16": {
+   "requests": 3293,
+   "input": 7040,
+   "cache_write": 9264467,
+   "cache_read": 427463863,
+   "output": 1954892,
+   "usd": 192.27,
+   "cache_hit": 0.9788
+  },
+  "17": {
+   "requests": 2585,
+   "input": 5492,
+   "cache_write": 6190355,
+   "cache_read": 395591432,
+   "output": 1584611,
+   "usd": 154.73,
+   "cache_hit": 0.9846
+  },
+  "18": {
+   "requests": 4860,
+   "input": 10456,
+   "cache_write": 11610471,
+   "cache_read": 596747485,
+   "output": 3139460,
+   "usd": 266.56,
+   "cache_hit": 0.9809
+  },
+  "19": {
+   "requests": 2638,
+   "input": 5692,
+   "cache_write": 5939966,
+   "cache_read": 336010816,
+   "output": 1472482,
+   "usd": 137.83,
+   "cache_hit": 0.9826
+  },
+  "20": {
+   "requests": 2571,
+   "input": 5579,
+   "cache_write": 6264997,
+   "cache_read": 343301144,
+   "output": 1623865,
+   "usd": 146.78,
+   "cache_hit": 0.9821
+  },
+  "21": {
+   "requests": 2571,
+   "input": 5542,
+   "cache_write": 6363145,
+   "cache_read": 330613152,
+   "output": 1552970,
+   "usd": 142.8,
+   "cache_hit": 0.9811
+  },
+  "22": {
+   "requests": 2794,
+   "input": 5984,
+   "cache_write": 6512835,
+   "cache_read": 306734243,
+   "output": 1752624,
+   "usd": 139.03,
+   "cache_hit": 0.9792
+  },
+  "23": {
+   "requests": 4706,
+   "input": 10106,
+   "cache_write": 11605939,
+   "cache_read": 507664205,
+   "output": 3038228,
+   "usd": 241.94,
+   "cache_hit": 0.9776
+  }
+ },
+ "by_model": {
+  "claude-fable-5-1": {
+   "requests": 60,
+   "input": 1740,
+   "cache_write": 450013,
+   "cache_read": 5902228,
+   "output": 24791,
+   "usd": 9.46,
+   "cache_hit": 0.9289
+  },
+  "claude-fable-5-2": {
+   "requests": 3559,
+   "input": 7748,
+   "cache_write": 16477344,
+   "cache_read": 383630724,
+   "output": 5794900,
+   "usd": 532.33,
+   "cache_hit": 0.9588
+  },
+  "claude-haiku-5-5": {
+   "requests": 39,
+   "input": 80,
+   "cache_write": 1063727,
+   "cache_read": 750576,
+   "output": 112793,
+   "usd": 0.2,
+   "cache_hit": 0.4137
+  },
+  "claude-opus-5": {
+   "requests": 26,
+   "input": 54,
+   "cache_write": 283149,
+   "cache_read": 2156522,
+   "output": 51015,
+   "usd": 0.0,
+   "cache_hit": 0.8839
+  },
+  "claude-opus-5-5": {
+   "requests": 95242,
+   "input": 204503,
+   "cache_write": 216270963,
+   "cache_read": 11426500392,
+   "output": 58263708,
+   "usd": 5004.74,
+   "cache_hit": 0.9814
+  },
+  "claude-sonnet-5-5": {
+   "requests": 4690,
+   "input": 10076,
+   "cache_write": 12954709,
+   "cache_read": 825188016,
+   "output": 3718190,
+   "usd": 156.04,
+   "cache_hit": 0.9845
+  }
+ },
+ "by_role": {
+  "boss": {
+   "requests": 13880,
+   "input": 32220,
+   "cache_write": 19023733,
+   "cache_read": 1374931310,
+   "output": 4723788,
+   "usd": 521.45,
+   "cache_hit": 0.9863,
+   "sessions": 133
+  },
+  "desk": {
+   "requests": 6983,
+   "input": 16077,
+   "cache_write": 16820889,
+   "cache_read": 1313390876,
+   "output": 5399902,
+   "usd": 493.06,
+   "cache_hit": 0.9873,
+   "sessions": 69
+  },
+  "loop": {
+   "requests": 685,
+   "input": 1444,
+   "cache_write": 3183208,
+   "cache_read": 17473410,
+   "output": 148605,
+   "usd": 31.94,
+   "cache_hit": 0.8458,
+   "sessions": 207
+  },
+  "other": {
+   "requests": 33226,
+   "input": 69960,
+   "cache_write": 73064863,
+   "cache_read": 4641520891,
+   "output": 22343445,
+   "usd": 1962.52,
+   "cache_hit": 0.9845,
+   "sessions": 445
+  },
+  "queen": {
+   "requests": 3843,
+   "input": 10120,
+   "cache_write": 5215696,
+   "cache_read": 285830027,
+   "output": 2038292,
+   "usd": 146.42,
+   "cache_hit": 0.982,
+   "sessions": 101
+  },
+  "subagent": {
+   "requests": 22131,
+   "input": 45424,
+   "cache_write": 77450678,
+   "cache_read": 3262573393,
+   "output": 19306503,
+   "usd": 1390.23,
+   "cache_hit": 0.9768,
+   "sessions": 561
+  },
+  "worker": {
+   "requests": 22868,
+   "input": 48956,
+   "cache_write": 52740838,
+   "cache_read": 1748408551,
+   "output": 14004862,
+   "usd": 1157.14,
+   "cache_hit": 0.9707,
+   "sessions": 773
+  }
+ },
+ "by_subagent_type": {
+  "Explore": {
+   "requests": 432,
+   "input": 864,
+   "cache_write": 1312619,
+   "cache_read": 17116308,
+   "output": 202368,
+   "usd": 14.04,
+   "cache_hit": 0.9287,
+   "sessions": 23
+  },
+  "Plan": {
+   "requests": 91,
+   "input": 632,
+   "cache_write": 637479,
+   "cache_read": 7824222,
+   "output": 89238,
+   "usd": 12.4,
+   "cache_hit": 0.9246,
+   "sessions": 4
+  },
+  "fork": {
+   "requests": 386,
+   "input": 798,
+   "cache_write": 985413,
+   "cache_read": 72853534,
+   "output": 522670,
+   "usd": 31.45,
+   "cache_hit": 0.9866,
+   "sessions": 13
+  },
+  "general-purpose": {
+   "requests": 20775,
+   "input": 42234,
+   "cache_write": 69675031,
+   "cache_read": 3122561034,
+   "output": 16379810,
+   "usd": 1205.95,
+   "cache_hit": 0.9782,
+   "sessions": 479
+  },
+  "web-fetch": {
+   "requests": 38,
+   "input": 78,
+   "cache_write": 1049536,
+   "cache_read": 723943,
+   "output": 112618,
+   "usd": 0.19,
+   "cache_hit": 0.4082,
+   "sessions": 14
+  },
+  "workflow-subagent": {
+   "requests": 409,
+   "input": 818,
+   "cache_write": 3790600,
+   "cache_read": 41494352,
+   "output": 1999799,
+   "usd": 126.2,
+   "cache_hit": 0.9163,
+   "sessions": 28
+  }
+ },
+ "by_box": {
+  "Box 1": {
+   "requests": 50522,
+   "input": 110965,
+   "cache_write": 130798640,
+   "cache_read": 6192272332,
+   "output": 37662464,
+   "usd": 2949.15,
+   "cache_hit": 0.9793,
+   "sessions": 1152
+  },
+  "Box 2": {
+   "requests": 44358,
+   "input": 94766,
+   "cache_write": 98148557,
+   "cache_read": 5640637797,
+   "output": 25909119,
+   "usd": 2355.16,
+   "cache_hit": 0.9829,
+   "sessions": 456
+  },
+  "Box 3": {
+   "requests": 8736,
+   "input": 18470,
+   "cache_write": 18552708,
+   "cache_read": 811218329,
+   "output": 4393814,
+   "usd": 398.45,
+   "cache_hit": 0.9776,
+   "sessions": 120
+  }
+ },
+ "by_repo": {
+  "No repo": {
+   "requests": 2172,
+   "input": 5177,
+   "cache_write": 3719698,
+   "cache_read": 278682731,
+   "output": 1087857,
+   "usd": 107.27,
+   "cache_hit": 0.9868,
+   "sessions": 23,
+   "requests_per_session_p50": 79,
+   "cold_start_tokens_p50": 40620,
+   "initial_context_p50": 40272,
+   "max_context_p50": 128877,
+   "idle_turn_share": 0.066,
+   "rotations_150_210k": 5
+  },
+  "Repo A": {
+   "requests": 8736,
+   "input": 18470,
+   "cache_write": 18552708,
+   "cache_read": 811218329,
+   "output": 4393814,
+   "usd": 398.45,
+   "cache_hit": 0.9776,
+   "sessions": 120,
+   "requests_per_session_p50": 71,
+   "cold_start_tokens_p50": 26413,
+   "initial_context_p50": 26292,
+   "max_context_p50": 153857,
+   "idle_turn_share": 0.06,
+   "rotations_150_210k": 62
+  },
+  "Repo B": {
+   "requests": 36126,
+   "input": 77068,
+   "cache_write": 83894355,
+   "cache_read": 4458645441,
+   "output": 20673309,
+   "usd": 1902.44,
+   "cache_hit": 0.9815,
+   "sessions": 379,
+   "requests_per_session_p50": 77,
+   "cold_start_tokens_p50": 49419,
+   "initial_context_p50": 49293,
+   "max_context_p50": 158660,
+   "idle_turn_share": 0.044,
+   "rotations_150_210k": 129
+  },
+  "Repo C": {
+   "requests": 19879,
+   "input": 42596,
+   "cache_write": 59713914,
+   "cache_read": 3645491343,
+   "output": 19866928,
+   "usd": 1425.47,
+   "cache_hit": 0.9839,
+   "sessions": 56,
+   "requests_per_session_p50": 71,
+   "cold_start_tokens_p50": 46968,
+   "initial_context_p50": 46399,
+   "max_context_p50": 187468,
+   "idle_turn_share": 0.142,
+   "rotations_150_210k": 10,
+   "velocity": {
+    "commits": 289,
+    "span_days": 222,
+    "active_days": 33,
+    "commits_per_day": 1.3,
+    "commits_per_active_day": 8.8,
+    "tags": 0,
+    "tags_per_week": 0.0,
+    "days_to_first_release": null
+   }
+  },
+  "Repo D": {
+   "requests": 830,
+   "input": 1742,
+   "cache_write": 1780039,
+   "cache_read": 117799606,
+   "output": 715823,
+   "usd": 49.99,
+   "cache_hit": 0.9851,
+   "sessions": 6,
+   "requests_per_session_p50": 68,
+   "cold_start_tokens_p50": 41261,
+   "initial_context_p50": 41020,
+   "max_context_p50": 146782,
+   "idle_turn_share": 0.211,
+   "rotations_150_210k": 2,
+   "velocity": {
+    "commits": 33,
+    "span_days": 9,
+    "active_days": 4,
+    "commits_per_day": 3.56,
+    "commits_per_active_day": 8.2,
+    "tags": 0,
+    "tags_per_week": 0.0,
+    "days_to_first_release": null
+   }
+  },
+  "Repo E": {
+   "requests": 7318,
+   "input": 15072,
+   "cache_write": 14568965,
+   "cache_read": 1156695472,
+   "output": 4244837,
+   "usd": 419.54,
+   "cache_hit": 0.9875,
+   "sessions": 57,
+   "requests_per_session_p50": 103,
+   "cold_start_tokens_p50": 32847,
+   "initial_context_p50": 32668,
+   "max_context_p50": 178910,
+   "idle_turn_share": 0.344,
+   "rotations_150_210k": 14,
+   "velocity": {
+    "commits": 227,
+    "span_days": 39,
+    "active_days": 10,
+    "commits_per_day": 5.89,
+    "commits_per_active_day": 22.7,
+    "tags": 20,
+    "tags_per_week": 3.63,
+    "days_to_first_release": 1.4
+   }
+  },
+  "Repo F": {
+   "requests": 133,
+   "input": 306,
+   "cache_write": 833460,
+   "cache_read": 10984376,
+   "output": 250384,
+   "usd": 13.87,
+   "cache_hit": 0.9295,
+   "sessions": 8,
+   "requests_per_session_p50": 15,
+   "cold_start_tokens_p50": 27857,
+   "initial_context_p50": 27496,
+   "max_context_p50": 127298,
+   "idle_turn_share": 0.111,
+   "rotations_150_210k": 3,
+   "velocity": {
+    "commits": 79,
+    "span_days": 10,
+    "active_days": 6,
+    "commits_per_day": 8.04,
+    "commits_per_active_day": 13.2,
+    "tags": 1,
+    "tags_per_week": 0.71,
+    "days_to_first_release": 7.5
+   }
+  },
+  "Repo G": {
+   "requests": 110,
+   "input": 234,
+   "cache_write": 623109,
+   "cache_read": 11361466,
+   "output": 299001,
+   "usd": 13.24,
+   "cache_hit": 0.948,
+   "sessions": 5,
+   "requests_per_session_p50": 21,
+   "cold_start_tokens_p50": 38246,
+   "initial_context_p50": 38045,
+   "max_context_p50": 155056,
+   "idle_turn_share": 0.0,
+   "rotations_150_210k": 3,
+   "velocity": {
+    "commits": 28,
+    "span_days": 11,
+    "active_days": 4,
+    "commits_per_day": 2.6,
+    "commits_per_active_day": 7.0,
+    "tags": 0,
+    "tags_per_week": 0.0,
+    "days_to_first_release": null
+   }
+  },
+  "Repo H": {
+   "requests": 27955,
+   "input": 61640,
+   "cache_write": 62836868,
+   "cache_read": 2131579249,
+   "output": 16200718,
+   "usd": 1354.58,
+   "cache_hit": 0.9713,
+   "sessions": 1057,
+   "requests_per_session_p50": 17,
+   "cold_start_tokens_p50": 31038,
+   "initial_context_p50": 30814,
+   "max_context_p50": 52217,
+   "idle_turn_share": 0.162,
+   "rotations_150_210k": 90,
+   "velocity": {
+    "commits": 1718,
+    "span_days": 189,
+    "active_days": 35,
+    "commits_per_day": 9.09,
+    "commits_per_active_day": 49.1,
+    "tags": 65,
+    "tags_per_week": 2.41,
+    "days_to_first_release": 22.5
+   }
+  },
+  "Repo I": {
+   "requests": 135,
+   "input": 276,
+   "cache_write": 283239,
+   "cache_read": 5002309,
+   "output": 80790,
+   "usd": 4.37,
+   "cache_hit": 0.9464,
+   "sessions": 12,
+   "requests_per_session_p50": 12,
+   "cold_start_tokens_p50": 28988,
+   "initial_context_p50": 28728,
+   "max_context_p50": 40552,
+   "idle_turn_share": 0.0,
+   "rotations_150_210k": 0,
+   "velocity": {
+    "commits": 8,
+    "span_days": 1,
+    "active_days": 1,
+    "commits_per_day": 8.0,
+    "commits_per_active_day": 8.0,
+    "tags": 0,
+    "tags_per_week": 0.0,
+    "days_to_first_release": null
+   }
+  },
+  "misc": {
+   "requests": 222,
+   "input": 1620,
+   "cache_write": 693550,
+   "cache_read": 16668136,
+   "output": 151936,
+   "usd": 13.54,
+   "cache_hit": 0.96,
+   "sessions": 5,
+   "requests_per_session_p50": 35,
+   "cold_start_tokens_p50": 41001,
+   "initial_context_p50": 40826,
+   "max_context_p50": 95520,
+   "idle_turn_share": 0.333,
+   "rotations_150_210k": 1
+  }
+ },
+ "waste": {
+  "idle_turns": {
+   "turns": 449,
+   "of_turns": 3169,
+   "tokens": 67647570,
+   "usd": 19.39,
+   "usd_share": 0.0034,
+   "note": "Human or injected prompt answered with zero tool calls (acks, polls, status pings)"
+  },
+  "cache_rewarm_after_gap": {
+   "count": 219,
+   "tokens": 21216956,
+   "usd_premium": 138.14,
+   "note": "Request after a gap of more than 5 minutes that rewrote more cache than it read",
+   "by_role": {
+    "boss": {
+     "count": 59,
+     "usd_premium": 33.7
+    },
+    "desk": {
+     "count": 49,
+     "usd_premium": 32.16
+    },
+    "other": {
+     "count": 33,
+     "usd_premium": 19.09
+    },
+    "queen": {
+     "count": 3,
+     "usd_premium": 0.5
+    },
+    "subagent": {
+     "count": 36,
+     "usd_premium": 33.29
+    },
+    "worker": {
+     "count": 39,
+     "usd_premium": 19.4
+    }
+   }
+  },
+  "high_context": {
+   "usd_over_150k": 1969.31,
+   "usd_over_200k": 1216.34,
+   "share_over_150k": 0.3453,
+   "requests_over_200k": 14759,
+   "sessions_over_200k": 187,
+   "requests_over_150k": 26290,
+   "by_role": {
+    "boss": {
+     "usd_over_150k": 17.82,
+     "usd_over_200k": 0.28,
+     "requests_over_150k": 354,
+     "requests_over_200k": 5,
+     "share_of_role_usd_over_150k": 0.0342
+    },
+    "desk": {
+     "usd_over_150k": 299.6,
+     "usd_over_200k": 216.55,
+     "requests_over_150k": 3582,
+     "requests_over_200k": 2433,
+     "share_of_role_usd_over_150k": 0.6076
+    },
+    "loop": {
+     "usd_over_150k": 0.0,
+     "usd_over_200k": 0.0,
+     "requests_over_150k": 0,
+     "requests_over_200k": 0,
+     "share_of_role_usd_over_150k": 0.0
+    },
+    "other": {
+     "usd_over_150k": 912.11,
+     "usd_over_200k": 517.52,
+     "requests_over_150k": 12568,
+     "requests_over_200k": 6349,
+     "share_of_role_usd_over_150k": 0.4648
+    },
+    "queen": {
+     "usd_over_150k": 4.8,
+     "usd_over_200k": 0.0,
+     "requests_over_150k": 78,
+     "requests_over_200k": 0,
+     "share_of_role_usd_over_150k": 0.0328
+    },
+    "subagent": {
+     "usd_over_150k": 660.15,
+     "usd_over_200k": 471.54,
+     "requests_over_150k": 8659,
+     "requests_over_200k": 5849,
+     "share_of_role_usd_over_150k": 0.4748
+    },
+    "worker": {
+     "usd_over_150k": 74.83,
+     "usd_over_200k": 10.45,
+     "requests_over_150k": 1049,
+     "requests_over_200k": 123,
+     "share_of_role_usd_over_150k": 0.0647
+    }
+   }
+  },
+  "rereads": {
+   "reads": 6795,
+   "rereads": 364,
+   "reread_share": 0.054,
+   "next_cache_write_tokens": 770472,
+   "usd_est": 3.91,
+   "note": "Read of a file already read in the same session; cost estimated from the next request cache write"
+  },
+  "boot_tax": {
+   "tokens": 25445780,
+   "usd": 212.95,
+   "sessions_initial_over_40k": 473,
+   "note": "Cache write of the first request of every main session"
+  },
+  "no_edit_sessions": {
+   "sessions": 899,
+   "usd": 1180.4,
+   "usd_share": 0.207
+  }
+ },
+ "by_role_model": {
+  "boss": {
+   "claude-opus-5-5": {
+    "requests": 13880,
+    "input": 32220,
+    "cache_write": 19023733,
+    "cache_read": 1374931310,
+    "output": 4723788,
+    "usd": 521.45,
+    "cache_hit": 0.9863
+   }
+  },
+  "desk": {
+   "claude-fable-5-2": {
+    "requests": 662,
+    "input": 1662,
+    "cache_write": 1786315,
+    "cache_read": 105653022,
+    "output": 519204,
+    "usd": 70.49,
+    "cache_hit": 0.9834
+   },
+   "claude-opus-5-5": {
+    "requests": 5318,
+    "input": 11861,
+    "cache_write": 12480621,
+    "cache_read": 1026240420,
+    "output": 4024861,
+    "usd": 385.64,
+    "cache_hit": 0.988
+   },
+   "claude-sonnet-5-5": {
+    "requests": 1003,
+    "input": 2554,
+    "cache_write": 2553953,
+    "cache_read": 181497434,
+    "output": 855837,
+    "usd": 36.93,
+    "cache_hit": 0.9861
+   }
+  },
+  "loop": {
+   "claude-opus-5-5": {
+    "requests": 685,
+    "input": 1444,
+    "cache_write": 3183208,
+    "cache_read": 17473410,
+    "output": 148605,
+    "usd": 31.94,
+    "cache_hit": 0.8458
+   }
+  },
+  "other": {
+   "claude-fable-5-1": {
+    "requests": 43,
+    "input": 1256,
+    "cache_write": 147136,
+    "cache_read": 3608450,
+    "output": 23872,
+    "usd": 5.05,
+    "cache_hit": 0.9605
+   },
+   "claude-haiku-5-5": {
+    "requests": 1,
+    "input": 2,
+    "cache_write": 14191,
+    "cache_read": 26633,
+    "output": 175,
+    "usd": 0.0,
+    "cache_hit": 0.6524
+   },
+   "claude-opus-5-5": {
+    "requests": 33182,
+    "input": 68702,
+    "cache_write": 72903536,
+    "cache_read": 4637885808,
+    "output": 22319398,
+    "usd": 1957.47,
+    "cache_hit": 0.9845
+   }
+  },
+  "queen": {
+   "claude-fable-5-2": {
+    "requests": 248,
+    "input": 656,
+    "cache_write": 376708,
+    "cache_read": 22701318,
+    "output": 185349,
+    "usd": 17.99,
+    "cache_hit": 0.9836
+   },
+   "claude-opus-5-5": {
+    "requests": 3595,
+    "input": 9464,
+    "cache_write": 4838988,
+    "cache_read": 263128709,
+    "output": 1852943,
+    "usd": 128.43,
+    "cache_hit": 0.9819
+   }
+  },
+  "subagent": {
+   "claude-fable-5-1": {
+    "requests": 17,
+    "input": 484,
+    "cache_write": 302877,
+    "cache_read": 2293778,
+    "output": 919,
+    "usd": 4.41,
+    "cache_hit": 0.8832
+   },
+   "claude-fable-5-2": {
+    "requests": 776,
+    "input": 1570,
+    "cache_write": 6648372,
+    "cache_read": 78180571,
+    "output": 2869770,
+    "usd": 196.92,
+    "cache_hit": 0.9216
+   },
+   "claude-haiku-5-5": {
+    "requests": 38,
+    "input": 78,
+    "cache_write": 1049536,
+    "cache_read": 723943,
+    "output": 112618,
+    "usd": 0.19,
+    "cache_hit": 0.4082
+   },
+   "claude-opus-5": {
+    "requests": 26,
+    "input": 54,
+    "cache_write": 283149,
+    "cache_read": 2156522,
+    "output": 51015,
+    "usd": 0.0,
+    "cache_hit": 0.8839
+   },
+   "claude-opus-5-5": {
+    "requests": 17625,
+    "input": 35796,
+    "cache_write": 58831107,
+    "cache_read": 2536853228,
+    "output": 13422320,
+    "usd": 1070.12,
+    "cache_hit": 0.9773
+   },
+   "claude-sonnet-5-5": {
+    "requests": 3649,
+    "input": 7442,
+    "cache_write": 10335637,
+    "cache_read": 642365351,
+    "output": 2849861,
+    "usd": 118.59,
+    "cache_hit": 0.9842
+   }
+  },
+  "worker": {
+   "claude-fable-5-2": {
+    "requests": 1873,
+    "input": 3860,
+    "cache_write": 7665949,
+    "cache_read": 177095813,
+    "output": 2220577,
+    "usd": 246.93,
+    "cache_hit": 0.9585
+   },
+   "claude-opus-5-5": {
+    "requests": 20957,
+    "input": 45016,
+    "cache_write": 45009770,
+    "cache_read": 1569987507,
+    "output": 11771793,
+    "usd": 909.69,
+    "cache_hit": 0.9721
+   },
+   "claude-sonnet-5-5": {
+    "requests": 38,
+    "input": 80,
+    "cache_write": 65119,
+    "cache_read": 1325231,
+    "output": 12492,
+    "usd": 0.52,
+    "cache_hit": 0.9531
+   }
+  }
+ },
+ "tool_calls_per_request": {
+  "overall": {
+   "requests": 103616,
+   "tool_calls": 107013,
+   "requests_with_tools": 96023,
+   "mean": 1.033,
+   "mean_when_any": 1.114,
+   "hist": {
+    "n0": 7593,
+    "n1": 88229,
+    "n2": 6067,
+    "n3": 967,
+    "n4_plus": 760
+   }
+  },
+  "by_role": {
+   "boss": {
+    "requests": 13880,
+    "tool_calls": 12516,
+    "requests_with_tools": 11718,
+    "mean": 0.902,
+    "mean_when_any": 1.068,
+    "hist": {
+     "n0": 2162,
+     "n1": 11007,
+     "n2": 632,
+     "n3": 73,
+     "n4_plus": 6
+    }
+   },
+   "desk": {
+    "requests": 6983,
+    "tool_calls": 6727,
+    "requests_with_tools": 5816,
+    "mean": 0.963,
+    "mean_when_any": 1.157,
+    "hist": {
+     "n0": 1167,
+     "n1": 5144,
+     "n2": 516,
+     "n3": 109,
+     "n4_plus": 47
+    }
+   },
+   "loop": {
+    "requests": 685,
+    "tool_calls": 435,
+    "requests_with_tools": 435,
+    "mean": 0.635,
+    "mean_when_any": 1.0,
+    "hist": {
+     "n0": 250,
+     "n1": 435,
+     "n2": 0,
+     "n3": 0,
+     "n4_plus": 0
+    }
+   },
+   "other": {
+    "requests": 33226,
+    "tool_calls": 34558,
+    "requests_with_tools": 31934,
+    "mean": 1.04,
+    "mean_when_any": 1.082,
+    "hist": {
+     "n0": 1292,
+     "n1": 29946,
+     "n2": 1573,
+     "n3": 287,
+     "n4_plus": 128
+    }
+   },
+   "queen": {
+    "requests": 3843,
+    "tool_calls": 2989,
+    "requests_with_tools": 2795,
+    "mean": 0.778,
+    "mean_when_any": 1.069,
+    "hist": {
+     "n0": 1048,
+     "n1": 2615,
+     "n2": 171,
+     "n3": 6,
+     "n4_plus": 3
+    }
+   },
+   "subagent": {
+    "requests": 22131,
+    "tool_calls": 26298,
+    "requests_with_tools": 22044,
+    "mean": 1.188,
+    "mean_when_any": 1.193,
+    "hist": {
+     "n0": 87,
+     "n1": 19655,
+     "n2": 1527,
+     "n3": 358,
+     "n4_plus": 504
+    }
+   },
+   "worker": {
+    "requests": 22868,
+    "tool_calls": 23490,
+    "requests_with_tools": 21281,
+    "mean": 1.027,
+    "mean_when_any": 1.104,
+    "hist": {
+     "n0": 1587,
+     "n1": 19427,
+     "n2": 1648,
+     "n3": 134,
+     "n4_plus": 72
+    }
+   }
+  },
+  "note": "tool_use blocks per API request; parallel calls in one message count once per block"
+ },
+ "cache_write_tiers": {
+  "overall": {
+   "write_5m": 77560937,
+   "write_1h": 169938968,
+   "share_1h": 0.6866,
+   "usd_5m": 390.95,
+   "usd_1h": 1429.32
+  },
+  "by_role": {
+   "boss": {
+    "write_5m": 110259,
+    "write_1h": 18913474,
+    "share_1h": 0.9942,
+    "usd_5m": 0.55,
+    "usd_1h": 151.31
+   },
+   "desk": {
+    "write_5m": 0,
+    "write_1h": 16820889,
+    "share_1h": 1.0,
+    "usd_5m": 0.0,
+    "usd_1h": 138.64
+   },
+   "loop": {
+    "write_5m": 0,
+    "write_1h": 3183208,
+    "share_1h": 1.0,
+    "usd_5m": 0.0,
+    "usd_1h": 25.47
+   },
+   "other": {
+    "write_5m": 0,
+    "write_1h": 73064863,
+    "share_1h": 1.0,
+    "usd_5m": 0.0,
+    "usd_1h": 586.17
+   },
+   "queen": {
+    "write_5m": 0,
+    "write_1h": 5215696,
+    "share_1h": 1.0,
+    "usd_5m": 0.0,
+    "usd_1h": 44.74
+   },
+   "subagent": {
+    "write_5m": 77450678,
+    "write_1h": 0,
+    "share_1h": 0.0,
+    "usd_5m": 390.4,
+    "usd_1h": 0.0
+   },
+   "worker": {
+    "write_5m": 0,
+    "write_1h": 52740838,
+    "share_1h": 1.0,
+    "usd_5m": 0.0,
+    "usd_1h": 482.99
+   }
+  }
+ }
+}

@@ -1,0 +1,21 @@
+# noir — 1940s film-noir busts (original characters)
+title: "Noir"
+style: >-
+  1940s film-noir look: high-contrast black-and-white, hard venetian-blind light, foggy atmosphere, nobody smoking, no cigarettes, dramatic shadows. Original fictional characters. The only color in each portrait is one
+  vivid accent in the given color.
+size: 1536x1024
+quality: medium
+est: 0.30
+slots:
+  - {name: Slate, look: "detective in a fedora with a crimson-red tie"}
+  - {name: Vivian, look: "lounge singer with a coral-orange flower in her hair"}
+  - {name: Rocco, look: "boxer with a tangerine-orange robe collar"}
+  - {name: Dolores, look: "femme fatale with golden-yellow earrings"}
+  - {name: Mack, look: "cab driver with a lemon-yellow cap"}
+  - {name: Ruth, look: "reporter with a chartreuse-green press badge ribbon"}
+  - {name: Sal, look: "club owner with a lime-green pocket square"}
+  - {name: Iris, look: "heiress with a sleek dark bob and spring-green gloves"}
+  - {name: Duke, look: "gambler with an emerald-green visor"}
+  - {name: Lou, look: "cop with a mint-green tie"}
+  - {name: Nora, look: "secretary with seafoam-green cat-eye glasses"}
+  - {name: Fritz, look: "informant with a turquoise-aqua scarf"}

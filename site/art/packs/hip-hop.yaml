@@ -1,0 +1,23 @@
+# hip-hop — original fictional MCs in era fashion, 80s–2010s (never real artists)
+title: "Hip-Hop"
+style: >-
+  Vibrant illustrated album-cover portrait art, bold graphic painting with confident brush strokes and
+  street-art flair, cool confident poses; invented fictional rappers wearing classic hip-hop fashion from
+  different eras, none resembling any real musician.
+  Absolutely no brand logos, no monogram patterns, no letters or numbers on caps, jerseys or jackets.
+size: 1536x1024
+quality: medium
+est: 0.30
+slots:
+  - {name: Rhyme, look: "80s MC with a high-top fade and a plain crimson-red tracksuit with a gold rope chain"}
+  - {name: Cipher, look: "old-school b-boy with a coral-orange bucket hat and big glasses"}
+  - {name: Verse, look: "90s MC in a tangerine-orange puffer jacket and a do-rag"}
+  - {name: Gold, look: "producer with headphones around the neck and a golden-yellow varsity jacket"}
+  - {name: Scratch, look: "DJ with a flat-cap and a lemon-yellow windbreaker"}
+  - {name: Flow, look: "woman MC with big hoop earrings, box braids and a chartreuse-green bomber"}
+  - {name: Beat, look: "2000s MC in an oversized lime-green jersey and a fitted cap"}
+  - {name: Lyric, look: "woman MC with a high ponytail and a spring-green track jacket"}
+  - {name: Bars, look: "bearded MC in a beanie and an emerald-green hoodie"}
+  - {name: Echo, look: "MC with locs and mint-green tinted sunglasses"}
+  - {name: Tempo, look: "young MC with bleached twists and a seafoam-green designer jacket"}
+  - {name: Mixtape, look: "woman MC with a curly afro and a turquoise-aqua satin jacket"}

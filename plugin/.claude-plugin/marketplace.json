@@ -1,0 +1,17 @@
+{
+  "name": "jiva-local",
+  "owner": {
+    "name": "Meiux Meiux"
+  },
+  "plugins": [
+    {
+      "name": "jiva",
+      "source": "./",
+      "description": "JIVA hive hooks + role skills",
+      "author": {
+        "name": "Meiux Meiux"
+      }
+    }
+  ],
+  "description": "Local-only JIVA marketplace (never published)"
+}

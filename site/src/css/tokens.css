@@ -1,0 +1,50 @@
+/* palette is law (a11y.py checks it). Brief 4.4 "many lamps from one flame": Indigo Night ground, Lotus Cream ink,
+   Marigold signal, Vermilion + Peacock supports. Dark only. Alphas of these tokens are the only derived tones. */
+@font-face {
+  font-family: "Bricolage Grotesque";
+  src: url("../fonts/bricolage-grotesque-latin-wght.woff2") format("woff2");
+  font-weight: 200 800; font-display: swap;
+}
+@font-face {
+  font-family: "Familjen Grotesk";
+  src: url("../fonts/familjen-grotesk-latin-wght.woff2") format("woff2");
+  font-weight: 400 700; font-display: swap;
+}
+@font-face {
+  font-family: "Departure Mono";
+  src: url("../fonts/departure-mono-latin.woff2") format("woff2");
+  font-weight: 400; font-display: swap;
+}
+@font-face { font-family: "Familjen Fallback"; src: local("Arial"); size-adjust: 98%; ascent-override: 92%; descent-override: 24%; line-gap-override: 0%; }
+:root {
+  --text: #f6ead8; --background: #0b0a2a; --primary: #f2a900; --secondary: #e2452b; --accent: #0f7c82;
+  --mute: rgba(246, 234, 216, .64);
+  --line: rgba(246, 234, 216, .14);
+  --panel: rgba(246, 234, 216, .035);
+  --shadow: #000;
+  --display: "Bricolage Grotesque", "Familjen Fallback", sans-serif;
+  --body: "Familjen Grotesk", "Familjen Fallback", sans-serif;
+  --mono: "Departure Mono", ui-monospace, "Cascadia Mono", Menlo, monospace;
+  --gut: 16px;
+  color-scheme: dark;
+}
+*, *::before, *::after { box-sizing: border-box; }
+html { background: var(--background); scroll-padding-top: 72px; }
+body {
+  margin: 0; background: var(--background); color: var(--text);
+  font: 400 17px/1.55 var(--body);
+  -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility;
+}
+h1, h2, h3 { font-family: var(--display); line-height: 1.02; margin: 0 0 .5em; letter-spacing: -.02em; }
+h1 { font-size: clamp(44px, 8vw, 96px); font-weight: 800; }
+h2 { font-size: clamp(28px, 4vw, 44px); font-weight: 700; }
+h3 { font-size: 20px; font-weight: 600; margin-top: 1.4em; }
+p { margin: 0 0 1em; max-width: 62ch; }
+a { color: var(--text); text-decoration-color: var(--primary); text-underline-offset: 3px; }
+a:hover { color: var(--primary); }
+:focus-visible { outline: 2px solid var(--primary); outline-offset: 3px; }
+code, pre, .num, kbd { font-family: var(--mono); font-synthesis-weight: none; }
+code { font-size: .9em; color: var(--primary); }
+strong, b { font-weight: 700; }
+::selection { background: var(--primary); color: var(--background); }
+body { accent-color: var(--primary); caret-color: var(--primary); }

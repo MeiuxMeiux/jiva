@@ -1,0 +1,19 @@
+/* scrollbars: never grey (standing rule). Track = Indigo Night, thumb = Peacock (3.9:1),
+   Marigold when grabbed. Chrome 121+ lets a non-auto scrollbar-color override ::-webkit-scrollbar, so the two
+   branches are split by @supports and every nested scroller (.scroll, pre, code, textarea) inherits them. */
+:root { --sb-track: var(--background); --sb-thumb: var(--accent); --sb-thumb-hover: var(--primary); }
+html { scrollbar-gutter: stable; }
+@supports selector(::-webkit-scrollbar) {
+  *::-webkit-scrollbar { width: 12px; height: 12px; }
+  *::-webkit-scrollbar-track { background: var(--sb-track); }
+  *::-webkit-scrollbar-thumb { background: var(--sb-thumb); border: 3px solid var(--sb-track); border-radius: 0; }
+  *::-webkit-scrollbar-thumb:hover, *::-webkit-scrollbar-thumb:active { background: var(--sb-thumb-hover); }
+  *::-webkit-scrollbar-corner, *::-webkit-resizer { background: var(--sb-track); }
+  .scroll::-webkit-scrollbar, pre::-webkit-scrollbar, textarea::-webkit-scrollbar { width: 8px; height: 8px; }
+  .scroll::-webkit-scrollbar-thumb, pre::-webkit-scrollbar-thumb { border-width: 2px; }
+}
+@supports not selector(::-webkit-scrollbar) {
+  * { scrollbar-color: var(--accent) var(--background); scrollbar-width: auto; }
+  .scroll, pre, code, textarea { scrollbar-width: thin; }
+}
+@media (forced-colors: active) { * { scrollbar-color: auto; } }

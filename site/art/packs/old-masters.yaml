@@ -1,0 +1,22 @@
+# old-masters — oil-painting portraits after classic museum portraiture (fictional sitters)
+title: "Old Masters"
+style: >-
+  Classical oil painting in the manner of 17th-century Dutch and Flemish museum portraiture: rich glazed
+  oil paint, visible fine brushwork and craquelure, warm chiaroscuro lighting, dignified sitters in period
+  dress. Paint only the figure; the background stays flat magenta.
+size: 1536x1024
+quality: medium
+est: 0.30
+slots:
+  - {name: Aldric, look: "bearded merchant with a crimson-red velvet doublet"}
+  - {name: Beatrix, look: "young noblewoman with pearls and a coral-orange silk gown"}
+  - {name: Cornelis, look: "elderly scholar with a white ruff collar and a tangerine-orange sash"}
+  - {name: Dorothea, look: "matron in a lace cap with a golden-yellow brocade bodice"}
+  - {name: Elias, look: "young painter's apprentice with curly hair and a lemon-yellow beret"}
+  - {name: Fenna, look: "girl with a headscarf in chartreuse-green"}
+  - {name: Gerrit, look: "sea captain with a lime-green sash over a dark coat"}
+  - {name: Hester, look: "widow in black with a spring-green jewel brooch"}
+  - {name: Isaak, look: "physician with a skullcap and an emerald-green cloak"}
+  - {name: Johanna, look: "lady with an elaborate braided coiffure and a mint-green satin dress"}
+  - {name: Klaas, look: "jolly innkeeper with ruddy cheeks and a seafoam-green neckerchief"}
+  - {name: Lieve, look: "young woman with a turquoise-aqua pearl-drop earring and turban"}

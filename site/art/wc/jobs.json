@@ -1,0 +1,5 @@
+{"site": "jiva", "cap": 0.50, "model": "bytedance/seedream-5.0-flash", "size": "2048x1152",
+ "jobs": {
+  "hero_lamps": {"prompt": "Hundreds of small clay oil lamps (diyas) floating on still dark indigo water at night, seen from slightly above, warm marigold flames #f2a900, a few vermilion clay rims #e2452b, the lamps gather in the right half and thin out to empty dark indigo water #0b0a2a on the left half, calm, photographic, shallow depth of field, soft reflections, no text, no lettering, no logos, no watermark, no people, safe for work"},
+  "tile_block": {"model": "black-forest-labs/FLUX-3-klein", "size": "1024x1024", "prompt": "Seamless repeating woodblock print pattern of small stylised marigold flowers and leaves, vermilion #e2452b and marigold #f2a900 ink on deep indigo cloth #0b0a2a, slightly misregistered hand-printed texture, flat, even all-over repeat, no text, no lettering, no logos, no watermark, no people, safe for work"}
+ }}

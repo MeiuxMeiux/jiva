@@ -1,0 +1,6 @@
+# Findable and quotable, not training data (Content Signals; robots.txt is a request, not a lock).
+User-agent: *
+Content-Signal: search=yes, ai-input=yes, ai-train=no
+Allow: /
+
+Sitemap: https://jiva.meiuxmeiux.com/sitemap.xml

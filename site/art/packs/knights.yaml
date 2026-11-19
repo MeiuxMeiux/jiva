@@ -1,0 +1,21 @@
+# knights — medieval knights and squires (original heraldry, no real coats of arms)
+title: "Knights"
+style: >-
+  Epic painterly medieval fantasy illustration of knights and squires, polished plate armor, chainmail,
+  tabards in solid colors with simple geometric shapes only, dramatic light. Original characters.
+size: 1536x1024
+quality: medium
+est: 0.30
+slots:
+  - {name: Gareth, look: "knight with a crimson-red tabard"}
+  - {name: Elaine, look: "knight with coral-orange plume"}
+  - {name: Tristan, look: "squire with tangerine-orange hood"}
+  - {name: Percival, look: "paladin with golden-yellow armor trim"}
+  - {name: Rowena, look: "archer knight with lemon-yellow tabard"}
+  - {name: Bors, look: "old knight with chartreuse-green cloak"}
+  - {name: Isolde, look: "lady knight with lime-green surcoat"}
+  - {name: Kay, look: "young knight with spring-green helmet crest"}
+  - {name: Gawain, look: "green-cloaked knight in emerald green"}
+  - {name: Lyonel, look: "herald with mint-green tabard"}
+  - {name: Enid, look: "shield-maiden with seafoam-green braided cord"}
+  - {name: Bedwyr, look: "sea knight with turquoise-aqua plume"}

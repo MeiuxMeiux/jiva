@@ -1,0 +1,10 @@
+# Cross-reference strip on /stats/: one `name|https url|one line` per line. DEFAULT DENY.
+# Only released, public tools. stats_check.py fails the build on a held name (hashed hold list)
+# or a URL that is not https on an expected public domain. Releasing a held tool = add its line
+# here and drop its hash from HOLD in site/scripts/stats_check.py, in the same commit.
+JIVA Micro|https://jiva.meiuxmeiux.com/micro.md|The hive guide in one paste-in markdown file.
+JIVA Kit|https://jiva.meiuxmeiux.com/kit.md|Every kit file in one markdown, extract and run.
+JIVA Crosstalk|https://jiva.meiuxmeiux.com/crosstalk.md|Claude Code sessions messaging across servers with tmux, ssh and just.
+Vizeiux|https://vizeiux.meiuxmeiux.com/|A free audio-reactive visualizer for Windows that reads the music.
+Software|https://meiuxmeiux.com/software|The software shelf at meiuxmeiux.com.
+Activity|https://meiuxmeiux.com/activity|Aggregate public coding activity, no repo names.

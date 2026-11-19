@@ -1,0 +1,69 @@
+/* /stats chart marks. Colour by job: cyan = the measure, pink = the thing to watch, green = rules/limits,
+   alphas of the palette for extra series (always with a legend or label: never colour alone).
+   Motion: each chart's host gets .go once when it scrolls in; only transform/opacity/clip-path/stroke-dashoffset
+   animate. Reduced motion: motion.css kills transitions and stats.js adds .go at once (final state). */
+.chart { position: relative; min-width: 0; }
+.js .chart:empty { min-height: 120px; }
+.js .chart.tall:empty { min-height: 300px; }
+.js .ringfig .chart:empty { aspect-ratio: 1; max-width: 240px; min-height: 0; }
+.chart svg { display: block; width: 100%; height: auto; overflow: visible; }
+.chart text { font: 500 12px var(--mono); fill: var(--text); }
+.chart .lbl { font: 500 14px var(--display); }
+.chart .sm { font-size: 12px; }
+.chart .axis { font-size: 11px; fill: var(--mute); }
+.chart .end { text-anchor: end; }
+.chart .mid { text-anchor: middle; }
+.chart .seg { font-weight: 700; fill: var(--background); }
+.m0 { fill: var(--primary); background: var(--primary); }
+.m1 { fill: var(--secondary); background: var(--secondary); }
+.m2 { fill: var(--accent); background: var(--accent); }
+.m3 { fill: rgba(242, 169, 0, .5); background: rgba(242, 169, 0, .5); }
+.m4 { fill: rgba(226, 69, 43, .45); background: rgba(226, 69, 43, .45); }
+.m5 { fill: rgba(15, 124, 130, .45); background: rgba(15, 124, 130, .45); }
+.m6 { fill: rgba(246, 234, 216, .5); background: rgba(246, 234, 216, .5); }
+.soft { opacity: .28; }
+.track { fill: var(--panel); }
+.grid { stroke: var(--line); }
+.tick, .axisline { stroke: var(--line); stroke-dasharray: 2 4; }
+.rule { stroke: var(--accent); stroke-width: 1.5; stroke-dasharray: 6 5; }
+.chart .rule-t { font-size: 11px; fill: var(--accent); }
+.ring2 { stroke: var(--background); stroke-width: 2; }
+.ring-rest { fill: none; stroke: var(--primary); stroke-width: 22; opacity: .9; }
+.ring-arc { fill: none; stroke: var(--secondary); stroke-width: 22; stroke-dashoffset: var(--len); transition: stroke-dashoffset 1.2s cubic-bezier(.2, .7, .2, 1); }
+.thin { stroke-width: 6; }
+.go .ring-arc { stroke-dashoffset: var(--off); }
+.chart .ring-big { font: 700 40px var(--mono); text-anchor: middle; fill: var(--text); }
+.chart .ring-small, .chart .ring-mid { font: 500 13px var(--mono); text-anchor: middle; fill: var(--mute); }
+.chart .ring-mid { font-size: 18px; font-weight: 700; fill: var(--text); }
+.grow { transform: scaleX(0); transform-box: fill-box; transform-origin: 0 50%; transition: transform .9s cubic-bezier(.2, .7, .2, 1) var(--d, 0ms); }
+.fade { opacity: 0; transition: opacity .6s ease var(--d, 0ms); }
+.go .grow { transform: none; }
+.go .fade { opacity: 1; }
+.fan-o { fill: var(--primary); opacity: .18; }
+.fan-i { fill: var(--primary); opacity: .32; }
+.wipe { clip-path: inset(0 100% 0 0); transition: clip-path 1.1s cubic-bezier(.2, .7, .2, 1); }
+.go .wipe { clip-path: inset(0 0 0 0); }
+.med { fill: none; stroke: var(--secondary); stroke-width: 2; stroke-dasharray: 1; stroke-dashoffset: 1; transition: stroke-dashoffset 1.2s ease .5s; }
+.go .med { stroke-dashoffset: 0; }
+.pt .dot { fill: var(--secondary); stroke: var(--background); stroke-width: 2; }
+.pt .hit, .row .hit { fill: transparent; }
+.pt:hover .dot, .pt:focus .dot { fill: var(--accent); }
+.chart [tabindex]:focus { outline: none; }
+.chart [tabindex]:focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; }
+.surv { fill: var(--secondary); opacity: .55; }
+.whisk { stroke-width: 2; opacity: .4; }
+.w0 { stroke: var(--primary); }
+.w1 { stroke: var(--secondary); }
+.bell { stroke: var(--text); stroke-width: 2; opacity: .5; }
+.slide { transform: translateX(var(--dx, 0)); transition: transform 1s cubic-bezier(.2, .7, .2, 1) var(--d, 0ms); }
+.go .slide { transform: none; }
+.stem { stroke: var(--line); stroke-width: 2; }
+.go .stem { stroke: rgba(15, 124, 130, .45); }
+.readout { min-height: 3em; margin: 10px 0 0; font: 12.5px/1.5 var(--mono); color: var(--mute); }
+.legend { list-style: none; margin: 12px 0 0; padding: 0; display: grid; gap: 6px; font-size: 14px; }
+.legend li { display: flex; gap: 10px; align-items: baseline; }
+.sw { flex: none; width: 12px; height: 12px; border-radius: 2px; transform: translateY(1px); }
+.dotk { border-radius: 50%; }
+.wedge { transform: scale(0); transform-box: view-box; transform-origin: var(--o); transition: transform .7s cubic-bezier(.2, .7, .2, 1) var(--d, 0ms); }
+.go .wedge { transform: none; }
+.wedge:hover, .wedge:focus { opacity: .75; }

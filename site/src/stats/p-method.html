@@ -1,0 +1,51 @@
+<section class="band sband" id="method" data-money>
+  <div class="side">
+    <h2><span class="num">10</span>Methodology</h2>
+    <p>Every number on this page is a field of one public file, <a href="data.json">data.json</a>
+      (schema <code data-stat="schema" data-f="num"></code>). Check it yourself: each claim above can be recomputed from it.</p>
+    <!-- @include stats/money.html -->
+  </div>
+  <div class="side prose">
+    <h3>What was counted</h3>
+    <p>Claude Code session transcripts on <span data-stat="scope.boxes" data-f="int"></span> machines, from
+      <span data-stat="window.first_day" data-f="num"></span> to <span data-stat="window.last_day" data-f="num"></span>:
+      usage numbers per request, model, hour, role and tool names. Never message text, tool inputs or outputs, file paths or prompts.
+      The counting script spends zero model tokens.</p>
+    <h3>Definitions</h3>
+    <dl class="defs">
+      <dt>request</dt><dd>one API call</dd>
+      <dt>turn</dt><dd>from one prompt to the next</dd>
+      <dt>session</dt><dd>one transcript; a subagent session is one spawned by another session</dd>
+      <dt>cache hit</dt><dd>cache reads divided by all input tokens</dd>
+      <dt>context</dt><dd>input plus cache write plus cache read of one request</dd>
+      <dt>handoff start</dt><dd>a session that reads a handoff file within its first six tool calls</dd>
+      <dt>rotation window</dt><dd>a session that ends between 150k and 210k tokens of context</dd>
+      <dt>idle turn</dt><dd>a prompt answered with no tool call</dd>
+      <dt>re-warm</dt><dd>a request after a gap of more than 5 minutes that wrote more cache than it read</dd>
+    </dl>
+    <h3>Anonymisation</h3>
+    <p>Repos are lettered in order of first activity and repos with fewer than 5 sessions are pooled as misc. Machines are
+      numbered. Nothing finer than the hour is published, and labels can shift between refreshes. Two separate scrubs, one
+      where the data is made and one in this site's build, fail on anything that looks like a name, path, host, address or key.</p>
+    <h3>Prices</h3>
+    <p class="fine" data-stat="pricing.source" data-f="num"></p>
+    <!-- @table prices -->
+    <h3>Limits</h3>
+    <ul class="limits">
+      <li>About 30 days: older transcripts are pruned before they can be counted.</li>
+      <li><span data-stat="scope.boxes" data-f="int"></span> machines only; work sessions are excluded.</li>
+      <li>Edits done through the shell are not counted as edits.</li>
+      <li>Idle-turn detection cannot tell a useful one-line answer from a poll.</li>
+      <li>Plan quota, latency and the quality of the work are not measured.</li>
+      <li>Velocity counts every branch and treats a tag as a release.</li>
+    </ul>
+    <p class="fine">Generated <span data-stat="generated_hour" data-f="num"></span>. Refreshed by hand, about weekly.</p>
+  </div>
+</section>
+<section class="band sband" id="more">
+  <div class="side">
+    <h2><span class="num">11</span>Other things we publish</h2>
+    <p>Public tools from the same desk. Nothing here is a client project.</p>
+  </div>
+  <!-- @crosslinks -->
+</section>

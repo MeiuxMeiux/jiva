@@ -1,0 +1,41 @@
+<section class="band sband shero" id="hero">
+  <div class="side">
+    <p class="kicker"><span class="num">00</span>Stats · <span data-stat="window.days" data-f="int"></span> days · <span data-stat="scope.boxes" data-f="int"></span> machines</p>
+    <h1>A month of our hive, counted.</h1>
+    <p class="lede"><b data-stat="scope.main_sessions" data-f="int"></b> sessions.
+      <b data-stat="totals.requests" data-f="int"></b> requests.
+      <b data-stat="totals.cache_hit" data-f="per100"></b> of every 100 input tokens came from cache.
+      Here is where the rest went.</p>
+    <p class="stats-notice" hidden></p>
+    <ul class="tiles stiles">
+      <li><b data-stat="scope.main_sessions" data-f="int"></b><span>main sessions, plus <span data-stat="scope.subagent_sessions" data-f="int"></span> subagents</span></li>
+      <li><b data-stat="totals.requests" data-f="int"></b><span>API requests</span></li>
+      <li><b data-stat="totals.cache_read" data-f="compact"></b><span>tokens re-read from cache</span></li>
+      <li><b data-stat="totals.cache_hit" data-f="pct"></b><span>cache hit</span></li>
+    </ul>
+  </div>
+  <figure class="side ringfig">
+    <div class="chart" data-chart="ring"></div>
+    <figcaption>Out of every 100 input tokens, <span data-stat="totals.cache_hit" data-f="per100"></span> were already cached.
+      <small>Window <span data-stat="window.first_day" data-f="num"></span> to <span data-stat="window.last_day" data-f="num"></span>
+      (UTC), <span data-stat="scope.boxes" data-f="int"></span> machines, generated <span data-stat="generated_hour" data-f="num"></span>.</small></figcaption>
+    <!-- @table hero -->
+  </figure>
+</section>
+<section class="band sband" id="tokens" data-money>
+  <div class="side">
+    <h2><span class="num">01</span>Where the tokens go</h2>
+    <p><span data-stat="derived.read_token_share" data-f="pct"></span> of every token we used was a cache read: the same
+      context, re-read on every request. Reads are cheap, so they come to only <span data-stat="derived.read_cost_share" data-f="pct0"></span>
+      of the cost.</p>
+    <!-- @include stats/money.html -->
+  </div>
+  <div class="side">
+    <h3>Tokens by class</h3>
+    <div class="chart" data-chart="river"></div>
+    <h3>API-equivalent cost by class</h3>
+    <div class="chart" data-chart="cost"></div>
+    <p class="fine" data-stat="derived.cw_note" data-f="num"></p>
+    <!-- @table tokens -->
+  </div>
+</section>

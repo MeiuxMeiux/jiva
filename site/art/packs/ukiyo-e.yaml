@@ -1,0 +1,21 @@
+# ukiyo-e — Edo-period woodblock-print busts (original figures)
+title: "Ukiyo-e"
+style: >-
+  Traditional Japanese ukiyo-e woodblock print style: flat colors, elegant carved outlines, subtle paper
+  grain, bold patterned kimono fabrics, stylised hair. Original figures, no calligraphy or seals.
+size: 1536x1024
+quality: medium
+est: 0.30
+slots:
+  - {name: Akira, look: "samurai with a crimson-red armor collar"}
+  - {name: Botan, look: "courtesan with an elaborate hairstyle and coral-orange kimono"}
+  - {name: Chiyo, look: "fisherman's daughter with a tangerine-orange headband"}
+  - {name: Daigo, look: "kabuki actor with golden-yellow robe"}
+  - {name: Emi, look: "tea-house girl with lemon-yellow obi"}
+  - {name: Fuji, look: "monk with a chartreuse-green kesa"}
+  - {name: Goro, look: "firefighter with lime-green hanten coat"}
+  - {name: Hana, look: "noblewoman with a spring-green fan"}
+  - {name: Isamu, look: "ronin with an emerald-green haori"}
+  - {name: Junko, look: "poet with a mint-green kimono"}
+  - {name: Kaito, look: "sailor with a seafoam-green wave-pattern robe"}
+  - {name: Rin, look: "archer with a turquoise-aqua hachimaki"}

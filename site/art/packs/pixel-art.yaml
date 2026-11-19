@@ -1,0 +1,22 @@
+# pixel-art — 16-bit pixel-art RPG hero busts
+title: "Pixel Art"
+style: >-
+  Crisp 16-bit pixel art in the style of a classic console role-playing-game dialogue portrait, chunky
+  visible square pixels, limited palette, clean dark pixel outlines, no anti-aliasing blur. Original
+  fantasy heroes.
+size: 1536x1024
+quality: medium
+est: 0.30
+slots:
+  - {name: Rook, look: "knight with a crimson-red plume"}
+  - {name: Pell, look: "dwarf with a braided beard and coral-orange hood"}
+  - {name: Tamsin, look: "elf archer with a tangerine-orange cloak"}
+  - {name: Dorn, look: "paladin with a golden-yellow helm"}
+  - {name: Zap, look: "wizard kid with a lemon-yellow pointed hat"}
+  - {name: Briar, look: "druid with a chartreuse-green leaf crown"}
+  - {name: Vex, look: "rogue with a lime-green mask"}
+  - {name: Mira, look: "cleric with a spring-green robe"}
+  - {name: Orrin, look: "ranger with an emerald-green hood"}
+  - {name: Quin, look: "bard with a mint-green feathered cap"}
+  - {name: Sable, look: "dark mage with seafoam-green glowing eyes"}
+  - {name: Tide, look: "sea knight with turquoise-aqua armor"}

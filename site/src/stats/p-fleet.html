@@ -1,0 +1,60 @@
+<section class="band sband" id="hive" data-money>
+  <div class="side">
+    <h2><span class="num">05</span>The hive at work</h2>
+    <p>The busiest hour was <span data-stat="derived.busiest_hour" data-f="num"></span> UTC and the busiest day
+      <span data-stat="derived.busiest_day" data-f="num"></span>. <span data-stat="scope.boxes" data-f="int"></span> machines, numbered, not named.</p>
+    <!-- @include stats/money.html -->
+  </div>
+  <div class="side">
+    <div class="chart" data-chart="fleet"></div>
+    <!-- @table hive -->
+  </div>
+</section>
+<section class="band sband" id="spend" data-money>
+  <div class="side">
+    <h2><span class="num">06</span>Who spends</h2>
+    <p>Subagents, sessions spawned by other sessions, are <span data-stat="derived.subagent_share" data-f="pct0"></span> of the spend.
+      Roles come from how a session was started; everything else is "other".</p>
+    <!-- @include stats/money.html -->
+  </div>
+  <div class="side">
+    <div class="chart" data-chart="roles"></div>
+    <!-- @table spend -->
+  </div>
+</section>
+<section class="band sband" id="repos">
+  <div class="side">
+    <h2><span class="num">07</span>Across repos</h2>
+    <p>Repos are lettered in order of first activity. Repos with fewer than 5 sessions are pooled as misc; sessions outside
+      any repo are "No repo".</p>
+  </div>
+  <div class="side">
+    <div class="chart" data-chart="repos"></div>
+    <!-- @table repos -->
+  </div>
+</section>
+<section class="band sband" id="speed">
+  <div class="side">
+    <h2><span class="num">08</span>Speed</h2>
+    <p>Fastest first release: <span data-stat="derived.fastest_release_repo" data-f="num"></span>, tagged
+      <span data-stat="derived.fastest_release_days" data-f="num"></span> days after its first commit. Most tags per week:
+      <span data-stat="derived.top_tags_repo" data-f="num"></span> at <span data-stat="derived.top_tags" data-f="num"></span>.</p>
+    <p class="fine">Commits are counted on every branch; a tag counts as a release. Only repos with a local clone have these numbers.</p>
+  </div>
+  <div class="side">
+    <div class="chart" data-chart="speed"></div>
+    <!-- @table speed -->
+  </div>
+</section>
+<section class="band sband" id="waste" data-money>
+  <div class="side">
+    <h2><span class="num">09</span>Waste we found</h2>
+    <p><span data-stat="waste.high_context.share_over_150k" data-f="pct"></span> of our spend happened above 150k tokens of
+      context. That is the number we are working on.</p>
+    <!-- @include stats/money.html -->
+  </div>
+  <div class="side">
+    <div class="chart" data-chart="waste"></div>
+    <!-- @table waste -->
+  </div>
+</section>

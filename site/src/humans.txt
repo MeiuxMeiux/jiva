@@ -1,0 +1,16 @@
+/* TEAM */
+Built by: Meiux Meiux
+With: a fleet of Claude Code agents (desk, boss, workers), one task card and one handoff at a time
+Site: https://jiva.meiuxmeiux.com/
+Source: https://github.com/MeiuxMeiux/jiva
+
+/* THANKS */
+Fonts: Bricolage Grotesque, Familjen Grotesk, Departure Mono (SIL Open Font License; licences in /fonts/)
+Art: generated plates (oil lamps, block-print marigolds) are atmosphere; the terminal recording is real
+
+/* SITE */
+Last update: 2026-11-19
+Language: English
+Tech: tmux, bash, Claude Code, jq, just; this page is static HTML/CSS/JS built by stdlib Python
+Standards: HTML5, CSS3, strict Content-Security-Policy (no inline script or style), Subresource Integrity, WCAG contrast, prefers-reduced-motion
+Software: self-hosted fonts, no trackers, no cookies, no third-party requests
